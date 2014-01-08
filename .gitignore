@@ -1,0 +1,9 @@
+*
+!.gitignore
+!.zshrc
+!.xmobarrc
+!.xmonad
+!.xinitrc
+!.Xresources
+!.Xdefaults
+!.tmux.conf
