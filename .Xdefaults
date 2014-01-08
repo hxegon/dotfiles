@@ -1,0 +1,16 @@
+! Xft settings ---------------------------------------------------------------
+
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintslight
+
+!!URxvt configs
+URxvt*font: xft:DejaVu Sans Mono :size=12
+URxvt*letterspace: -1
+URxvt*background:       black
+URxvt*cursorColor:      white
+URxvt*foreground:       white
+!URxvt*transparent:		true
+!URxvt*shading:			20
