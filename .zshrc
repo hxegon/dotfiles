@@ -49,23 +49,21 @@ alias ...='cd ../../../'
 alias la='ls -a'
 alias lc='ls --color'
 alias -g t ='tree'
+alias g='git'
 
 ## Common pacman commands
 alias install='sudo pacmatic -S'
 alias update='sudo pacmatic -Sy'
-alias upgrade='sudo pacmatic -Syu; rkup'
+alias upgrade='sudo pacmatic -Syu; echo "please run rkhunter when finished"'
 alias search='sudo pacmatic -Ss'
 
 ## general application aliases
-alias gs="git status"
-alias gc="git commit"
 alias pss='ps -ef | grep -i '
 alias irc='irssi -c irc.freenode.net -n rmroulette -w 1123581321'
 alias -g pl='| less'
 alias rkup='sudo rkhunter --propupd; sudo rkhunter --update; sudo rkhunter -c -sk'
 alias -g tidy="tidyhtml"
-alias -g r='rails'
-alias -g g='git'
+alias r='rails'
 
 ## mpd/mpc/ncmpcpp aliases
 alias tog='mpc toggle'
