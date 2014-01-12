@@ -75,3 +75,5 @@ bindkey '^R' history-incremental-search-backward
 #eval $(keychain --eval --agents ssh -Q --quiet id_ecdsa)
 
 [ ! "$UID" = "0" ] && archbey2
+# fix irssi behaviour in screen and tmux
+[ -n "$TMUX" ] && export TERM="screen-256color"
