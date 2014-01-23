@@ -41,15 +41,22 @@ RPROMPT=$'$(vcs_info_wrapper)'
 #TODO: migrate aliases to their own file and adjust
 ## General Aliases
 alias todo='grep -i -v "#done" ~/todo'
+alias copyin='xclip -i -selection clipboard'
 
 ## Directory shortcuts
 alias .='cd ../'
 alias ..='cd ../../'
 alias ...='cd ../../../'
+alias ls='ls -F'
 alias la='ls -a'
 alias lc='ls --color'
 alias -g t ='tree'
 alias g='git'
+
+## Awesome aliases
+# Open unsolved merge conflicts in vim as buffers (not 100%)
+alias mergesolv='git status --short | grep "^AA" | cut -d " " -f2 | xargs vim'
+alias ftyps="ls -F **/*.* | cut -d '.' -f 2- | sed 's/.\+\.//' | sed 's/\*$//' | sed 's/.*\/$//' | sed 's/.*:$//' | grep -v '^$'"
 
 ## Common pacman commands
 alias install='sudo pacmatic -S'
@@ -57,7 +64,6 @@ alias update='sudo pacmatic -Sy'
 alias upgrade='sudo pacmatic -Syu; echo "please run rkhunter when finished"'
 alias search='sudo pacmatic -Ss'
 
-## general application aliases
 alias pss='ps -ef | grep -i '
 alias irc='irssi -c irc.freenode.net -n rmroulette -w 1123581321'
 alias -g pl='| less'
