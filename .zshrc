@@ -3,7 +3,8 @@ autoload -Uz colors && colors
 autoload -Uz vcs_info
 export EDITOR="vim"
 export TERM="rxvt-unicode-256color"
-export PATH="$HOME/.rbenv/bin:$HOME/bin:$PATH"
+export PATH="/usr/local/heroku/bin:$PATH:$HOME/.rbenv/bin:$HOME/bin:$PATH"
+
 # rbenv stuff above and below
 eval "$(rbenv init -)" 
 HISTFILE=~/.zsh-history
