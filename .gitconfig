@@ -1,7 +1,10 @@
+[color]
+  ui = auto
 [user]
 	email = cooperlebrun@gmail.com
 	name = Cooper LeBrun
 [alias]
+  df = diff
 	co = checkout
 	ci = commit
 	st = status --short
@@ -10,5 +13,3 @@
   type = cat-file -t
   dump = cat-file -p
 	aa = add --all
-[push]
-	default = simple
