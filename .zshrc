@@ -1,8 +1,8 @@
 autoload -Uz colors && colors
 autoload -Uz vcs_info
 export EDITOR="vim"
-export TERM="rxvt-unicode-256color"
-export PATH="/usr/local/heroku/bin:$PATH:$HOME/.rbenv/bin:$HOME/bin:$PATH"
+#export TERM="rxvt-unicode-256color"
+#export PATH="/usr/local/heroku/bin:$HOME/.rbenv/bin:$PATH"
 # Add ~/bin to path
 export PATH="$HOME/bin:$PATH"
 
