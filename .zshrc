@@ -43,6 +43,9 @@ RPROMPT=$'$(vcs_info_wrapper)'
 ## General Aliases
 alias todo='grep -i -v "#done" ~/todo'
 alias copyin='xclip -i -selection clipboard'
+alias resrc='source ~/.zshrc'
+alias g='git'
+
 
 ## Directory shortcuts
 alias .='cd ../'
