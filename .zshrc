@@ -55,7 +55,6 @@ alias ls='ls -F'
 alias la='ls -a'
 alias lc='ls --color'
 alias -g t ='tree'
-alias g='git'
 
 ## Awesome aliases
 # Open unsolved merge conflicts in vim as buffers (not 100%)
