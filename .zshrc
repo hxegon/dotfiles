@@ -1,4 +1,3 @@
-## Created by Cooper LeBrun for 4.3.17
 autoload -Uz colors && colors
 autoload -Uz vcs_info
 export EDITOR="vim"
