@@ -46,6 +46,16 @@ alias copyin='xclip -i -selection clipboard'
 alias resrc='source ~/.zshrc'
 alias g='git'
 
+# Does this work?
+if [[ "$OSTYPE" == "darwin"* ]]; then # THESE SHOULD ALL BE OS X SPECIFIC
+  # Because htop doesn't work on osx without sudo
+  alias -g htop='sudo htop'
+  # because macvim
+  alias -g vi='mvim -v'
+  alias -g vim='mvim -v'
+  # postgres start
+  alias postgres-start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+fi
 
 ## Directory shortcuts
 alias .='cd ../'
