@@ -17,7 +17,7 @@ unsetopt beep nomatch notify
 autoload -Uz compinit
 compinit -C
 
-# git branch in prompt bs. no idea what any of this is
+# git branch in prompt. No idea what any of this is
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' \
 	    'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':vcs_info:*' actionformats \
