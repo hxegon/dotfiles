@@ -7,7 +7,6 @@ export EDITOR="vim"
 export PATH="$HOME/bin:$PATH"
 
 # rbenv stuff above and below
-eval "$(rbenv init -)" 
 HISTFILE=~/.zsh-history
 HISTSIZE=10000
 SAVEHIST=10000
@@ -83,5 +82,7 @@ bindkey '^R' history-incremental-search-backward
 #eval $(keychain --eval --agents ssh -Q --quiet id_ecdsa)
 
 [ ! "$UID" = "0" ] && archbey2
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
 # fix irssi behaviour in screen and tmux
 [ -n "$TMUX" ] && export TERM="screen-256color"
