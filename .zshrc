@@ -57,6 +57,7 @@ alias lc='ls --color'
 alias -g t ='tree'
 
 ## Awesome aliases
+# TODO: figure out what these do and label them better
 # Open unsolved merge conflicts in vim as buffers (not 100%)
 alias mergesolv='git status --short | grep "^AA" | cut -d " " -f2 | xargs vim'
 alias ftyps="ls -F **/*.* | cut -d '.' -f 2- | sed 's/.\+\.//' | sed 's/\*$//' | sed 's/.*\/$//' | sed 's/.*:$//' | grep -v '^$'"
@@ -75,9 +76,10 @@ alias -g tidy="tidyhtml"
 alias r='rails'
 
 ## mpd/mpc/ncmpcpp aliases
-alias tog='mpc toggle'
-alias playing='mpc current'
-alias gateways='cat ~/.vpnstuff/gateways.txt | grep .com | cut -d. -f1'
+# TODO: check if mpd is installed before setting these aliases
+#alias tog='mpc toggle'
+#alias playing='mpc current'
+#alias gateways='cat ~/.vpnstuff/gateways.txt | grep .com | cut -d. -f1'
 
 ## Bindkeys
 bindkey '^R' history-incremental-search-backward
