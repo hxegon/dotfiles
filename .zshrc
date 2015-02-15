@@ -62,19 +62,6 @@ alias -g t ='tree'
 alias mergesolv='git status --short | grep "^AA" | cut -d " " -f2 | xargs vim'
 alias ftyps="ls -F **/*.* | cut -d '.' -f 2- | sed 's/.\+\.//' | sed 's/\*$//' | sed 's/.*\/$//' | sed 's/.*:$//' | grep -v '^$'"
 
-## Common pacman commands
-alias install='sudo pacmatic -S'
-alias update='sudo pacmatic -Sy'
-alias upgrade='sudo pacmatic -Syu; echo "please run rkhunter when finished"'
-alias search='sudo pacmatic -Ss'
-
-alias pss='ps -ef | grep -i '
-alias irc='irssi -c irc.freenode.net -n rmroulette -w 1123581321'
-alias -g pl='| less'
-alias rkup='sudo rkhunter --propupd; sudo rkhunter --update; sudo rkhunter -c -sk'
-alias -g tidy="tidyhtml"
-alias r='rails'
-
 ## mpd/mpc/ncmpcpp aliases
 # TODO: check if mpd is installed before setting these aliases
 #alias tog='mpc toggle'
