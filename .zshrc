@@ -44,17 +44,21 @@ RPROMPT=$'$(vcs_info_wrapper)'
 alias todo='grep -i -v "#done" ~/todo'
 alias copyin='xclip -i -selection clipboard'
 alias resrc='source ~/.zshrc'
-alias g='git'
+if which git > /dev/null; then alias g='git'; fi
 
 # Does this work?
 if [[ "$OSTYPE" == "darwin"* ]]; then # THESE SHOULD ALL BE OS X SPECIFIC
   # Because htop doesn't work on osx without sudo
-  alias -g htop='sudo htop'
+  if which htop > /dev/null; then alias -g htop='sudo htop'; fi
   # because macvim
-  alias -g vi='mvim -v'
-  alias -g vim='mvim -v'
+  if which mvim > /dev/null; then
+    alias -g vi='mvim -v'
+    alias -g vim='mvim -v'
+  fi
   # postgres start
-  alias postgres-start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+  if which psql > /dev/null; then
+    alias postgres-start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+  fi
 fi
 
 ## Directory shortcuts
@@ -64,7 +68,7 @@ alias ...='cd ../../../'
 alias ls='ls -F'
 alias la='ls -a'
 alias lc='ls --color'
-alias -g t ='tree'
+if which tree > /dev/null; then alias -g t ='tree'; fi
 
 ## Awesome aliases
 # TODO: figure out what these do and label them better
