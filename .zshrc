@@ -3,6 +3,8 @@ autoload -Uz vcs_info
 export EDITOR="vim"
 export TERM="rxvt-unicode-256color"
 export PATH="/usr/local/heroku/bin:$PATH:$HOME/.rbenv/bin:$HOME/bin:$PATH"
+# Add ~/bin to path
+export PATH="$HOME/bin:$PATH"
 
 # rbenv stuff above and below
 eval "$(rbenv init -)" 
