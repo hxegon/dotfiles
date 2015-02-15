@@ -73,7 +73,7 @@ if which tree > /dev/null; then alias -g t ='tree'; fi
 ## Awesome aliases
 # TODO: figure out what these do and label them better
 # Open unsolved merge conflicts in vim as buffers (not 100%)
-alias mergesolv='git status --short | grep "^AA" | cut -d " " -f2 | xargs vim'
+#alias mergesolv='git status --short | grep "^AA" | cut -d " " -f2 | xargs vim'
 alias ftyps="ls -F **/*.* | cut -d '.' -f 2- | sed 's/.\+\.//' | sed 's/\*$//' | sed 's/.*\/$//' | sed 's/.*:$//' | grep -v '^$'"
 
 ## mpd/mpc/ncmpcpp aliases
