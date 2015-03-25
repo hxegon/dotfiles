@@ -45,6 +45,7 @@ alias todo='grep -i -v "#done" ~/todo'
 alias copyin='xclip -i -selection clipboard'
 alias resrc='source ~/.zshrc'
 if which git > /dev/null; then alias g='git'; fi
+if which vagrant > /dev/null; then alias v='vagrant'; fi
 
 # Does this work?
 if [[ "$OSTYPE" == "darwin"* ]]; then # THESE SHOULD ALL BE OS X SPECIFIC
