@@ -35,7 +35,7 @@ vcs_info_wrapper() {
 
 ## Prompt
 # username@hostname:last2parentdirectories #(number of jobs if any or =)> 
-PS1="%{$fg[green]%}%n@%m:%2c #%(1j.%j.=)>%{$reset_color%} "
+PS1="%n:%2c #%(1j.%j.=)>%{$reset_color%} "
 # current git branch
 RPROMPT=$'$(vcs_info_wrapper)'
 
