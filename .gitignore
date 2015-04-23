@@ -1,10 +1,2 @@
-*
-!.gitignore
-!.zshrc
-!.xmobarrc
-!.xmonad
-!.xinitrc
-!.Xresources
-!.Xdefaults
-!.tmux.conf
-!.gitconfig
+.xmonad/*
+!.xmonad/xmonad.hs
