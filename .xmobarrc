@@ -1,23 +1,23 @@
-Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
-       , borderColor = "black"
-       , border = TopB
-       , bgColor = "black"
-       , fgColor = "green"
-       , position = TopW L 95
-			 , hideOnStart = False
-			 , allDesktops = True
-			 , overrideRedirect = False
-			 , persistent = True
-       , lowerOnStart = False 
-       , commands = [ Run Network "wlp3s0" ["-L","0","-H","32","--normal","green","--high","red"] 10
-                    , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
-                    , Run Memory ["-t","Mem: <used>/<total>M; <usedratio>%"] 10
-                    -- , Run Com "dstat" [] "" 1800
-                    , Run Battery ["--", "energy_full"] 10 
-                    , Run Date "%a, %b %d %I:%M%p " "date" 10
+Config { font             = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+       , borderColor      = "black"
+       , border           = TopB
+       , bgColor          = "black"
+       , fgColor          = "green"
+       , position         = Top
+       , hideOnStart      = False
+       , allDesktops      = True
+       , overrideRedirect = False
+       -- , Persistent       = True -- Makes it not show up on startup?
+       , lowerOnStart     = True
+       , commands = [ Run Network "wlp3s0" ["-L","0","-H","32","--normal","green","--high","red"] 100
+                    , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 30
+                    , Run Memory ["-t","M <usedratio>%"] 100
+                    , Run Com "uname" ["-s","-r"] "" 36000
+                    , Run Battery ["--", "energy_full"] 300
+                    , Run Date "%a %b %d %I:%M%p " "date" 300
                     , Run StdinReader
                     ]
-       , sepChar = "%"
+       , sepChar  = "%"
        , alignSep = "}{"
        , template = "%StdinReader% }{ %cpu% | %memory% | %wlp3s0% | %battery% | <fc=#ee9a00>%date%</fc>"
        }
