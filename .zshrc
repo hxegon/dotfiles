@@ -45,6 +45,7 @@ alias resrc='source ~/.zshrc'
 if which git > /dev/null; then alias g='git'; fi
 if which vagrant > /dev/null; then alias v='vagrant'; fi
 if which bundle > /dev/null; then alias be='bundle exec'; fi
+if which heroku > /dev/null; then alias he='heroku'; fi
 
 # OS X SPECIFIC ALIASES
 if [[ "$OSTYPE" == "darwin"* ]]; then
