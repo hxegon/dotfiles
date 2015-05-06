@@ -78,6 +78,9 @@ alias ftyps="ls -F **/*.* | cut -d '.' -f 2- | sed 's/.\+\.//' | sed 's/\*$//' |
 #alias playing='mpc current'
 #alias gateways='cat ~/.vpnstuff/gateways.txt | grep .com | cut -d. -f1'
 
+# reopen trayer
+alias retray='trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 4 --transparent true --tint 0x191970 --height 13 &'
+
 ## Bindkeys
 bindkey '^R' history-incremental-search-backward
 # ssh-agent
@@ -86,4 +89,4 @@ bindkey '^R' history-incremental-search-backward
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # fix irssi behaviour in screen and tmux
-[ -n "$TMUX" ] && export TERM="rxvt-unicode-256color"
+[ -n "$TMUX" ] && export TERM="screen-256color"
