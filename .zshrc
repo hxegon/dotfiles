@@ -65,7 +65,7 @@ fi
 alias .='cd ../'
 alias ..='cd ../../'
 alias ...='cd ../../../'
-alias ls='ls -F'
+alias ls='ls -F --color --group-directories-first'
 alias la='ls -a'
 alias lc='ls --color'
 if which tree > /dev/null; then alias -g t ='tree'; fi
