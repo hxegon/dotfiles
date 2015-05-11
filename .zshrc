@@ -40,12 +40,14 @@ PS1="%n @ [%3c] -- %*
 RPROMPT=$'$(vcs_info_wrapper)'
 
 #TODO: migrate aliases to their own file and adjust
-## General Aliases
+## Program Aliases
 alias resrc='source ~/.zshrc'
 if which git > /dev/null; then alias g='git'; fi
 if which vagrant > /dev/null; then alias v='vagrant'; fi
 if which bundle > /dev/null; then alias be='bundle exec'; fi
 if which heroku > /dev/null; then alias he='heroku'; fi
+if which tmux > /dev/null; then alias tm='tmux'; fi
+if which rails > /dev/null; then alias r='rails'; fi
 
 # OS X SPECIFIC ALIASES
 if [[ "$OSTYPE" == "darwin"* ]]; then
