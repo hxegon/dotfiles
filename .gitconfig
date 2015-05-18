@@ -5,7 +5,6 @@
 	name = Cooper LeBrun
 [alias]
   df = diff
-	co = checkout
 	ci = commit
 	st = status --short
 	br = branch
@@ -14,3 +13,4 @@
   dump = cat-file -p
 	aa = add --all
 	ch = checkout
+	pl = push
