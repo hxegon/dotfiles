@@ -13,4 +13,4 @@
   dump = cat-file -p
 	aa = add --all
 	ch = checkout
-	pl = push
+	ph = push
