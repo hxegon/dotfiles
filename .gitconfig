@@ -14,3 +14,4 @@
 	aa = add --all
 	ch = checkout
 	ph = push
+  unstage = reset HEAD *
