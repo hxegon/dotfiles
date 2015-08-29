@@ -42,6 +42,7 @@ RPROMPT=$'$(vcs_info_wrapper)'
 #TODO: migrate aliases to their own file and adjust
 ## Program Aliases
 alias resrc='source ~/.zshrc'
+alias -g pm='aptitude'
 if which git > /dev/null; then alias g='git'; fi
 if which vagrant > /dev/null; then alias v='vagrant'; fi
 if which bundle > /dev/null; then alias be='bundle exec'; fi
