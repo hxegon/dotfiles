@@ -15,3 +15,5 @@
 	ch = checkout
 	ph = push
   unstage = reset HEAD *
+[push]
+	default = simple
