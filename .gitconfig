@@ -17,3 +17,5 @@
   unstage = reset HEAD *
 [push]
 	default = simple
+[github]
+	user = clebrun
