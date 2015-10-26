@@ -57,7 +57,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   if which htop > /dev/null; then alias -g htop='sudo htop'; fi # htop requires sudo
   # macvim
   if which mvim > /dev/null; then
-    alias -g vi='mvim -v'
     alias -g vim='mvim -v'
   fi
   # postgres start
@@ -74,6 +73,7 @@ alias ls='ls -F --color --group-directories-first'
 alias la='ls -a'
 alias lc='ls --color'
 if which tree > /dev/null; then alias -g t ='tree'; fi
+if which nvim > /dev/null; then alias -g ni='nvim'; fi
 
 # Open unsolved merge conflicts in vim as buffers (not 100%)
 #alias mergesolv='git status --short | grep "^AA" | cut -d " " -f2 | xargs vim'
