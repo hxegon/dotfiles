@@ -1,20 +1,7 @@
 autoload -Uz colors && colors
 autoload -Uz vcs_info
 
-# Add stuff to path here, one path per line
-PATH_NODES="/usr/local/heroku/bin
-$HOME/bin
-$HOME/.rbenv/bin
-$HOME/.cabal/bin
-/usr/local/sbin"
-
-function add_to_path {
-  export PATH="$1:$PATH"
-}
-
-for node in $PATH_NODES; do
-  add_to_path $node
-done
+path=(/usr/local/heroku/bin $HOME/bin $HOME/.rbenv/bin $HOME/.cabal/bin /usr/local/sbin $path)
 
 HISTFILE=~/.zsh-history
 HISTSIZE=10000
