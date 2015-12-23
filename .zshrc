@@ -55,7 +55,7 @@ RPROMPT=$'$(vcs_info_wrapper)'
 ## Program Aliases
 alias resrc='source ~/.zshrc'
 
-if which git > /dev/null; then alias g='git'; fi
+which git > /dev/null && alias g='git'
 
 if which vagrant > /dev/null; then
   alias v='vagrant'
@@ -67,11 +67,11 @@ if which bundle > /dev/null; then
   alias rebun='bundle && rbenv rehash'
 fi
 
-if which heroku > /dev/null; then alias he='heroku'; fi
-if which tmux > /dev/null; then alias tm='tmux'; fi
-if which rails > /dev/null; then alias r='rails'; fi
-if which tree > /dev/null; then alias -g t ='tree'; fi
-if which nvim > /dev/null; then alias -g ni='nvim'; fi
+which heroku > /dev/null && alias he='heroku'
+which tmux > /dev/null && alias tm='tmux'
+which rails > /dev/null && alias r='rails'
+which tree > /dev/null && alias -g t ='tree'
+which nvim > /dev/null && alias -g ni='nvim'
 if which trayer > /dev/null; then
   # reopen trayer
   alias retray='trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 4 --transparent true --tint 0x191970 --height 13 &'
@@ -79,9 +79,9 @@ fi
 
 # OS X SPECIFIC ALIASES
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  if which htop > /dev/null; then alias -g htop='sudo htop'; fi # htop requires sudo
+  which htop > /dev/null && alias -g htop='sudo htop'
   # macvim
-  if which mvim > /dev/null; then alias -g vim='mvim -v'; fi
+  which mvim > /dev/null && alias -g vim='mvim -v'
   # postgres start
   if which psql > /dev/null; then
     alias postgres-start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
