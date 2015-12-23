@@ -1,10 +1,20 @@
 autoload -Uz colors && colors
 autoload -Uz vcs_info
-export EDITOR="vim"
-export TERM="rxvt-unicode-256color"
-export PATH="/usr/local/heroku/bin:$PATH" # add heroku path
-export PATH="$HOME/bin:$PATH" # Add ~/bin to path
-export PATH="$HOME/.rbenv/bin:$PATH" # add rbenv to path.
+
+# Add stuff to path here, one path per line
+PATH_NODES="/usr/local/heroku/bin
+$HOME/bin
+$HOME/.rbenv/bin
+$HOME/.cabal/bin
+/usr/local/sbin"
+
+function add_to_path_portable {
+  if [[ -e $1 ]]; then PATH="$1:$PATH"; fi
+}
+
+for node in $PATH_NODES; do
+  add_to_path_portable node
+done
 
 HISTFILE=~/.zsh-history
 HISTSIZE=10000
