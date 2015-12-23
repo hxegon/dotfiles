@@ -8,12 +8,12 @@ $HOME/.rbenv/bin
 $HOME/.cabal/bin
 /usr/local/sbin"
 
-function add_to_path_portable {
-  if [[ -e $1 ]]; then PATH="$1:$PATH"; fi
+function add_to_path {
+  export PATH="$1:$PATH"
 }
 
 for node in $PATH_NODES; do
-  add_to_path_portable node
+  add_to_path $node
 done
 
 HISTFILE=~/.zsh-history
