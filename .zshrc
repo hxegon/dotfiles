@@ -108,3 +108,6 @@ bindkey '^R' history-incremental-search-backward
 
 # fix irssi behaviour in screen and tmux
 [ -n "$TMUX" ] && export TERM="screen-256color"
+
+# added by travis gem
+[ -f /Users/cooperlebrun/.travis/travis.sh ] && source /Users/cooperlebrun/.travis/travis.sh
