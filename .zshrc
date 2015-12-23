@@ -112,4 +112,4 @@ bindkey '^R' history-incremental-search-backward
 # added by travis gem
 [ -f /Users/cooperlebrun/.travis/travis.sh ] && source /Users/cooperlebrun/.travis/travis.sh
 
-eval "$(rbenv init -)"
+which rbenv > /dev/null && eval "$(rbenv init -)"
