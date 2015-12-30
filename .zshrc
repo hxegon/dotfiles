@@ -1,6 +1,7 @@
 autoload -Uz colors && colors
 autoload -Uz vcs_info
 
+# Automagical array that exports elements to path.
 path=(/usr/local/heroku/bin $HOME/bin $HOME/.rbenv/bin $HOME/.cabal/bin /usr/local/sbin $path)
 
 HISTFILE=~/.zsh-history
