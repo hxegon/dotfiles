@@ -30,17 +30,11 @@ vcs_info_wrapper() {
   fi
 }
 
-## Prompt
-# username@hostname:last2parentdirectories #(number of jobs if any or =)> 
-#PS1="%n @ [%3c] -- %* 
-##%(1j.%j.=)>%{$reset_color%} "
 PS1="[%3c] 
 #%(1j.%j.=)>%{$reset_color%} "
 # current git branch
 RPROMPT=$'$(vcs_info_wrapper)'
 
-#TODO: migrate aliases to their own file and adjust
-## Program Aliases
 alias resrc='source ~/.zshrc'
 
 which git > /dev/null && alias g='git'
@@ -98,11 +92,9 @@ alias lc='ls --color'
 #alias mergesolv='git status --short | grep "^AA" | cut -d " " -f2 | xargs vim'
 alias ftyps="ls -F **/*.* | cut -d '.' -f 2- | sed 's/.\+\.//' | sed 's/\*$//' | sed 's/.*\/$//' | sed 's/.*:$//' | grep -v '^$'"
 
-## Bindkeys
-bindkey '^R' history-incremental-search-backward
-# ssh-agent
-#eval $(keychain --eval --agents ssh -Q --quiet id_ecdsa)
+alias -g aa='&&'
 
+bindkey '^R' history-incremental-search-backward
 
 # fix irssi behaviour in screen and tmux
 [ -n "$TMUX" ] && export TERM="screen-256color"
