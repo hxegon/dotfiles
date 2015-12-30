@@ -58,7 +58,17 @@ which heroku > /dev/null && alias he='heroku'
 which tmux > /dev/null && alias tm='tmux'
 which rails > /dev/null && alias r='rails'
 which tree > /dev/null && alias -g t ='tree'
-which nvim > /dev/null && alias -g ni='nvim'
+
+if which nvim > /dev/null; then
+  alias -g ni='nvim'
+  
+  # Open these extensions with nvim
+  NVIM_EXTS=(rb css js html txt)
+  for ext in $NVIM_EXTS; do
+    alias -s $ext=nvim
+  done
+fi
+
 if which trayer > /dev/null; then
   # reopen trayer
   alias retray='trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 4 --transparent true --tint 0x191970 --height 13 &'
