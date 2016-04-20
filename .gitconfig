@@ -5,6 +5,7 @@
 	name = Cooper LeBrun
 [alias]
   df = diff
+  dc = diff --cached
 	ci = commit
 	st = status --short
 	br = branch
