@@ -15,6 +15,7 @@
 	aa = add --all
 	ch = checkout
 	ph = push
+  fuck = reset --soft HEAD~
   unstage = reset HEAD *
 	ap = add -p
 	mnf = merge --no-ff
@@ -22,3 +23,7 @@
 	default = simple
 [github]
 	user = clebrun
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
