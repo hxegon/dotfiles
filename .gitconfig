@@ -16,6 +16,8 @@
 	ch = checkout
 	ph = push
   unstage = reset HEAD *
+	ap = add -p
+	mnf = merge --no-ff
 [push]
 	default = simple
 [github]
