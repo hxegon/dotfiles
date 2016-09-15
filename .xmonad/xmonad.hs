@@ -16,7 +16,7 @@ main = do
       { ppOutput = hPutStrLn xmproc
       , ppTitle  = xmobarColor "orange" "" . shorten myTitleMaxLength
       }
-    , modMask    = mod1Mask
+    , modMask    = mod4Mask -- mod4 = Super, mod1 = left alt
     , terminal   = "gnome-terminal"
     } `additionalKeys`
     [ ((mod1Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
