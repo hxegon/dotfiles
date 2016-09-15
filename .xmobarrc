@@ -9,13 +9,15 @@ Config { font             = "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=
        , overrideRedirect = False
        -- , Persistent       = True -- Makes it not show up on startup?
        , lowerOnStart     = True
-       -- , commands = [ Run Network "wlp3s0" ["-L","0","-H","32","--normal","green","--high","red"] 100
         commands = [  Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 30
                     , Run Memory ["-t","M <usedratio>%"] 100
                     , Run Date "%a %b %d %I:%M%p " "date" 300
                     , Run StdinReader
+                    , Run Network "enp3s0" ["--template", "v<rx>kb ^<tx>kb",
+                    "-L","10000","-H","100000", -- unit = bytes/s
+                    "--low","green","--normal","yellow","--high","red"] 20
                     ]
        , sepChar  = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% | <fc=#ee9a00>%date%</fc>"
+       , template = "%StdinReader% }{ %cpu% | %memory% | %enp3s0% |<fc=#ee9a00>%date%</fc> "
        }
