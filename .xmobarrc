@@ -11,7 +11,7 @@ Config { font             = "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=
        , lowerOnStart     = True
         commands = [  Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 30
                     , Run Memory ["-t","M <usedratio>%"] 100
-                    , Run Date "%a %b %d %I:%M%p " "date" 300
+                    , Run Date "%a %b %d %I:%M%p" "date" 300
                     , Run StdinReader
                     , Run Network "enp3s0" ["--template", "v<rx>kb ^<tx>kb",
                     "-L","10000","-H","100000", -- unit = bytes/s
