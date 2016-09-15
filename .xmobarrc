@@ -12,12 +12,10 @@ Config { font             = "-misc-fixed-*-*-*-*-13-*-*-*-*-*-*-*"
        -- , commands = [ Run Network "wlp3s0" ["-L","0","-H","32","--normal","green","--high","red"] 100
         commands = [  Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 30
                     , Run Memory ["-t","M <usedratio>%"] 100
-                    , Run Com "uname" ["-s","-r"] "" 36000
-                    , Run Battery ["--", "energy_full"] 300
                     , Run Date "%a %b %d %I:%M%p " "date" 300
                     , Run StdinReader
                     ]
        , sepChar  = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% | %battery% | <fc=#ee9a00>%date%</fc>"
+       , template = "%StdinReader% }{ %cpu% | %memory% | <fc=#ee9a00>%date%</fc>"
        }
