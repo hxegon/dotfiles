@@ -35,4 +35,8 @@ main = do
       }
     , modMask    = myModKey -- mod4 = Super, mod1 = left alt
     , terminal   = "gnome-terminal"
-    }
+    } `additionalKeys`
+      [((myModKey, xK_a), spawn "pactl set-sink-volume 1 -5%"),
+      ((myModKey, xK_o), spawn "pactl set-sink-volume 1 +5%")]
+      -- Bind super-a and super-o to lower and raise volume
+      -- if it stops working, try checking pactl list sinks and change the 1
