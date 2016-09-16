@@ -10,7 +10,7 @@ Config { font             = "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=
        -- , Persistent       = True -- Makes it not show up on startup?
        , lowerOnStart     = True
         commands = [  Run Cpu ["-t", "i7-4770: <total>%", "-L","3","-H","50","--normal","green","--high","red"] 30
-                    , Run CoreTemp ["-t", "<core0> <core1> <core2> <core3>", "-L", "40", "-H", "65",
+                    , Run CoreTemp ["-t", "<core0>C <core1>C <core2>C <core3>C", "-L", "40", "-H", "65",
                     "-l", "green", "-n", "yellow", "-h", "red"] 40
                     , Run Memory ["-t","M <usedratio>%"] 100
                     , Run Date "%a %b %d %I:%M%p" "date" 300
