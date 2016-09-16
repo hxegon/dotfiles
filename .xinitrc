@@ -4,7 +4,7 @@
 
 ## set terminal defaults
 #xrdb -load ~/.Xresources
-#pulseaudio --start
+pulseaudio --start
 #mpd /home/coop/.mpd/mpd.conf
 
 xsetroot -cursor_name left_ptr
