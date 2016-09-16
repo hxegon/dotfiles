@@ -7,6 +7,7 @@ import XMonad.Util.EZConfig(additionalKeys)
 import System.IO
 
 myTitleMaxLength = 50
+myModKey = mod1Mask
 
 myLayout = avoidStruts $
            tiled
@@ -32,6 +33,6 @@ main = do
       { ppOutput = hPutStrLn xmproc
       , ppTitle  = xmobarColor "orange" "" . shorten myTitleMaxLength
       }
-    , modMask    = mod4Mask -- mod4 = Super, mod1 = left alt
+    , modMask    = myModKey -- mod4 = Super, mod1 = left alt
     , terminal   = "gnome-terminal"
     }
