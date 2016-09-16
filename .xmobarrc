@@ -17,9 +17,11 @@ Config { font             = "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=
                     , Run StdinReader
                     , Run Network "enp3s0" ["--template", "v<rx>kb ^<tx>kb",
                     "-L","10000","-H","100000", -- unit = bytes/s
-                    "--low","green","--normal","yellow","--high","red"] 20
+                    "--low","green","--normal","yellow","--high","red"] 15
+                    , Run DiskU [("/", "/: <usedp>%")]
+                    ["-L", "40", "-H", "70", "--low", "green", "--normal", "yellow", "--high", "--orange"] 20000
                     ]
        , sepChar  = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% %coretemp% | %memory% | %enp3s0% |<fc=#ee9a00>%date%</fc> "
+       , template = "%StdinReader% }{ %cpu% %coretemp% | %memory% | %enp3s0% | %disku% | <fc=#ee9a00>%date%</fc> "
        }
