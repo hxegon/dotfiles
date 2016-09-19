@@ -20,7 +20,7 @@ Config { font             = "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=
                     "--low","green","--normal","yellow","--high","red"] 15
                     , Run DiskU [("/", "/: <usedp>%")]
                     ["-L", "40", "-H", "70", "--low", "green", "--normal", "yellow", "--high", "--orange"] 20000
-                    , Run Uptime [] 10000
+                    , Run Uptime [] 5000
                     ]
        , sepChar  = "%"
        , alignSep = "}{"
