@@ -4,6 +4,7 @@
 
 ## set terminal defaults
 #xrdb -load ~/.Xresources
+# TODO: Conditionally start with pulseaudio --check condition
 pulseaudio --start
 #mpd /home/coop/.mpd/mpd.conf
 
