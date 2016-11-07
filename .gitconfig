@@ -19,6 +19,7 @@
   unstage = reset HEAD *
 	ap = add -p
 	mnf = merge --no-ff
+	amend = commit --amend
 [push]
 	default = simple
 [github]
