@@ -7,7 +7,7 @@ import XMonad.Util.EZConfig(additionalKeys)
 import System.IO
 
 myTitleMaxLength = 50
-myModKey = mod1Mask
+myModKey = mod4Mask
 
 myLayout = avoidStruts $
            tiled
