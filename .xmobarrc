@@ -9,20 +9,23 @@ Config { font             = "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=
        , overrideRedirect = False
        -- , Persistent       = True -- Makes it not show up on startup?
        , lowerOnStart     = True
-        commands = [  Run Cpu ["-t", "i7-4770: <total>%", "-L","3","-H","50","--normal","green","--high","red"] 30
-                    , Run CoreTemp ["-t", "<core0>C <core1>C <core2>C <core3>C", "-L", "40", "-H", "65",
-                    "-l", "green", "-n", "yellow", "-h", "red"] 40
+       , commands = [  Run Cpu ["-t", "i7-4770: <total>%", "-L","3","-H","50"] 30
+                    -- ,"--normal","green","--high","red"] 30
+                    , Run CoreTemp ["-t", "<core0>C <core1>C <core2>C <core3>C", "-L", "40", "-H", "65"] 40
+                    -- "-l", "green", "-n", "yellow", "-h", "red"] 40
                     , Run Memory ["-t","M <usedratio>%"] 100
                     , Run Date "%a %b %d %I:%M%p" "date" 300
                     , Run StdinReader
                     , Run Network "enp3s0" ["--template", "v<rx>kb ^<tx>kb",
-                    "-L","10000","-H","100000", -- unit = bytes/s
-                    "--low","green","--normal","yellow","--high","red"] 15
+                    "-L","10000","-H","100000"] 15 -- unit = bytes/s
+                    -- "--low","green","--normal","yellow","--high","red"] 15
                     , Run DiskU [("/", "/: <usedp>%")]
-                    ["-L", "40", "-H", "70", "--low", "green", "--normal", "yellow", "--high", "--orange"] 20000
+                    ["-L", "40", "-H", "70"] 20000
+                    -- , "--low", "green", "--normal", "yellow", "--high", "--orange"] 20000
                     , Run Uptime [] 5000
                     ]
        , sepChar  = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% %coretemp% | %memory% | %enp3s0% | %disku% | %uptime% | <fc=#ee9a00>%date%</fc> "
+       , template = "%StdinReader% }{ %cpu% | %coretemp% | %memory% | %enp3s0% | %disku% | %uptime% | %date% "
        }
+-- All color formatting has been commented out. Getting Could not parse string errors when enabled
