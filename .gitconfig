@@ -8,7 +8,7 @@
   dc = diff --cached
 	ci = commit
 	st = status --short
-	br = branch
+	br = branch -v
 	hist = log --graph --pretty=format:'%an: %s - %Cred%h%Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
   type = cat-file -t
   dump = cat-file -p
@@ -19,6 +19,7 @@
   unstage = reset HEAD *
 	ap = add -p
 	mnf = merge --no-ff
+	amend = commit --amend
 [push]
 	default = simple
 [github]

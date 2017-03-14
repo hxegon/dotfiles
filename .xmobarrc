@@ -1,4 +1,4 @@
-Config { font             = "-misc-fixed-*-*-*-*-13-*-*-*-*-*-*-*"
+Config { font             = "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=true"
        , borderColor      = "black"
        , border           = TopB
        , bgColor          = "black"
@@ -9,15 +9,23 @@ Config { font             = "-misc-fixed-*-*-*-*-13-*-*-*-*-*-*-*"
        , overrideRedirect = False
        -- , Persistent       = True -- Makes it not show up on startup?
        , lowerOnStart     = True
-       -- , commands = [ Run Network "wlp3s0" ["-L","0","-H","32","--normal","green","--high","red"] 100
-        commands = [  Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 30
+       , commands = [  Run Cpu ["-t", "i7-4770: <total>%", "-L","3","-H","50"] 30
+                    -- ,"--normal","green","--high","red"] 30
+                    , Run CoreTemp ["-t", "<core0>C <core1>C <core2>C <core3>C", "-L", "40", "-H", "65"] 40
+                    -- "-l", "green", "-n", "yellow", "-h", "red"] 40
                     , Run Memory ["-t","M <usedratio>%"] 100
-                    , Run Com "uname" ["-s","-r"] "" 36000
-                    , Run Battery ["--", "energy_full"] 300
-                    , Run Date "%a %b %d %I:%M%p " "date" 300
+                    , Run Date "%a %b %d %I:%M%p" "date" 300
                     , Run StdinReader
+                    , Run Network "enp3s0" ["--template", "v<rx>kb ^<tx>kb",
+                    "-L","10000","-H","100000"] 15 -- unit = bytes/s
+                    -- "--low","green","--normal","yellow","--high","red"] 15
+                    , Run DiskU [("/", "/: <usedp>%")]
+                    ["-L", "40", "-H", "70"] 20000
+                    -- , "--low", "green", "--normal", "yellow", "--high", "--orange"] 20000
+                    , Run Uptime [] 5000
                     ]
        , sepChar  = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% | %battery% | <fc=#ee9a00>%date%</fc>"
+       , template = "%StdinReader% }{ %cpu% | %coretemp% | %memory% | %enp3s0% | %disku% | %uptime% | %date% "
        }
+-- All color formatting has been commented out. Getting Could not parse string errors when enabled
