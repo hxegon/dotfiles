@@ -85,9 +85,8 @@ fi
 which git > /dev/null && alias g='git'
 #alias mergesolv='git status --short | grep "^AA" | cut -d " " -f2 | xargs vim'
 alias -g ni='nvim'
-alias -s $ext=nvim
+alias -s $ext=nvim # What is this?
 which htop > /dev/null && alias -g htop='sudo htop'
-which mvim > /dev/null && alias -g vim='mvim -v'
 alias postgres-start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
 alias buu='brew update && brew upgrade'
 alias -g wh="say -v whisper"
@@ -96,8 +95,7 @@ eval $(thefuck --alias)
 which tmux > /dev/null && alias tm='tmux'
 alias resrc='source ~/.zshrc'
 #alias ls='ls -F --color --group-directories-first'
-alias la='ls -a'
-alias lc='ls --color'
+# What is this even supposed to do?
 alias ftyps="ls -F **/*.* | cut -d '.' -f 2- | sed 's/.\+\.//' | sed 's/\*$//' | sed 's/.*\/$//' | sed 's/.*:$//' | grep -v '^$'"
 which tree > /dev/null && alias -g t ='tree'
 #  alias retray='trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 4 --transparent true --tint 0x191970 --height 13 &'
@@ -107,7 +105,6 @@ alias tmls='tmux list-sessions'
 #alias mosh='mosh -p 60001'
 
 #test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-alias scripts='ls ~/bin'
 alias ip='curl ipinfo.io/ip'
 
 # Heroku
