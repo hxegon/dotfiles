@@ -2,38 +2,42 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+Plug 'VundleVim/Vundle.vim'
 
 " Surround text-object
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
 " Set of sane defaults.
-Plugin 'tpope/vim-sensible'
+Plug 'tpope/vim-sensible'
 
 " Code linting on save
-Plugin 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 
 " smart tab behaviour
-Plugin 'ervandew/supertab'
+Plug 'ervandew/supertab'
 
-Plugin 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-easy-align'
 
 " Colorschemes (KEEP AT END OF PLUGIN LIST)
-Plugin 'endel/vim-github-colorscheme'
-Plugin 'Lokaltog/vim-distinguished'
-Plugin 'morhetz/gruvbox'
-Plugin 'w0ng/vim-hybrid'
-Plugin 'sickill/vim-monokai'
-Plugin 'sjl/badwolf'
-Plugin 'kristijanhusak/vim-hybrid-material'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'AlessandroYorba/Alduin'
-Plugin 'mswift42/vim-themes'
-call vundle#end()
+Plug 'endel/vim-github-colorscheme'
+Plug 'Lokaltog/vim-distinguished'
+Plug 'morhetz/gruvbox'
+Plug 'w0ng/vim-hybrid'
+Plug 'sickill/vim-monokai'
+Plug 'sjl/badwolf'
+Plug 'kristijanhusak/vim-hybrid-material'
+Plug 'vim-ruby/vim-ruby'
+Plug 'AlessandroYorba/Alduin'
+Plug 'mswift42/vim-themes'
+
+" Haskell
+Plug 'eagletmt/ghcmod-vim'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'eagletmt/neco-ghc'
+call plug#end()
 
 syntax enable
 filetype plugin indent on
@@ -121,11 +125,8 @@ let g:syntastic_ocaml_checkers = ['merlin']
 " SuperTab
 let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 
-" Merlin (OCaml)
-let g:opamshare = substitute(system('opam config var share'), '\n', '', '''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
-
-" Merlin mappings
-nnoremap <localleader>t :MerlinTypeOf<CR>
-nnoremap <localleader>u :MerlinUse 
-nnoremap <localleader>l :MerlinLocate<CR>
+" Haskell
+nnoremap <leader>tw :GhcModTypeInsert<CR>
+nnoremap <leader>ts :GhcModSplitFunCase<CR>
+nnoremap <leader>tq :GhcModType<CR>
+nnoremap <leader>te :GhcModTypeClear<CR>
