@@ -84,18 +84,14 @@ fi
 
 which git > /dev/null && alias g='git'
 #alias mergesolv='git status --short | grep "^AA" | cut -d " " -f2 | xargs vim'
-which heroku > /dev/null && alias he='heroku'
 alias -g ni='nvim'
 alias -s $ext=nvim
-alias save-utop="cat ~/.utop-history >> ~/Projects/OCaml/history.log"
-alias -g utop-exp="utop ; save-utop"
 which htop > /dev/null && alias -g htop='sudo htop'
 which mvim > /dev/null && alias -g vim='mvim -v'
 alias postgres-start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
 alias buu='brew update && brew upgrade'
 alias -g wh="say -v whisper"
 alias be='bundle exec'
-which rails > /dev/null && alias r='rails'
 eval $(thefuck --alias)
 which tmux > /dev/null && alias tm='tmux'
 alias resrc='source ~/.zshrc'
@@ -108,26 +104,41 @@ which tree > /dev/null && alias -g t ='tree'
 alias -g em='emacs -nw'
 alias -g ec='emacsclient'
 alias tmls='tmux list-sessions'
+#alias mosh='mosh -p 60001'
 
 #test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 alias scripts='ls ~/bin'
 alias ip='curl ipinfo.io/ip'
 
-hscale() {
-  heroku ps:scale web=$2 --remote $1
-}
-#alias mosh='mosh -p 60001'
+# Heroku
+if type "heroku"; then
+    alias he='heroku'
+    hscale() {
+	heroku ps:scale web=$2 --remote $1
+    }
+fi
 
-alias d="docker"
-alias dc="docker-compose"
-alias d-clean='docker rm $(docker ps -qa --no-trunc --filter "status=exited") && docker rmi $(docker images --filter "dangling=true" -q --no-trunc)'
+# Docker
+if type "docker"; then
+    alias d="docker"
+    alias dc="docker-compose"
+    alias d-clean='docker rm $(docker ps -qa --no-trunc --filter "status=exited") && docker rmi $(docker images --filter "dangling=true" -q --no-trunc)'
+fi
 
-#source $HOME/.cargo/env
-eval $(/usr/libexec/path_helper -s)
+# Rust
+if type "rustc"; then
+    source $HOME/.cargo/env
+    eval $(/usr/libexec/path_helper -s)
+fi
 
-# CHRUBY
+# Ruby
+which rails > /dev/null && alias r='rails'
 source /usr/local/share/chruby/chruby.sh
 chruby ruby 2.4.2
 
 # OCaml/Reason
-eval $(opam config env)
+if type "opam"; then
+    eval $(opam config env)
+    alias save-utop="cat ~/.utop-history >> ~/Projects/OCaml/history.log"
+    alias -g utop-exp="utop ; save-utop"
+fi
