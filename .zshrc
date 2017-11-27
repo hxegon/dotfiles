@@ -106,13 +106,13 @@ alias tmls='tmux list-sessions'
 alias ip='curl ipinfo.io/ip'
 
 # Emacs
-if type "emacs"; then
+if type "emacs" &> /dev/null; then
     alias -g em='emacs -nw'
     alias -g ec='emacsclient'
 fi
 
 # Heroku
-if type "heroku"; then
+if type "heroku" &> /dev/null; then
     alias he='heroku'
     hscale() {
 	heroku ps:scale web=$2 --remote $1
@@ -120,14 +120,14 @@ if type "heroku"; then
 fi
 
 # Docker
-if type "docker"; then
+if type "docker" &> /dev/null; then
     alias d="docker"
     alias dc="docker-compose"
     alias d-clean='docker rm $(docker ps -qa --no-trunc --filter "status=exited") && docker rmi $(docker images --filter "dangling=true" -q --no-trunc)'
 fi
 
 # Rust
-if type "rustc"; then
+if type "rustc" &> /dev/null; then
     source $HOME/.cargo/env
     eval $(/usr/libexec/path_helper -s)
 fi
@@ -138,7 +138,7 @@ source /usr/local/share/chruby/chruby.sh
 chruby ruby 2.4.2
 
 # OCaml/Reason
-if type "opam"; then
+if type "opam" &> /dev/null; then
     eval $(opam config env)
     alias save-utop="cat ~/.utop-history >> ~/Projects/OCaml/history.log"
     alias -g utop-exp="utop ; save-utop"
