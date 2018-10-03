@@ -1,1 +1,4 @@
 *.DS_Store
+!xmonad/.xmonad/xmonad.hs
+!xmonad/.xmonad/xmobarrc
+xmonad/.xmonad/*
