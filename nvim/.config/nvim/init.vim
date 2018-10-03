@@ -26,6 +26,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'sjl/gundo.vim'
 Plug 'ervandew/supertab'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 
 " Snippets
 Plug 'honza/vim-snippets'
@@ -57,7 +59,6 @@ Plug 'nelstrom/vim-textobj-rubyblock' | Plug 'kana/vim-textobj-user'
 " Misc
 "Plug 'tomtom/tlib_vim'
 " fuzzy file search
-Plug 'ctrlpvim/ctrlp.vim'
 " easy gisting, easy life
 " Plug 'mattn/gist-vim' | Plug 'mattn/webapi-vim'
 " move around a file easier, mapped to <leader><space>
@@ -207,9 +208,6 @@ nnoremap <leader>U :PlugUpgrade \| PlugClean \| PlugUpdate<CR>
 let g:gist_post_anonymous = 1
 vnoremap <leader>G :Gist -a -b<CR>
 
-" stops CtrlP from limiting number of indexed files
-let g:ctrlp_max_files=0
-
 " Gundo plugin settings
 nnoremap <leader>u :GundoToggle<CR>
 
@@ -230,10 +228,9 @@ nnoremap <leader>r :VroomRunTestFile<CR>
 " NERDtree
 nnoremap <leader>n :NERDTreeToggle<CR>
 
-" Ctrl-P
-nnoremap <leader>p :CtrlPMixed<CR>
-nnoremap <leader>b :CtrlPBuffer<CR>
-nnoremap <leader>c :CtrlPTag<CR>
+" FZF
+nnoremap <leader>p :Files<CR>
+nnoremap <leader>b :Buffers<CR>
 
 " Easy Align Mappings
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
