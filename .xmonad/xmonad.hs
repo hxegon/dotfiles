@@ -1,5 +1,6 @@
 import XMonad
 import XMonad.Layout.Tabbed
+import XMonad.Layout.Spacing
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run(spawnPipe)
@@ -7,9 +8,11 @@ import XMonad.Util.EZConfig(additionalKeys)
 import System.IO
 
 myTitleMaxLength = 50
-myModKey = mod4Mask
+myModKey         = mod4Mask
+myTerminal       = "gnome-terminal"
 
-myLayout = avoidStruts $
+myLayout = smartBorders $
+           avoidStruts $
            tiled
            ||| Mirror tiled
            ||| Full
@@ -34,7 +37,7 @@ main = do
       , ppTitle  = xmobarColor "orange" "" . shorten myTitleMaxLength
       }
     , modMask    = myModKey -- mod4 = Super, mod1 = left alt
-    , terminal   = "gnome-terminal"
+    , terminal   = myTerminal
     } `additionalKeys`
       [((myModKey, xK_a), spawn "pactl set-sink-volume $(active_sink) -5%"),
       ((myModKey, xK_o), spawn "pactl set-sink-volume $(active_sink) +5%")]
