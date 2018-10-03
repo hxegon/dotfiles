@@ -32,7 +32,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'mattn/emmet-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
-
+Plug 'unblevable/quick-scope'
 " Snippets
 Plug 'honza/vim-snippets'
 Plug 'garbas/vim-snipmate'
