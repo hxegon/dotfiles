@@ -8,11 +8,11 @@ antigen bundle heroku
 antigen bundle rake
 antigen bundle ruby
 antigen bundle sudo
-antigen bundle themes
 antigen bundle zsh-autosuggestions
 antigen bundle colored-man-pages
 antigen bundle command-not-found
 antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-completions
 
 antigen theme lambda
 
@@ -20,8 +20,6 @@ antigen apply
 
 export PATH="$HOME/.cargo/bin:/usr/local/heroku/bin:/Users/cooperlebrun/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Users/cooperlebrun/.local/bin:/usr/local/opt/llvm/bin"
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
