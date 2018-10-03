@@ -26,19 +26,19 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'sjl/gundo.vim'
 Plug 'ervandew/supertab'
-
 Plug 'junegunn/fzf.vim'
 if has('mac')
   Plug '/usr/local/opt/fzf'
 elseif has('unix')
   Plug '/home/linuxbrew/.linuxbrew/opt/fzf'
 endif
-
 Plug 'tpope/vim-eunuch'
 Plug 'mattn/emmet-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
 Plug 'unblevable/quick-scope'
+Plug 'raghur/vim-ghost', { 'do': ':GhostInstall' }
+
 " Snippets
 Plug 'honza/vim-snippets'
 Plug 'garbas/vim-snipmate'
