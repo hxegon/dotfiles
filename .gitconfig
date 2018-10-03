@@ -9,6 +9,7 @@
 	ci = commit
 	st = status --short
 	br = branch -v
+	re = remote -v
 	hist = log --graph --pretty=format:'%an: %s - %Cred%h%Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
   type = cat-file -t
   dump = cat-file -p
@@ -28,3 +29,7 @@
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 	required = true
+[url "https://github.com"]
+	insteadOf = git://github.com
+[url "git://github.com"]
+	insteadOf = https://github.com
