@@ -45,7 +45,6 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'AlessandroYorba/Alduin'
 Plug 'mswift42/vim-themes'
 Plug 'liuchengxu/space-vim-dark'
-'
 
 " Git
 Plug 'airblade/vim-gitgutter'
@@ -53,26 +52,7 @@ Plug 'tpope/vim-fugitive'
 
 " Ruby
 Plug 'ngmy/vim-rubocop'
-"Plug 'tpope/vim-cucumber'
-"Plug 'skalnik/vim-vroom'
 Plug 'nelstrom/vim-textobj-rubyblock' | Plug 'kana/vim-textobj-user'
-
-" Clojure
-"Plug 'guns/vim-clojure-static'
-"Plug 'tpope/vim-classpath'
-"Plug 'tpope/vim-fireplace'
-"Plug 'tpope/vim-leiningen'
-"Plug 'neovim/node-host'
-"Plug 'snoe/nvim-parinfer.js'
-"Plug 'vim-scripts/paredit.vim'
-
-" Haskell
-" Plug 'eagletmt/ghcmod-vim'
-" Plug 'eagletmt/neco-ghc'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'neovimhaskell/haskell-vim'
-" not sure if this belongs here?
-" Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
 " Misc
 "Plug 'tomtom/tlib_vim'
@@ -199,17 +179,6 @@ vnoremap <leader>. ``
 "nnoremap <leader>tx :tabclose<CR>
 "nnoremap <leader>ts :tabnew ~/.config/nvim/bundle/vim-snippets/snippets<CR>
 
-" go into haskell repl with current file loaded
-"nnoremap <leader>g :! ghci %<CR> " Retired mapping
-
-" CTAGS bindings
-" GOTO ctag for definition under cursor
-nnoremap <leader>cd <C-]>
-" Come back from ctag definition
-nnoremap <leader>cb <C-o>
-" Regenerate CTags
-nnoremap <silent> <leader>cr :! ctags -R .<CR>
-
 " source vimrc
 nnoremap <leader>v :source ~/.config/nvim/init.vim<CR>
 nnoremap <leader>V :e ~/.config/nvim/init.vim<CR>
@@ -289,16 +258,6 @@ map \ <Plug>(easymotion-prefix)
 " <space><char> opens bi-directional easymotion character match
 nmap <space> <Plug>(easymotion-bd-f)
 vmap <space> <Plug>(easymotion-bd-f)
-
-" Pry
-"nnoremap <leader>p :! pry<CR>
-"nnoremap <leader>P :! pry -r %<CR>
-
-" GhcMod
-" nnoremap <leader>tw :GhcModTypeInsert<CR>
-" nnoremap <leader>ts :GhcModTypeSplitFunCase<CR>
-" nnoremap <leader>tq :GhcModType<CR>
-" nnoremap <leader>te :GhcModTypeClear<CR>
 
 "--------------------
 " END PLUGIN SETTINGS
