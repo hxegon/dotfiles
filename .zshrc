@@ -143,3 +143,7 @@ if type "opam" &> /dev/null; then
     alias save-utop="cat ~/.utop-history >> ~/Projects/OCaml/history.log"
     alias -g utop-exp="utop ; save-utop"
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+which bat > /dev/null && alias cat="bat"
