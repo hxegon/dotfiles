@@ -1,0 +1,35 @@
+[color]
+  ui = auto
+[user]
+	email = cooperlebrun@gmail.com
+	name = Cooper LeBrun
+[alias]
+  df = diff
+  dc = diff --cached
+	ci = commit
+	st = status --short
+	br = branch -v
+	re = remote -v
+	hist = log --graph --pretty=format:'%an: %s - %Cred%h%Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+  type = cat-file -t
+  dump = cat-file -p
+	aa = add --all
+	ch = checkout
+	ph = push
+  fuck = reset --soft HEAD~
+  unstage = reset HEAD *
+	ap = add -p
+	mnf = merge --no-ff
+	amend = commit --amend
+[push]
+	default = simple
+[github]
+	user = clebrun
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[url "https://github.com"]
+	insteadOf = git://github.com
+[url "git://github.com"]
+	insteadOf = https://github.com

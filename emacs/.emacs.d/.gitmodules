@@ -1,0 +1,3 @@
+[submodule "submodules/rcodetools"]
+	path = submodules/rcodetools
+	url = https://github.com/JoshCheek/rcodetools
