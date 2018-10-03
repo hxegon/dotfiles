@@ -30,6 +30,7 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'mattn/emmet-vim'
+Plug 'itchyny/lightline.vim'
 
 " Snippets
 Plug 'honza/vim-snippets'
