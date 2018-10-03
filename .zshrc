@@ -135,7 +135,7 @@ fi
 # Ruby
 which rails > /dev/null && alias r='rails'
 source /usr/local/share/chruby/chruby.sh
-chruby ruby 2.4.2
+chruby ruby 2.4.3
 
 # OCaml/Reason
 if type "opam" &> /dev/null; then
