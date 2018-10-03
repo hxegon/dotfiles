@@ -88,7 +88,7 @@ alias -s $ext=nvim # What is this?
 which htop > /dev/null && alias -g htop='sudo htop'
 # Does this even work on OS X?
 alias postgres-start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
-alias buu='brew update && brew upgrade'
+alias buu='brew upgrade && brew cleanup -s'
 alias -g wh="say -v whisper"
 alias be='bundle exec'
 eval $(thefuck --alias)
