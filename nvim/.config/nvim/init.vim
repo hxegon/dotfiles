@@ -26,8 +26,14 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'sjl/gundo.vim'
 Plug 'ervandew/supertab'
-Plug '/usr/local/opt/fzf'
+
 Plug 'junegunn/fzf.vim'
+if has('mac')
+  Plug '/usr/local/opt/fzf'
+elseif has('unix')
+  Plug '/home/linuxbrew/.linuxbrew/opt/fzf'
+endif
+
 Plug 'tpope/vim-eunuch'
 Plug 'mattn/emmet-vim'
 Plug 'itchyny/lightline.vim'
