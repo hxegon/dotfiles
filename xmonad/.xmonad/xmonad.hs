@@ -10,7 +10,7 @@ import System.IO
 
 myTitleMaxLength = 50
 myModKey         = mod4Mask
-myTerminal       = "gnome-terminal"
+myTerminal       = "terminology"
 
 myLayout = smartBorders $
            avoidStruts $
