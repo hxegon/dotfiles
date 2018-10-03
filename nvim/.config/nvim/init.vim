@@ -15,7 +15,7 @@ call plug#begin('~/.config/nvim/plugged')
 "" Plugs Groups
 " Default
 " Plug 'scrooloose/syntastic' " Depreciated in favour of the ansynchronous neomake
-Plug 'neomake/neomake'
+"Plug 'neomake/neomake'
 Plug 'tpope/vim-surround'
 Plug 'townk/vim-autoclose'
 Plug 'junegunn/vim-easy-align'
@@ -31,6 +31,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'mattn/emmet-vim'
 Plug 'itchyny/lightline.vim'
+Plug 'w0rp/ale'
 
 " Snippets
 Plug 'honza/vim-snippets'
@@ -72,7 +73,7 @@ call plug#end()
 runtime macros/matchit.vim
 " call deoplete#enable()
 " Call neomake automatically when writing and after 750 ms after a normal mode command
-call neomake#configure#automake('nw', 500)
+"call neomake#configure#automake('nw', 500)
 " let g:neomake_warning_sign={'text': 'W'}
 " let g:neomake_err_sign={'text': 'E'}
 " let g:neomake_info_sign={'text': 'I'}
@@ -206,6 +207,9 @@ nnoremap <leader>U :PlugUpgrade \| PlugClean \| PlugUpdate<CR>
 " ---------------------
 " BEGIN PLUGIN SETTINGS
 " ---------------------
+
+" ale
+let g:ale_completion_enabled = 1
 
 " Gist plugin settings
 let g:gist_post_anonymous = 1
