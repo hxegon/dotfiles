@@ -95,6 +95,7 @@ set shell=zsh
 set colorcolumn=81
 set clipboard=unnamedplus
 set list listchars=tab:▸\ ,eol:¬
+set confirm
 
 " v- gets rid of | in split gutters
 set fillchars+=vert:\ 
@@ -154,6 +155,9 @@ nnoremap k gk
 " center search matches
 nnoremap n nzzzv
 nnoremap N Nzzzv
+
+" Escape terminal with normal <esc> key.
+tnoremap <Esc> <C-\><C-n>
 
 " Y yanks to end of line like other capitals
 map Y y$
