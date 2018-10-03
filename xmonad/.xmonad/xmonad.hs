@@ -2,6 +2,7 @@ import XMonad
 import XMonad.Layout.Tabbed
 import XMonad.Layout.Spacing
 import XMonad.Hooks.DynamicLog
+import XMonad.Layout.NoBorders (smartBorders)
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
