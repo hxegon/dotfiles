@@ -13,6 +13,7 @@ antigen bundle colored-man-pages
 antigen bundle command-not-found
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
+antigen bundle djui/alias-tips
 
 antigen theme https://github.com/denysdovhan/spaceship-prompt spaceship
 #antigen theme lambda
