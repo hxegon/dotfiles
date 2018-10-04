@@ -117,3 +117,13 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 which bat > /dev/null && alias cat="bat"
+
+# TODO: enable multi/tweak fzf flags for pretty shit etc
+config () {
+  # Get list of config files, prepend $HOME/dotfiles/ so they're absolute paths
+  pushd ~/dotfiles &>/dev/null
+  local CONFIG_FILES="$(git ls-files | awk -v h="$HOME" '{print h "/dotfiles/" $0}')"
+  popd &>/dev/null
+
+  $EDITOR $(echo $CONFIG_FILES | fzf --preview="bat --color=always {}")
+}
