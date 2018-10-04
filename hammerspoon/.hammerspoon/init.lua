@@ -3,7 +3,9 @@
 -----------
 -- SETUP --
 -----------
-launchBinds = {}
+-- custom launchOrFocus binding that makes bindings more concise,
+-- and collects the bindings for use with a "display launch bindings" func
+launchBinds = {} -- global to prevent garbage collection
 function bindLauncher(pre, key, appname)
   -- bind the key
   hs.hotkey.bind(pre, key, function()
