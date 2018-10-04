@@ -71,6 +71,10 @@ alias tmls='tmux list-sessions'
 #test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 alias ip='curl ipinfo.io/ip'
 
+# Simple shortcuts for common directories
+alias proj='cd ~/Projects'
+alias dot='cd ~/dotfiles'
+
 # Emacs
 if type "emacs" &> /dev/null; then
     alias -g em='emacs -nw'
