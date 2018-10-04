@@ -29,6 +29,8 @@ bindLauncher(prefix, "d", "Discord")
 bindLauncher(prefix, "r", "Reminders")
 bindLauncher(prefix, "f", "Finder")
 bindLauncher(prefix, "c", "Calendar")
+bindLauncher(prefix, "i", "Mail")
+bindLauncher(prefix, "n", "Notes")
 
 hs.hotkey.bind(prefix, "/", function() -- Show app launcher bindings
   hs.alert.show("PREFIX: " .. table.concat(prefix, "+") .. "\n" .. table.concat(launchBinds, "\n"), 7)
