@@ -1,1 +1,0 @@
-("~/.emacs.d/" "~/Projects/Personal/Haskell/RockPaperScissors/" "~/bin/" "~/dotfiles/" "~/Projects/Personal/PriceCheck/" "~/Projects/Personal/Haskell/Chess/")
