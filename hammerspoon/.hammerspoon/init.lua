@@ -5,6 +5,13 @@
 -------------
 prefix = {"cmd", "shift"}
 
+------------
+-- HELPERS -
+------------
+function showKeys(keys)
+  return table.concat(keys, "+")
+end
+
 -----------
 -- SETUP --
 -----------
@@ -36,5 +43,5 @@ bindLauncher(prefix, "i", "Mail")
 bindLauncher(prefix, "n", "Notes")
 
 hs.hotkey.bind(prefix, "/", function() -- Show app launcher bindings
-  hs.alert.show("PREFIX: " .. table.concat(prefix, "+") .. "\n" .. table.concat(launchBinds, "\n"), 7)
+  hs.alert.show("PREFIX: " .. showKeys(prefix) .. "\n" .. table.concat(launchBinds, "\n"), 7)
 end)
