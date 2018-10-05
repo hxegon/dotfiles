@@ -115,6 +115,7 @@ if type "opam" &> /dev/null; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPTS="--reverse --border -m --preview='bat --color=\"always\" {}'"
 
 which bat > /dev/null && alias cat="bat"
 
@@ -128,8 +129,8 @@ config () {
   local CONFIG_FILES="$(git ls-files)"
   popd &>/dev/null
 
-  $EDITOR $(echo $CONFIG_FILES | fzf --reverse --preview="bat --color=always ${PREFIX}{}" | awk -v p=${PREFIX} '{print p $0}')
+  $EDITOR $(echo $CONFIG_FILES | fzf --preview="bat --color=always ${PREFIX}{}" | awk -v p=${PREFIX} '{print p $0}')
 }
 
 alias c='config'
-alias -g look="\$(fd --hidden -t f -E .git/ | fzf -m --reverse --preview='bat --color=\"always\" {}' | awk -v pwd=\$(pwd) '{print pwd \"/\" \$0}')"
+alias -g pick="\$(fd --hidden -t f -E .git/ | fzf | awk -v pwd=\$(pwd) '{print pwd \"/\" \$0}')"
