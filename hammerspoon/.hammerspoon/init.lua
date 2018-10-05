@@ -59,9 +59,14 @@ launcher        = Launcher
 launcher.prefix = {"cmd", "shift"}
 -- launcher.helpDuration = 5 -- default of 5 seconds for showing help text
 
+hs.loadSpoon("MiroWindowsManager")
+hs.window.animationDuration = 0.0
+
 --------------
 -- BINDINGS --
 --------------
+local mash = {"cmd", "alt", "ctrl"}
+
 -- Static app shortcuts
 launcher:bind("m", "Messages")
 launcher:bind("t", "iTerm")
@@ -80,6 +85,15 @@ hs.hotkey.bind(launcher.prefix, "/", launcher:helpCallback())
 -- Dynamic app key binding. Use with prefix+space, set with prefix+delete
 hs.hotkey.bind(launcher.prefix, "delete", launcher:dAppSetCall())
 hs.hotkey.bind(launcher.prefix, "space", launcher:dAppFOLCall())
+
+-- Miro Window Manager bindings
+spoon.MiroWindowsManager:bindHotkeys({
+  up         = {mash, "up"},
+  down       = {mash, "down"},
+  left       = {mash, "left"},
+  right      = {mash, "right"},
+  fullscreen = {mash, "f"}
+})
 
 ------------------
 -- OTHER CONFIG --
