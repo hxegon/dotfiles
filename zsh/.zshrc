@@ -125,7 +125,7 @@ config () {
   local CONFIG_FILES="$(git ls-files | awk -v h="$HOME" '{print h "/dotfiles/" $0}')"
   popd &>/dev/null
 
-  $EDITOR $(echo $CONFIG_FILES | fzf --layout="reverse" --preview="bat --color=always {}")
+  $EDITOR $(echo $CONFIG_FILES | fzf --reverse --preview="bat --color=always {}")
 }
 
 alias c='config'
