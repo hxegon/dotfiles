@@ -26,7 +26,7 @@ function Launcher:bind(key, appname)
   -- add to launchBinds
   self.binds[#self.binds+1]=(key .. " => " .. appname)
 end
-function Launcher:helpCallback()
+function Launcher:helpCall()
   return function ()
     hs.alert.show("PREFIX: " .. showKeys(self.prefix) .. "\n" .. table.concat(self.binds, "\n"), self.helpDuration)
   end
@@ -80,7 +80,7 @@ launcher:bind("i", "Mail")
 launcher:bind("n", "Notes")
 
 -- Show app shortcut bindings
-hs.hotkey.bind(launcher.prefix, "/", launcher:helpCallback())
+hs.hotkey.bind(launcher.prefix, "/", launcher:helpCall())
 
 -- Dynamic app key binding. Use with prefix+space, set with prefix+delete
 hs.hotkey.bind(launcher.prefix, "delete", launcher:dAppSetCall())
