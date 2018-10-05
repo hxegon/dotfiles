@@ -19,7 +19,8 @@ end
 Launcher = {
   pre          = nil,
   binds        = {},
-  helpDuration = 5
+  helpDuration = 5,
+  dynamicApp = nil
 }
 function Launcher:bind(key, appname)
   -- WARNING: This will error if you don't set pre first!
@@ -35,6 +36,25 @@ function Launcher:helpCallback()
     hs.alert.show("PREFIX: " .. showKeys(self.pre) .. "\n" .. table.concat(self.binds, "\n"), self.helpDuration)
   end
 end
+function Launcher:dAppFOLCall ()
+  return function ()
+    if self.dynamicApp == nil then
+      self:noDAppAlert()
+    else
+      hs.application.launchOrFocus(self.dynamicApp)
+    end
+  end
+end
+function Launcher:dAppSetCall ()
+  return function ()
+    local curAppName = hs.application.name(hs.application.frontmostApplication())
+    hs.alert.show(curAppName .. " bound to " .. showKeys(self.pre) .. "+space key")
+    self.dynamicApp=curAppName
+  end
+end
+function Launcher:noDAppAlert ()
+  hs.alert.show("No App bound yet, use " .. showKeys(self.pre) .. "+delete to set the currently focused window", 3)
+end
 
 -------------------
 -- INITIALIZATION -
@@ -43,10 +63,6 @@ end
 launcher     = Launcher
 launcher.pre = prefix
 -- launcher.helpDuration = 5 -- default of 5 seconds for showing help text
-
--- [1] is initially nil for a hotkey check branch, gets reset to application names
--- [2] is what gets printed if there's no app set yet
-varApp = { nil, "No App bound yet, use " .. showKeys(prefix) .. "+delete to set the currently focused window" }
 
 --------------
 -- BINDINGS --
@@ -67,15 +83,5 @@ launcher:bind("n", "Notes")
 hs.hotkey.bind(prefix, "/", launcher:helpCallback())
 
 -- Dynamic app key binding. Use with prefix+space, set with prefix+delete
-hs.hotkey.bind(prefix, "delete", function()
-  local curAppName = hs.application.name(hs.application.frontmostApplication())
-  hs.alert.show(curAppName .. " bound to " .. showKeys(prefix) .. "+space key")
-  varApp[1]=curAppName
-end)
-hs.hotkey.bind(prefix, "space", function()
-  if varApp[1] == nil then
-    hs.alert.show(varApp[2])
-  else
-    hs.application.launchOrFocus(varApp[1])
-  end
-end)
+hs.hotkey.bind(prefix, "delete", launcher:dAppSetCall())
+hs.hotkey.bind(prefix, "space", launcher:dAppFOLCall())
