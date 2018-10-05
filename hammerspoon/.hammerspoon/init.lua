@@ -75,7 +75,7 @@ launcher:bind("i", "Mail")
 launcher:bind("n", "Notes")
 
 -- Show app shortcut bindings
-hs.hotkey.bind(prefix, "/", launcher:helpCallback())
+hs.hotkey.bind(launcher.prefix, "/", launcher:helpCallback())
 
 -- Dynamic app key binding. Use with prefix+space, set with prefix+delete
 hs.hotkey.bind(launcher.prefix, "delete", launcher:dAppSetCall())
