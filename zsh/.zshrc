@@ -129,3 +129,4 @@ config () {
 }
 
 alias c='config'
+alias -g look="\$(fd --hidden -t f -E .git/ | fzf -m --reverse --preview='bat --color=\"always\" {}' | awk -v pwd=\$(pwd) '{print pwd \"/\" \$0}')"
