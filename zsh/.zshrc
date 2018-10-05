@@ -120,12 +120,15 @@ which bat > /dev/null && alias cat="bat"
 
 # TODO: enable multi/tweak fzf flags for pretty shit etc
 config () {
-  # Get list of config files, prepend $HOME/dotfiles/ so they're absolute paths
+  # what we need to prepend to a relative dotfile path to make it absolute
+  local PREFIX="${HOME}/dotfiles/"
+
+  # Get list of config files
   pushd ~/dotfiles &>/dev/null
-  local CONFIG_FILES="$(git ls-files | awk -v h="$HOME" '{print h "/dotfiles/" $0}')"
+  local CONFIG_FILES="$(git ls-files)"
   popd &>/dev/null
 
-  $EDITOR $(echo $CONFIG_FILES | fzf --reverse --preview="bat --color=always {}")
+  $EDITOR $(echo $CONFIG_FILES | fzf --reverse --preview="bat --color=always ${PREFIX}{}" | awk -v p=${PREFIX} '{print p $0}')
 }
 
 alias c='config'
