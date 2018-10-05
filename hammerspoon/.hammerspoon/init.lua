@@ -85,3 +85,20 @@ hs.hotkey.bind(prefix, "/", launcher:helpCallback())
 -- Dynamic app key binding. Use with prefix+space, set with prefix+delete
 hs.hotkey.bind(prefix, "delete", launcher:dAppSetCall())
 hs.hotkey.bind(prefix, "space", launcher:dAppFOLCall())
+
+------------------
+-- OTHER CONFIG --
+------------------
+function reloadConfig(files)
+    doReload = false
+    for _,file in pairs(files) do
+        if file:sub(-4) == ".lua" then
+            doReload = true
+        end
+    end
+    if doReload then
+        hs.reload()
+    end
+end
+myWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig):start()
+hs.alert.show("HammerSpoon loaded") -- KEEP AT END OF FILE
