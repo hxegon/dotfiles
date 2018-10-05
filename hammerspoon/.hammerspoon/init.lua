@@ -15,17 +15,34 @@ end
 -----------
 -- SETUP --
 -----------
--- custom launchOrFocus binding that makes bindings more concise,
--- and collects the bindings for use with a "display launch bindings" func
-launchBinds = {} -- global to prevent garbage collection
-function bindLauncher(pre, key, appname)
+-- Launcher object that tidys up handling static app shortcuts
+Launcher = {
+  pre          = nil,
+  binds        = {},
+  helpDuration = 5
+}
+function Launcher:bind(key, appname)
+  -- WARNING: This will error if you don't set pre first!
   -- bind the key
-  hs.hotkey.bind(pre, key, function()
+  hs.hotkey.bind(self.pre, key, function()
     hs.application.launchOrFocus(appname)
   end)
   -- add to launchBinds
-  launchBinds[#launchBinds+1]=(key .. " => " .. appname)
+  self.binds[#self.binds+1]=(key .. " => " .. appname)
 end
+function Launcher:helpCallback()
+  return function ()
+    hs.alert.show("PREFIX: " .. showKeys(self.pre) .. "\n" .. table.concat(self.binds, "\n"), self.helpDuration)
+  end
+end
+
+-------------------
+-- INITIALIZATION -
+-------------------
+
+launcher     = Launcher
+launcher.pre = prefix
+-- launcher.helpDuration = 5 -- default of 5 seconds for showing help text
 
 -- [1] is initially nil for a hotkey check branch, gets reset to application names
 -- [2] is what gets printed if there's no app set yet
@@ -34,20 +51,20 @@ varApp = { nil, "No App bound yet, use " .. showKeys(prefix) .. "+delete to set 
 --------------
 -- BINDINGS --
 --------------
-bindLauncher(prefix, "m", "Messages")
-bindLauncher(prefix, "t", "iTerm")
-bindLauncher(prefix, "s", "Spotify")
-bindLauncher(prefix, "b", "Firefox")
-bindLauncher(prefix, "d", "Discord")
-bindLauncher(prefix, "r", "Reminders")
-bindLauncher(prefix, "f", "Finder")
-bindLauncher(prefix, "c", "Calendar")
-bindLauncher(prefix, "i", "Mail")
-bindLauncher(prefix, "n", "Notes")
+-- Static app shortcuts
+launcher:bind("m", "Messages")
+launcher:bind("t", "iTerm")
+launcher:bind("s", "Spotify")
+launcher:bind("b", "Firefox")
+launcher:bind("d", "Discord")
+launcher:bind("r", "Reminders")
+launcher:bind("f", "Finder")
+launcher:bind("c", "Calendar")
+launcher:bind("i", "Mail")
+launcher:bind("n", "Notes")
 
-hs.hotkey.bind(prefix, "/", function() -- Show app launcher bindings
-  hs.alert.show("PREFIX: " .. showKeys(prefix) .. "\n" .. table.concat(launchBinds, "\n"), 7)
-end)
+-- Show app shortcut bindings
+hs.hotkey.bind(prefix, "/", launcher:helpCallback())
 
 -- Dynamic app key binding. Use with prefix+space, set with prefix+delete
 hs.hotkey.bind(prefix, "delete", function()
