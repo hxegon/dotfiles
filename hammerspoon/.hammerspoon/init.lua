@@ -1,10 +1,5 @@
 -- Hammerspoon config by Cooper LeBrun <cooperlebrun@gmail.com>
 
--------------
--- GLOBALS --
--------------
-prefix = {"cmd", "shift"}
-
 ------------
 -- HELPERS -
 ------------
@@ -17,15 +12,15 @@ end
 -----------
 -- Launcher object that tidys up handling static app shortcuts
 Launcher = {
-  pre          = nil,
+  prefix       = nil,
   binds        = {},
   helpDuration = 5,
-  dynamicApp = nil
+  dynamicApp   = nil
 }
 function Launcher:bind(key, appname)
   -- WARNING: This will error if you don't set pre first!
   -- bind the key
-  hs.hotkey.bind(self.pre, key, function()
+  hs.hotkey.bind(self.prefix, key, function()
     hs.application.launchOrFocus(appname)
   end)
   -- add to launchBinds
@@ -33,7 +28,7 @@ function Launcher:bind(key, appname)
 end
 function Launcher:helpCallback()
   return function ()
-    hs.alert.show("PREFIX: " .. showKeys(self.pre) .. "\n" .. table.concat(self.binds, "\n"), self.helpDuration)
+    hs.alert.show("PREFIX: " .. showKeys(self.prefix) .. "\n" .. table.concat(self.binds, "\n"), self.helpDuration)
   end
 end
 function Launcher:dAppFOLCall ()
@@ -48,20 +43,20 @@ end
 function Launcher:dAppSetCall ()
   return function ()
     local curAppName = hs.application.name(hs.application.frontmostApplication())
-    hs.alert.show(curAppName .. " bound to " .. showKeys(self.pre) .. "+space key")
+    hs.alert.show(curAppName .. " bound to " .. showKeys(self.prefix) .. "+space key")
     self.dynamicApp=curAppName
   end
 end
 function Launcher:noDAppAlert ()
-  hs.alert.show("No App bound yet, use " .. showKeys(self.pre) .. "+delete to set the currently focused window", 3)
+  hs.alert.show("No App bound yet, use " .. showKeys(self.prefix) .. "+delete to set the currently focused window", 3)
 end
 
 -------------------
 -- INITIALIZATION -
 -------------------
 
-launcher     = Launcher
-launcher.pre = prefix
+launcher        = Launcher
+launcher.prefix = {"cmd", "shift"}
 -- launcher.helpDuration = 5 -- default of 5 seconds for showing help text
 
 --------------
@@ -83,8 +78,8 @@ launcher:bind("n", "Notes")
 hs.hotkey.bind(prefix, "/", launcher:helpCallback())
 
 -- Dynamic app key binding. Use with prefix+space, set with prefix+delete
-hs.hotkey.bind(prefix, "delete", launcher:dAppSetCall())
-hs.hotkey.bind(prefix, "space", launcher:dAppFOLCall())
+hs.hotkey.bind(launcher.prefix, "delete", launcher:dAppSetCall())
+hs.hotkey.bind(launcher.prefix, "space", launcher:dAppFOLCall())
 
 ------------------
 -- OTHER CONFIG --
