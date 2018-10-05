@@ -1,5 +1,10 @@
 -- Hammerspoon config by Cooper LeBrun <cooperlebrun@gmail.com>
 
+-------------
+-- GLOBALS --
+-------------
+prefix = {"cmd", "shift"}
+
 -----------
 -- SETUP --
 -----------
@@ -15,10 +20,6 @@ function bindLauncher(pre, key, appname)
   launchBinds[#launchBinds+1]=(key .. " => " .. appname)
 end
 
--------------
--- GLOBALS --
--------------
-local prefix = {"cmd", "shift"}
 
 --------------
 -- BINDINGS --
