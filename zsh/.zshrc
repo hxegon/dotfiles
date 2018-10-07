@@ -45,6 +45,8 @@ alias be='bundle exec'
 eval $(thefuck --alias)
 which tmux > /dev/null && alias tm='tmux'
 alias resrc='source ~/.zshrc'
+alias -g l='gls'
+alias -g ls='gls -F --color --group-directories-first'
 
 # Simple shortcuts for common directories
 alias proj='cd ~/Projects'
