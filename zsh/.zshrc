@@ -75,7 +75,7 @@ fi
 
 # Ruby
 source /usr/local/share/chruby/chruby.sh
-chruby ruby 2.4.3
+chruby ruby-2.5.1
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS="--reverse --border -m --preview='bat --color=\"always\" {}'"
