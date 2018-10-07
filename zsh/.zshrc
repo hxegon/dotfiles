@@ -35,51 +35,20 @@ else
   export EDITOR='nvim'
 fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-
-
 which git > /dev/null && alias g='git'
-#alias mergesolv='git status --short | grep "^AA" | cut -d " " -f2 | xargs vim'
 alias -g ni='nvim'
 alias -s $ext=nvim # What is this?
 which htop > /dev/null && alias -g htop='sudo htop'
 # Does this even work on OS X?
-alias postgres-start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
 alias buu='brew upgrade && brew cleanup -s'
-alias -g wh="say -v whisper"
 alias be='bundle exec'
 eval $(thefuck --alias)
 which tmux > /dev/null && alias tm='tmux'
 alias resrc='source ~/.zshrc'
-#alias ls='ls -F --color --group-directories-first'
-# What is this even supposed to do?
-alias ftyps="ls -F **/*.* | cut -d '.' -f 2- | sed 's/.\+\.//' | sed 's/\*$//' | sed 's/.*\/$//' | sed 's/.*:$//' | grep -v '^$'"
-which tree > /dev/null && alias -g t ='tree'
-#  alias retray='trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 4 --transparent true --tint 0x191970 --height 13 &'
-alias tmls='tmux list-sessions'
-#alias mosh='mosh -p 60001'
-
-#test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-alias ip='curl ipinfo.io/ip'
 
 # Simple shortcuts for common directories
 alias proj='cd ~/Projects'
 alias dot='cd ~/dotfiles'
-
-# Emacs
-if type "emacs" &> /dev/null; then
-    alias -g em='emacs -nw'
-    alias -g ec='emacsclient'
-fi
 
 # Heroku
 if type "heroku" &> /dev/null; then
@@ -103,16 +72,8 @@ if type "rustc" &> /dev/null; then
 fi
 
 # Ruby
-which rails > /dev/null && alias r='rails'
 source /usr/local/share/chruby/chruby.sh
 chruby ruby 2.4.3
-
-# OCaml/Reason
-if type "opam" &> /dev/null; then
-    eval $(opam config env)
-    alias save-utop="cat ~/.utop-history >> ~/Projects/OCaml/history.log"
-    alias -g utop-exp="utop ; save-utop"
-fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS="--reverse --border -m --preview='bat --color=\"always\" {}'"
