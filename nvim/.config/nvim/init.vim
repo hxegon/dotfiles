@@ -38,6 +38,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
 Plug 'unblevable/quick-scope'
 Plug 'raghur/vim-ghost', { 'do': ':GhostInstall' }
+Plug 'mhinz/vim-startify'
 
 " Snippets
 Plug 'honza/vim-snippets'
