@@ -41,7 +41,7 @@ alias -s $ext=nvim # What is this?
 which htop > /dev/null && alias -g htop='sudo htop'
 # Does this even work on OS X?
 alias buu='brew upgrade && brew cleanup -s'
-alias be='bundle exec'
+alias bdump='brew bundle dump --force --global'
 eval $(thefuck --alias)
 which tmux > /dev/null && alias tm='tmux'
 alias resrc='source ~/.zshrc'
