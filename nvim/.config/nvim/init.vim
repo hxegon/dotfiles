@@ -102,7 +102,8 @@ set shell=zsh
 set colorcolumn=81
 set clipboard=unnamedplus
 set list listchars=tab:▸\ ,eol:¬
-set confirm
+set confirm " ask for force instead of making you recommand with !
+set mouse=a " Enable mouse usage
 
 " v- gets rid of | in split gutters
 set fillchars+=vert:\ 
