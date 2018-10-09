@@ -36,7 +36,7 @@ else
 fi
 
 which git > /dev/null && alias g='git'
-alias -g ni='nvim'
+alias -g ni='nvim -p'
 alias -s $ext=nvim # What is this?
 which htop > /dev/null && alias -g htop='sudo htop'
 # Does this even work on OS X?
