@@ -104,7 +104,11 @@ set clipboard=unnamedplus
 set list listchars=tab:▸\ ,eol:¬
 set confirm " ask for force instead of making you recommand with !
 set mouse=a " Enable mouse usage
-
+set inccommand=nosplit " :*s/highlight/livereplace
+set completeopt=menu,menuone,preview,noselect,noinsert " allegedly fixes ale issue
+set splitright "open vsplit on right
+set splitbelow "open split on bottom
+ 
 " v- gets rid of | in split gutters
 set fillchars+=vert:\ 
 set t_Co=256
