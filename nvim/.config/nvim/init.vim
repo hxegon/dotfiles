@@ -222,6 +222,8 @@ nnoremap <leader>U :PlugUpgrade \| PlugClean \| PlugUpdate<CR>
 
 " ale
 let g:ale_completion_enabled = 1
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
 
 " Gist plugin settings
 let g:gist_post_anonymous = 1
