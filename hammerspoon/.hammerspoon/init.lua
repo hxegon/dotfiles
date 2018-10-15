@@ -76,11 +76,9 @@ launcher:bind("t", "iTerm")
 launcher:bind("s", "Spotify")
 launcher:bind("b", "Firefox")
 launcher:bind("d", "Discord")
-launcher:bind("r", "Reminders")
-launcher:bind("f", "Finder")
-launcher:bind("c", "Calendar")
+launcher:bind("r", "Things3")
 launcher:bind("i", "Mail")
-launcher:bind("n", "Notes")
+launcher:bind("n", "Bear")
 
 -- Show app shortcut bindings
 hs.hotkey.bind(launcher.prefix, "/", launcher:helpCall())
