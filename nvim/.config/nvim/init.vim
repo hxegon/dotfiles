@@ -123,7 +123,6 @@ au FileType * set fo-=cro
 
 syntax enable
 filetype plugin indent on
-set omnifunc=syntaxcomplete#Complete
 set nocompatible
 set wildmenu
 set showmode
@@ -211,9 +210,6 @@ nnoremap <leader>V :e ~/.config/nvim/init.vim<CR>
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
-" Terminal shortcuts
-tnoremap <leader>e <C-\><C-n>
-
 " Toggle spell-checking
 nnoremap <leader>P :set spell!<CR>
 
@@ -244,9 +240,6 @@ nnoremap <leader>sr :SyntasticReset<CR>
 "let g:hardtime_default_on = 1
 " set timeout length
 "let g:hardtime_timeout = 100
-
-" force vim-vroom mapping
-nnoremap <leader>r :VroomRunTestFile<CR>
 
 " NERDtree
 nnoremap <leader>n :NERDTreeToggle<CR>
