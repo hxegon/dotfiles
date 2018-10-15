@@ -21,7 +21,10 @@ function Launcher:bind(key, appname)
   -- WARNING: This will error if you don't set pre first!
   -- bind the key
   hs.hotkey.bind(self.prefix, key, function()
-    hs.application.launchOrFocus(appname)
+    success = hs.application.launchOrFocus(appname)
+    if not success then
+      hs.alert.show(appname .. " launch binding not successful. :(")
+    end
   end)
   -- add to launchBinds
   self.binds[#self.binds+1]=(key .. " => " .. appname)
