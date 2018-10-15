@@ -32,6 +32,7 @@ brew "clib"
 brew "cmake"
 brew "coreutils"
 brew "dbus"
+brew "dos2unix"
 brew "gmp"
 brew "nettle"
 brew "emacs", args: ["with-cocoa"]
