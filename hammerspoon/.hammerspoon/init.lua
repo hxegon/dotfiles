@@ -57,9 +57,10 @@ end
 -------------------
 -- INITIALIZATION -
 -------------------
+local mash = {"cmd", "alt", "ctrl"}
 
 launcher        = Launcher
-launcher.prefix = {"cmd", "shift"}
+launcher.prefix = mash
 -- launcher.helpDuration = 5 -- default of 5 seconds for showing help text
 
 hs.loadSpoon("MiroWindowsManager")
@@ -68,7 +69,6 @@ hs.window.animationDuration = 0.0
 --------------
 -- BINDINGS --
 --------------
-local mash = {"cmd", "alt", "ctrl"}
 
 -- Static app shortcuts
 launcher:bind("m", "Messages")
