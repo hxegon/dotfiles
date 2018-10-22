@@ -100,3 +100,4 @@ alias c='config'
 alias -g pick="\$(fd --hidden -t f -E .git/ | fzf | awk -v pwd=\$(pwd) '{print pwd \"/\" \$0}')"
 wttr () { curl http://wttr.in/$1 }
 alias chr='chruby $(chruby | sed "s/\*/ /" | awk "{print $1}" | fzf)'
+alias dca="docker-compose run web ash"
