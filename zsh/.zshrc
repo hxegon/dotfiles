@@ -80,7 +80,6 @@ chruby ruby-2.5.3
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS="--reverse --border -m --preview='bat --color=\"always\" {}'"
 
-which bat > /dev/null && alias cat="bat"
 export BAT_THEME="zenburn"
 
 # TODO: enable multi/tweak fzf flags for pretty shit etc
