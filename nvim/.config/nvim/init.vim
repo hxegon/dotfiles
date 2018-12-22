@@ -247,8 +247,15 @@ nnoremap <leader>sr :SyntasticReset<CR>
 nnoremap <leader>n :NERDTreeToggle<CR>
 
 " FZF
+nnoremap <leader>g :ProjectFiles<CR>
 nnoremap <leader>p :Files<CR>
 nnoremap <leader>b :Buffers<CR>
+
+function! s:find_git_root()
+  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+endfunction
+
+command! ProjectFiles execute 'Files' s:find_git_root()
 
 " Easy Align Mappings
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
