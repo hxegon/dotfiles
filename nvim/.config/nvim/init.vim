@@ -37,6 +37,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
 Plug 'raghur/vim-ghost', { 'do': ':GhostInstall' }
 Plug 'mhinz/vim-startify'
+Plug 'xolox/vim-session'
+Plug 'jremmen/vim-ripgrep'
 
 " Snippets
 Plug 'honza/vim-snippets'
@@ -271,6 +273,15 @@ map \ <Plug>(easymotion-prefix)
 " <space><char> opens bi-directional easymotion character match
 nmap <space> <Plug>(easymotion-bd-f)
 vmap <space> <Plug>(easymotion-bd-f)
+
+" vim-ripgrep
+nnoremap <leader>R :Rg<CR>
+nnoremap <leader>r :Rg <C-r>"<CR>
+let g:rg_derive_root = 1
+
+" vim-session
+" autosave every 2 minutes
+let g:session_autosave_periodic = 2
 
 "--------------------
 " END PLUGIN SETTINGS
