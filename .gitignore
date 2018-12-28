@@ -2,3 +2,4 @@
 !xmonad/.xmonad/xmonad.hs
 !xmonad/.xmonad/xmobarrc
 xmonad/.xmonad/*
+kakoune/.config/kak/plugins/*

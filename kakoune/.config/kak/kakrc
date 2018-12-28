@@ -1,1 +1,19 @@
+source "%val{config}/plugins/plug.kak/rc/plug.kak"
+
+plug "andreyorst/powerline.kak"
+
 colorscheme zenburn
+add-highlighter global/ number-lines
+set global ui_options ncurses_assistant=cat
+
+# Indentation settings
+
+set global tabstop 4
+set global indentwidth 4
+
+hook -group kakrc global BufSetOption filetype=ruby %{
+  set buffer tabstop 2
+  set buffer indentwidth 2
+}
+
+# map global normal '#' :comment-line -docstring 'Comment line'
