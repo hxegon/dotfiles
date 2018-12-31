@@ -8,6 +8,7 @@ antigen bundle heroku
 antigen bundle rake
 antigen bundle ruby
 antigen bundle sudo
+antigen bundle tmux
 antigen bundle zsh-autosuggestions
 antigen bundle colored-man-pages
 antigen bundle command-not-found
@@ -42,11 +43,8 @@ which htop > /dev/null && alias -g htop='sudo htop'
 # Does this even work on OS X?
 alias buu='brew upgrade && brew cleanup -s'
 alias bdump='brew bundle dump --force --global'
-eval $(thefuck --alias)
 which tmux > /dev/null && alias tm='tmux'
 alias resrc='source ~/.zshrc'
-alias -g l='gls'
-alias -g ls='gls -F --color --group-directories-first'
 
 # Simple shortcuts for common directories
 alias proj='cd ~/Projects'
@@ -100,3 +98,5 @@ alias -g pick="\$(fd --hidden -t f -E .git/ | fzf | awk -v pwd=\$(pwd) '{print p
 wttr () { curl http://wttr.in/$1 }
 alias chr='chruby $(chruby | sed "s/\*/ /" | awk "{print $1}" | fzf)'
 alias dca="docker-compose run web ash"
+alias her="heroku run rails console -r"
+alias hel="heroku logs"
