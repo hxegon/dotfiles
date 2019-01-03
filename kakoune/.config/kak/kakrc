@@ -4,7 +4,10 @@ plug "andreyorst/powerline.kak"
 plug "Delapouite/kakoune-buffers"
 
 colorscheme zenburn
-add-highlighter global/ number-lines
+add-highlighter global/ number-lines -hlcursor
+# Highlight 80th column
+add-highlighter global/ column 80 default,rgb:303030
+
 set global ui_options ncurses_assistant=cat
 
 # Indentation settings
