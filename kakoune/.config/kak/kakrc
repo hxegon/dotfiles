@@ -28,8 +28,8 @@ map global user -docstring 'enter buffers user mode' 'B' ':enter-user-mode buffe
 map global user -docstring 'pipe selections to ruby oneliner' 'r' "|ruby -e 's=STDIN.read; si=s.to_i; p "
 map global user -docstring 'clipboard copy current selection' 'c' '<a-|>pbcopy<ret>'
 map global user -docstring 'clipboard paste current selection' 'p' '|pbpaste<ret>'
+map global user -docstring 'replace selections with prompted math results against values' = ':prompt math: %{exec "a%val{text}<lt>esc>|bc<lt>ret>"}<ret>'
 
-map global normal -docstring 'replace selections with prompted math results against values' = ':prompt math: %{exec "a%val{text}<lt>esc>|bc<lt>ret>"}<ret>'
 map global normal -docstring 'Comment line' '#' :comment-line
 map global normal -docstring 'Delete to end of line' 'D' ';Gld'
 
