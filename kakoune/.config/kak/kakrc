@@ -7,6 +7,7 @@ colorscheme zenburn
 add-highlighter global/ number-lines -hlcursor
 # Highlight 80th column
 add-highlighter global/ column 80 default,rgb:303030
+addhl global/ wrap
 
 set global ui_options ncurses_assistant=cat
 
