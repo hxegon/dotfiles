@@ -31,10 +31,10 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=23'
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   # If in remote session
-  export EDITOR='nvim'
+  export EDITOR='kak'
 else
   # if in local session
-  export EDITOR='nvim'
+  export EDITOR='kak'
 fi
 
 which git > /dev/null && alias g='git'
