@@ -2,6 +2,10 @@ source "%val{config}/plugins/plug.kak/rc/plug.kak"
 
 plug "andreyorst/powerline.kak"
 plug "Delapouite/kakoune-buffers"
+plug "alexherbo2/auto-pairs.kak"
+
+# auto-pairs config
+map global user s -docstring 'Surround' ':<space>auto-pairs-surround<ret>'
 
 colorscheme zenburn
 add-highlighter global/ number-lines -hlcursor
