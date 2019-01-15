@@ -5,7 +5,7 @@ plug "Delapouite/kakoune-buffers"
 plug "alexherbo2/auto-pairs.kak"
 
 # auto-pairs config
-map global user s -docstring 'Surround' ':<space>auto-pairs-surround<ret>'
+map global user s ':<space>auto-pairs-surround<ret>' -docstring 'Surround'
 
 colorscheme zenburn
 add-highlighter global/ number-lines -hlcursor
@@ -25,17 +25,21 @@ hook -group kakrc global BufSetOption filetype=ruby %{
   set buffer indentwidth 2
 }
 
-map global user -docstring 'Alt-S shortcut' \' '<a-S>'
-map global user -docstring 'split on ", "' ',' 'S, <ret>'
-map global user -docstring 'show buffers' 'b' ':info-buffers<ret>'
-map global user -docstring 'enter buffers user mode' 'B' ':enter-user-mode buffers<ret>'
-map global user -docstring 'pipe selections to ruby oneliner' 'r' "|ruby -e 's=STDIN.read; si=s.to_i; p "
-map global user -docstring 'clipboard copy current selection' 'c' '<a-|>pbcopy<ret>'
-map global user -docstring 'clipboard paste current selection' 'p' '|pbpaste<ret>'
-map global user -docstring 'replace selections with prompted math results against values' = ':prompt math: %{exec "a%val{text}<lt>esc>|bc<lt>ret>"}<ret>'
+map global user \' '<a-S>'                                  -docstring 'Alt-S shortcut'
+map global user ',' 'S, <ret>'                              -docstring 'split on ", "'
+map global user 'b' ':info-buffers<ret>'                    -docstring 'show buffers'
+map global user 'B' ':enter-user-mode buffers<ret>'         -docstring 'enter buffers user mode'
+map global user 'r' "|ruby -e 's=STDIN.read; si=s.to_i; p " -docstring 'pipe selections to ruby oneliner'
+map global user 'c' '<a-|>pbcopy<ret>'                      -docstring 'clipboard copy current selection'
+map global user 'p' '|pbpaste<ret>'                         -docstring 'clipboard paste current selection'
+map global user 'h' 'Gh'                                    -docstring 'extend selection to beginning of line'
+map global user 'l' 'Gl'                                    -docstring 'extend selection to end of line'
 
-map global normal -docstring 'Comment line' '#' :comment-line
-map global normal -docstring 'Delete to end of line' 'D' ';Gld'
+map global user '=' ':prompt math: %{exec "a%val{text}<lt>esc>|bc<lt>ret>"}<ret>' -docstring 'replace selections with prompted math results against values'
+
+map global normal '#' ':comment-line<ret>' -docstring 'Comment line'
+map global normal 'D' ';Gld'               -docstring 'Delete to end of line'
+map global normal '<backspace>' ';<space>' -docstring 'reduce selection to just active cursor'
 
 hook global InsertChar k %{ try %{
   exec -draft hH <a-k>jk<ret> d
