@@ -1,0 +1,82 @@
+Emacs:
+
+Note: auto-save files are formatted as #filename.we# and can be recovered by
+editing the original file and using the recover-this-file command with M-x
+
+<ESC> * 3 gets out of minibuffers
+
+C-g: Quit a partially entered command
+C-h k <key combo>: Get help for whatever that combo does
+C-h c <Key combo>: Same, but brief
+C-h f <function name>: function documentation
+C-h v <variable name>: variable docs
+C-h a: Search for help with keyword
+C-h i: Open Info page. Set of manuals for everything
+* C-x C-e: Evaluate last sexp, great for loading changed elisp config
+
+C-u \d: Command repeat prefix
+
+C-x C-c: Close emacs
+C-x C-s: Save current buffer
+C-x s: Save all buffers (with files)
+C-x C-w: Save current buffer as
+C-x C-f: Open file
+
+C-h m: help for active major mode
+
+C-x C-{+,-} Increase/Decrease Font Size
+
+Windows:
+C-x 0: kill current window
+C-x 1: Kill all other windows
+C-x 2: Split into 2 windows
+C-x o: switch between windows
+C-M-v: Scroll down in other window without leaving current window
+
+C-x 4 C-f: Somehow open a new window with a new file???
+
+Navigation:
+C-v, M-v: Scroll down, up one page
+
+C-l: Cycle between cursor at (Center, Top, Bottom) of page
+
+C-p: Up one line
+C-n: Down one line
+C-b: back one char
+C-f: Forward one char
+
+M-f: Word forward
+M-b: Word backward
+
+C-a: Beginning of line
+C-e: End of line
+
+M-<, M->: gk, gj equiv
+
+C-x C-b: Change Buffer
+
+Editing:
+
+C-d: Delete next char, 'x' in vim speak
+M-d: Delete next word
+M-<DEL>: Delete back word
+C-k: Delete to end of line
+
+C-<SPC>: Toggle selection mode
+M-w: copy selection
+C-w (with something selected): kill selection
+
+C-y: Paste yanked text
+M-y: Cycle through yanks in kill ring (if last command was C-y?)
+
+M-q: Refill paragraph
+
+* UNDO!
+C-/
+
+Searching:
+
+C-s: Open search mode, type to affect query and press C-s
+again to cycle through results. <RET> to exit on current result
+
+C-r: Same thing as above but reverse search

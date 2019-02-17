@@ -3,3 +3,4 @@
 !xmonad/.xmonad/xmobarrc
 xmonad/.xmonad/*
 kakoune/.config/kak/plugins/*
+emacs/.emacs-saves/*
