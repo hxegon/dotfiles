@@ -60,3 +60,8 @@
 (require 'em-term) ; eshell-visual vars don't exist without this loading first
 (add-to-list 'eshell-visual-subcommands
 	     '("git" "log" "diff" "show"))
+
+;; RECENTF
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)
+(global-set-key "\C-x\ \C-r" 'recentf-open-files)
