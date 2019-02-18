@@ -1,4 +1,6 @@
 (package-initialize)
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -9,9 +11,13 @@
  '(custom-safe-themes
    (quote
     ("84890723510d225c45aaff941a7e201606a48b973f0121cb9bcb0b9399be8cba" default)))
+ '(eshell-destroy-buffer-when-process-dies t)
+ '(eshell-ls-use-colors t)
  '(inhibit-startup-screen t)
  '(menu-bar-mode nil)
- '(package-selected-packages (quote (which-key zenburn-theme ace-jump-mode)))
+ '(package-selected-packages
+   (quote
+    (magit exec-path-from-shell lua-mode which-key zenburn-theme ace-jump-mode)))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -46,3 +52,11 @@
       version-control t)       ; use versioned backups
 (setq auto-save-file-name-transforms
       `((".*" "~/.emacs-saves" t)))
+
+;; ESHELL
+;; https://www.youtube.com/watch?v=RhYNu6i_uY4&t=2162s
+;; Above shows how to fix eshell not working with special display programs
+;; such as git diff
+(require 'em-term) ; eshell-visual vars don't exist without this loading first
+(add-to-list 'eshell-visual-subcommands
+	     '("git" "log" "diff" "show"))
