@@ -23,6 +23,7 @@ C-x C-w: Save current buffer as
 C-x C-f: Open file
 
 C-h m: help for active major mode
+C-h w: see if command has a keybinding
 
 C-x C-{+,-} Increase/Decrease Font Size
 
