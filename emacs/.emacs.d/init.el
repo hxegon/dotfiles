@@ -42,6 +42,11 @@
 
 (run-server) ; This ensures that emacsclient will work even when there's no running server
 
+;; Change default set-mark-command binding (C-SPC) to C-return
+;; so it doesn't shadow the global quick add command from things app
+(global-unset-key (kbd "C-SPC"))
+(global-set-key (kbd "<C-return>") 'set-mark-command)
+
 ;; Global modes
 (which-key-mode)
 (ido-mode)
