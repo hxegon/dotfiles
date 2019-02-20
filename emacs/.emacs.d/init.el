@@ -41,7 +41,7 @@
 	     '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 
 (defun run-server ()
-  "Runs the Emacs server if it isn't running"
+  "Run the Emacs server if it isn't running."
   (require 'server)
   (unless (server-running-p)
     (server-start)))
