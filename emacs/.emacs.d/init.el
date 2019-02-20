@@ -17,7 +17,7 @@
  '(menu-bar-mode nil)
  '(package-selected-packages
    (quote
-    (magit exec-path-from-shell lua-mode which-key zenburn-theme ace-jump-mode)))
+    (yaml-mode flycheck magit exec-path-from-shell lua-mode which-key zenburn-theme ace-jump-mode)))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -28,6 +28,8 @@
  '(default ((t (:inherit nil :stipple nil :background "#242424" :foreground "#f6f3e8" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 160 :width normal :foundry "nil" :family "Mononoki")))))
 
 ;; START MANUAL CONFIG
+(add-to-list 'load-path "~/.emacs.d/vendor")
+
 (require 'package)
 (add-to-list 'package-archives
 	     '("melpa-stable" . "http://stable.melpa.org/packages/") t)
@@ -69,3 +71,12 @@
 ;; MAGIT
 (require 'magit)
 (global-set-key (kbd "C-x g") 'magit-status)
+
+;; FLYCHECK
+(require 'flycheck)
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; RUBY
+;; -> CHRUBY
+(require 'chruby) ; TODO: Add to package manager whenever that's figured out
+(chruby-use "ruby-2.5.3")
