@@ -22,7 +22,7 @@
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (monokai-theme yaml-mode flycheck magit exec-path-from-shell lua-mode which-key zenburn-theme ace-jump-mode)))
+    (ace-window monokai-theme yaml-mode flycheck magit exec-path-from-shell lua-mode which-key zenburn-theme ace-jump-mode)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
@@ -62,6 +62,7 @@
 
 ;; Global keys
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+(global-set-key (kbd "M-p") 'ace-window) ;; doesn't work in Eshell
 (define-key global-map (kbd "C-x C-b") 'ibuffer)
 
 ;; Fix some backup/autosave behaviour, save in ~/.emacs-saves
