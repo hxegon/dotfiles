@@ -34,6 +34,14 @@
 (add-to-list 'package-archives
 	     '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 
+(defun run-server ()
+  "Runs the Emacs server if it isn't running"
+  (require 'server)
+  (unless (server-running-p)
+    (server-start)))
+
+(run-server) ; This ensures that emacsclient will work even when there's no running server
+
 ;; Global modes
 (which-key-mode)
 (ido-mode)
