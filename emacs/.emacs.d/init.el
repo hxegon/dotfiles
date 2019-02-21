@@ -57,7 +57,7 @@
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (ir-black-theme labburn-theme night-owl-theme overcast-theme pastelmac-theme quasi-monochrome-theme sexy-monochrome-theme silkworm-theme subatomic-theme abyss-theme doom-themes gotham-theme material-theme tao-theme solarized-theme ace-window monokai-theme yaml-mode flycheck magit exec-path-from-shell lua-mode which-key zenburn-theme ace-jump-mode)))
+    (cider badwolf-theme darktooth-theme gruber-darker-theme gruvbox-theme ir-black-theme labburn-theme night-owl-theme overcast-theme pastelmac-theme quasi-monochrome-theme sexy-monochrome-theme silkworm-theme subatomic-theme abyss-theme doom-themes gotham-theme material-theme tao-theme solarized-theme ace-window monokai-theme yaml-mode flycheck magit exec-path-from-shell lua-mode which-key zenburn-theme ace-jump-mode)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(pos-tip-background-color "#FFF9DC")
  '(pos-tip-foreground-color "#011627")
