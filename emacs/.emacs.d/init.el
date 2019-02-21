@@ -82,6 +82,8 @@
 (require 'em-term) ; eshell-visual vars don't exist without this loading first
 (add-to-list 'eshell-visual-subcommands
 	     '("git" "log" "diff" "show"))
+;; Make tab completion case insensitive
+(setq eshell-cmpl-ignore-case t)
 
 ;; RECENTF
 (recentf-mode 1)
