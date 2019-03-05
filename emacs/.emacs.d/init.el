@@ -169,3 +169,7 @@
 ;; EXPAND-REGION
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
+
+;; Org-Mode
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "C-c SPC") nil))
