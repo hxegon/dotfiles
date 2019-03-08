@@ -27,6 +27,9 @@
 ;; (global-unset-key (kbd "C-SPC"))
 ;; (global-set-key (kbd "<C-return>") 'set-mark-command)
 
+;; remap M-/ to hippie-expand
+(global-set-key (kbd "M-/") 'hippie-expand)
+
 ;; Global modes
 (which-key-mode)
 (ido-mode)
