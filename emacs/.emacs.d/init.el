@@ -45,7 +45,7 @@
 
 ;; Global keys
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-(global-set-key (kbd "M-p") 'ace-window) ;; doesn't work in Eshell
+(global-set-key (kbd "C-c w") 'ace-window) ;; doesn't work in Eshell
 (define-key global-map (kbd "C-x C-b") 'ibuffer)
 
 ;; Fix some backup/autosave behaviour, save in ~/.emacs-saves
