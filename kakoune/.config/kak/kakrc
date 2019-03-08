@@ -27,8 +27,8 @@ hook -group kakrc global BufSetOption filetype=ruby %{
 
 map global user \' '<a-S>'                                  -docstring 'Alt-S shortcut'
 map global user ',' 'S, <ret>'                              -docstring 'split on ", "'
-map global user 'b' ':info-buffers<ret>'                    -docstring 'show buffers'
-map global user 'B' ':enter-user-mode buffers<ret>'         -docstring 'enter buffers user mode'
+map global user 'B' ':info-buffers<ret>'                    -docstring 'show buffers'
+map global user 'b' ':enter-user-mode buffers<ret>'         -docstring 'enter buffers user mode'
 map global user 'r' "|ruby -e 's=STDIN.read; si=s.to_i; p " -docstring 'pipe selections to ruby oneliner'
 map global user 'c' '<a-|>pbcopy<ret>'                      -docstring 'clipboard copy current selection'
 map global user 'p' '|pbpaste<ret>'                         -docstring 'clipboard paste current selection'
