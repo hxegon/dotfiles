@@ -79,7 +79,6 @@ launcher:bind("b", "Firefox")
 launcher:bind("d", "Dash")
 launcher:bind("r", "Things3")
 launcher:bind("i", "Mail")
-launcher:bind("n", "Bear")
 launcher:bind("e", "Emacs")
 
 -- Show app shortcut bindings
