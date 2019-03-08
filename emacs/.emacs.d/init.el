@@ -95,6 +95,9 @@
 (require 'haskell-interactive-mode)
 (require 'haskell-process)
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+(eval-after-load 'haskell-mode
+  '(progn
+     (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-mode)))
 
 ;; EXPAND-REGION
 (require 'expand-region)

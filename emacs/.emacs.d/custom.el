@@ -23,6 +23,10 @@
  '(fci-rule-color "#171717")
  '(frame-brackground-mode (quote dark))
  '(fringe-mode 10 nil (fringe))
+ '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-process-log t)
+ '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-type (quote stack-ghci))
  '(highlight-changes-colors (quote ("#EF5350" "#7E57C2")))
  '(highlight-symbol-colors
    (--map
