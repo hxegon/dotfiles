@@ -3,26 +3,39 @@
 Note: auto-save files are formatted as #filename.we# and can be recovered by
 editing the original file and using the recover-this-file command with M-x
 
-TODO: Organize binding tables by mode
+** Global
 
-| Binding       | Action                                                      | Argument       |
-|---------------+-------------------------------------------------------------+----------------|
-| C-M-v         | Scroll down in other window without leaving current window  |                |
-| C-c ^         | Sort Org-mode table based on column @ point                 | Sort method    |
-| C-h a         | Search for help with keyword                                |                |
-| C-h i         | Open Info page. Manuals for everything                      |                |
-| C-h m         | help for active major mode                                  |                |
-| C-h v         | variable docs                                               | variable-name  |
-| C-h w         | see if command has a keybinding                             | command-name   |
-| C-u \d        | "universal argument prefix"                                 | Other bindings |
-| C-v, M-v      | Scroll down, up one page                                    |                |
-| C-x 4 C-f     | open a new window with a new file                           | file path      |
-| C-x C-w       | Save current buffer as                                      |                |
-| C-x C-{+,-/=} | Increase/Decrease Font Size                                 |                |
-| C-x o         | switch between windows                                      | window hint    |
-| C-x s         | Save all buffers (with files)                               |                |
-| C-x w .       | Highlight symbol @ point                                    |                |
-| M-<DEL>       | Delete back word                                            |                |
-| M-d           | Delete next word                                            |                |
-| M-q           | Refill paragraph                                            |                |
-| M-y           | Cycle through yanks in kill ring (if last command was C-y?) |                |
+| Binding       | Action                                                      | Argument       | default                  |
+|---------------+-------------------------------------------------------------+----------------+--------------------------|
+| C-M-v         | Scroll down in other window without leaving current window  |                |                          |
+| C-h a         | Search for help with keyword                                |                |                          |
+| C-h i         | Open Info page. Manuals for everything                      |                |                          |
+| C-h m         | help for active major mode                                  |                |                          |
+| C-h v         | variable docs                                               | variable-name  |                          |
+| C-h w         | see if command has a keybinding                             | command-name   |                          |
+| C-u \d        | "universal argument prefix"                                 | Other bindings |                          |
+| C-v, M-v      | Scroll down, up one page                                    |                |                          |
+| C-x 4 C-f     | open a new window with a new file                           | file path      |                          |
+| C-x C-r       | Open a recent file                                          | file picker UI |                          |
+| C-x C-w       | Save current buffer as                                      |                |                          |
+| C-x C-{+,-/=} | Increase/Decrease Font Size                                 |                |                          |
+| C-x o         | switch between windows                                      | window hint    |                          |
+| C-x s         | Save all buffers (with files)                               |                |                          |
+| C-x w .       | Highlight symbol @ point                                    |                |                          |
+| C-x w r       | Unhighlight regex                                           | regex          | default last highlighted |
+| M-<DEL>       | Delete back word                                            |                |                          |
+| M-d           | Delete next word                                            |                |                          |
+| M-q           | Refill paragraph                                            |                |                          |
+| M-y           | Cycle through yanks in kill ring (if last command was C-y?) |                |                          |
+
+** Org mode
+
+| Binding | Action                                      | Argument    | default |
+|---------+---------------------------------------------+-------------+---------|
+| C-c ^   | Sort Org-mode table based on column @ point | Sort method |         |
+
+** Haskell
+
+| Binding | Action                                   | Argument | default |
+|---------+------------------------------------------+----------+---------|
+| C-c C-l | load-process (open current file in repl) |          |         |
