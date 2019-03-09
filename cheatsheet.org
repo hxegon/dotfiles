@@ -38,13 +38,20 @@ editing the original file and using the recover-this-file command with M-x
 | M-s h u       | Unhighlight regex                                           | regex          | default last highlighted |
 | M-y           | Cycle through yanks in kill ring (if last command was C-y?) |                |                          |
 
-** Org mode
+** COMMENT Org mode
 
-| Binding   | Action                                      | Argument                       | default |
-|-----------+---------------------------------------------+--------------------------------+---------|
-| C-c C-t   | Cycle todo states on header of point        |                                |         |
-| C-c ^     | Sort Org-mode table based on column @ point | Sort method (a for alphabetic) |         |
-| tab/s-tab | next/previous cell                          |                                |         |
+*Style Guidelines*
+- Past tense
+- Minimize "I"
+- English Prime
+
+| Binding    | Action                                                     | Argument                       |
+|------------+------------------------------------------------------------+--------------------------------|
+| C-c C-t    | Cycle todo states on header of point                       |                                |
+| C-c ^      | Sort Org-mode table based on column @ point                | Sort method (a for alphabetic) |
+| tab/s-tab  | next/previous cell                                         |                                |
+| C-c (pipe) | Insert new table                                           |                                |
+| C-c C-c    | Evaluate code block, format table, change todo state, etc. |                                |
 
 ** Haskell
 
