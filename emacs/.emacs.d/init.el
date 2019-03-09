@@ -107,6 +107,11 @@
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-c SPC") nil))
 
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((ruby . t)
+   (emacs-lisp . t)))
+
 ;; powerline
 (require 'powerline)
 (powerline-default-theme)
