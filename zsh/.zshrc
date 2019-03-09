@@ -37,6 +37,8 @@ else
   export EDITOR='kak'
 fi
 
+export BROWSER='firefox'
+
 which git > /dev/null && alias g='git'
 alias -g ni='nvim -p'
 alias -s $ext=nvim # What is this?
