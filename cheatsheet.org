@@ -45,13 +45,13 @@ editing the original file and using the recover-this-file command with M-x
 - Minimize "I"
 - English Prime
 
-| Binding    | Action                                                     | Argument                       |
-|------------+------------------------------------------------------------+--------------------------------|
-| C-c C-t    | Cycle todo states on header of point                       |                                |
-| C-c ^      | Sort Org-mode table based on column @ point                | Sort method (a for alphabetic) |
-| tab/s-tab  | next/previous cell                                         |                                |
-| C-c (pipe) | Insert new table                                           |                                |
-| C-c C-c    | Evaluate code block, format table, change todo state, etc. |                                |
+| Binding   | Action                                                     | Argument                       |
+|-----------+------------------------------------------------------------+--------------------------------|
+| C-c C-c   | Evaluate code block, format table, change todo state, etc. |                                |
+| C-c C-t   | Cycle todo states on header of point                       |                                |
+| C-c \     | Insert new table                                           |                                |
+| C-c ^     | Sort Org-mode table based on column @ point                | Sort method (a for alphabetic) |
+| tab/s-tab | next/previous cell                                         |                                |
 
 ** Haskell
 
