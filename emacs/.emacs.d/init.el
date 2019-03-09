@@ -107,10 +107,28 @@
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-c SPC") nil))
 
+;; Org-Babel
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((ruby . t)
    (emacs-lisp . t)))
+;; Org-capture
+; Default org-directory is ~/org, default notes file is "notes"
+(setq org-default-notes-file (concat org-directory "/notes.org"))
+
+(define-key global-map "\C-cc" 'org-capture)
+
+;; For info on how to customize templates:
+; check the org-capture-templates var
+; (key description target template)
+(setq org-capture-templates
+      '(("i" "Inbox Task"
+	 entry (file+headline "~/org/notes.org" "Inbox")
+         "* TODO %?\n  Created: %t")
+	("c" "Code Todo (prompts for file link description)"
+	 entry (file+headline "~/org/notes.org" "Code TODOs")
+	 "* TODO %?\n  %i\n  %A")))
+        
 
 ;; powerline
 (require 'powerline)
