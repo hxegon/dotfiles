@@ -106,3 +106,7 @@
 ;; Org-Mode
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-c SPC") nil))
+
+;; powerline
+(require 'powerline)
+(powerline-default-theme)
