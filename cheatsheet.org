@@ -3,6 +3,15 @@
 Note: auto-save files are formatted as #filename.we# and can be recovered by
 editing the original file and using the recover-this-file command with M-x
 
+** User/Plugin
+| Binding | Action             | Argument    | default |
+|---------+--------------------+-------------+---------|
+| C-=     | expand-region      |             |         |
+| C-c SPC | ace-jump-word-mode | word hint   |         |
+| C-c w   | ace-window         | window hint |         |
+| C-x g   | magit-status       |             |         |
+
+
 ** Global
 
 | Binding       | Action                                                      | Argument       | default                  |
@@ -21,18 +30,21 @@ editing the original file and using the recover-this-file command with M-x
 | C-x C-{+,-/=} | Increase/Decrease Font Size                                 |                |                          |
 | C-x o         | switch between windows                                      | window hint    |                          |
 | C-x s         | Save all buffers (with files)                               |                |                          |
-| C-x w .       | Highlight symbol @ point                                    |                |                          |
-| C-x w r       | Unhighlight regex                                           | regex          | default last highlighted |
+| M-/           | hippie-expand: pretty good word universal word completion   |                |                          |
 | M-<DEL>       | Delete back word                                            |                |                          |
 | M-d           | Delete next word                                            |                |                          |
 | M-q           | Refill paragraph                                            |                |                          |
+| M-s h .       | Highlight symbol @ point                                    |                |                          |
+| M-s h u       | Unhighlight regex                                           | regex          | default last highlighted |
 | M-y           | Cycle through yanks in kill ring (if last command was C-y?) |                |                          |
 
 ** Org mode
 
-| Binding | Action                                      | Argument    | default |
-|---------+---------------------------------------------+-------------+---------|
-| C-c ^   | Sort Org-mode table based on column @ point | Sort method |         |
+| Binding   | Action                                      | Argument                       | default |
+|-----------+---------------------------------------------+--------------------------------+---------|
+| C-c C-t   | Cycle todo states on header of point        |                                |         |
+| C-c ^     | Sort Org-mode table based on column @ point | Sort method (a for alphabetic) |         |
+| tab/s-tab | next/previous cell                          |                                |         |
 
 ** Haskell
 
