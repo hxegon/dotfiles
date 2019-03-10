@@ -113,7 +113,8 @@
  '((ruby . t)
    (emacs-lisp . t)))
 ;; Org-capture
-; Default org-directory is ~/org, default notes file is "notes"
+; Default org-directory is ~/org, We switch to ~/Documents/org so we can sync in iCloud
+(setq org-directory "~/Dropbox/Org")
 (setq org-default-notes-file (concat org-directory "/notes.org"))
 
 (define-key global-map "\C-cc" 'org-capture)
@@ -123,13 +124,15 @@
 ; (key description target template)
 (setq org-capture-templates
       '(("i" "Inbox Task"
-	 entry (file+headline "~/org/notes.org" "Inbox")
+	 entry (file+headline org-default-notes-file "Inbox")
          "* TODO %?\n  Created: %t")
 	("c" "Code Todo (prompts for file link description)"
-	 entry (file+headline "~/org/notes.org" "Code TODOs")
+	 entry (file+headline org-default-notes-file "Code TODOs")
 	 "* TODO %?\n  %i\n  %A")))
-        
 
 ;; powerline
 (require 'powerline)
 (powerline-default-theme)
+
+(provide 'init)
+;;; init ends here
