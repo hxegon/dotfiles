@@ -112,7 +112,7 @@
  'org-babel-load-languages
  '((ruby . t)
    (emacs-lisp . t)))
-;; Org-capture
+;; Org-Capture
 ; Default org-directory is ~/org, We switch to ~/Documents/org so we can sync in iCloud
 (setq org-directory "~/Dropbox/Org")
 (setq org-default-notes-file (concat org-directory "/notes.org"))
@@ -123,12 +123,16 @@
 ; check the org-capture-templates var
 ; (key description target template)
 (setq org-capture-templates
-      '(("i" "Inbox Task"
+      '(("i" "Inbox Item"
 	 entry (file+headline org-default-notes-file "Inbox")
-         "* TODO %?\n  Created: %t")
+         "* TODO %?\n  #+CREATED: %t")
 	("c" "Code Todo (prompts for file link description)"
 	 entry (file+headline org-default-notes-file "Code TODOs")
 	 "* TODO %?\n  %i\n  %A")))
+
+;; Org-Refile
+(setq org-refile-targets
+      '((org-default-notes-file :maxlevel . 3)))
 
 ;; powerline
 (require 'powerline)
