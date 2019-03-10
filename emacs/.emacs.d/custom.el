@@ -63,6 +63,7 @@
  '(nrepl-message-colors
    (quote
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
+ '(org-refile-use-outline-path t)
  '(package-selected-packages
    (quote
     (tide typescript-mode powerline expand-region diminish anti-zenburn-theme clues-theme eziam-theme fringe-helper git-gutter-fringe haskell-mode company cider badwolf-theme darktooth-theme gruber-darker-theme gruvbox-theme ir-black-theme labburn-theme night-owl-theme overcast-theme pastelmac-theme quasi-monochrome-theme sexy-monochrome-theme silkworm-theme subatomic-theme abyss-theme doom-themes gotham-theme material-theme tao-theme solarized-theme ace-window monokai-theme yaml-mode flycheck magit exec-path-from-shell lua-mode which-key zenburn-theme ace-jump-mode)))
