@@ -125,7 +125,7 @@
 (setq org-capture-templates
       '(("i" "Inbox Item"
 	 entry (file+headline org-default-notes-file "Inbox")
-         "* TODO %?\n  #+CREATED: %t")
+         "* TODO %?")
 	("c" "Code Todo (prompts for file link description)"
 	 entry (file+headline org-default-notes-file "Code TODOs")
 	 "* TODO %?\n  %i\n  %A")))
