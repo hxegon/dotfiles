@@ -134,6 +134,11 @@
 (setq org-refile-targets
       '((org-default-notes-file :maxlevel . 3)))
 
+;; Org-Agenda
+(global-set-key (kbd "C-c a") 'org-agenda)
+(setq org-agenda-files
+      (list org-default-notes-file))
+
 ;; powerline
 (require 'powerline)
 (powerline-default-theme)
