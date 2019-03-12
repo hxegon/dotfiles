@@ -182,6 +182,11 @@
 (add-hook 'js2-mode-hook (lambda ()
    (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t )))
 
+(require 'company)
+(add-hook 'js2-mode-hook #'setup-tide-mode)
+; For type checking, use the jsconfig.json template here:
+; https://www.reddit.com/r/emacs/comments/68zacv/using_tidemode_to_typecheck_javascript/
+
 ;; END CONFIG
 
 (provide 'init)
