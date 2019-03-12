@@ -146,9 +146,6 @@
 (require 'powerline)
 (powerline-default-theme)
 
-(provide 'init)
-;;; init ends here
-
 ;; Typescript
 ; http://redgreenrepeat.com/2018/05/04/typescript-in-emacs/
 (defun setup-tide-mode ()
@@ -164,3 +161,8 @@
 
 (add-hook 'before-save-hook 'tide-format-before-saves)
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
+
+;; END CONFIG
+
+(provide 'init)
+;;; init ends here
