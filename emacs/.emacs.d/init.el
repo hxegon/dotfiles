@@ -112,7 +112,9 @@
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((ruby . t)
-   (emacs-lisp . t)))
+   (emacs-lisp . t)
+   (js . t)))
+
 ;; Org-Capture
 ; Default org-directory is ~/org, We switch to ~/Documents/org so we can sync in iCloud
 (setq org-directory "~/Dropbox/Org")
