@@ -191,6 +191,8 @@
 ; For type checking, use the jsconfig.json template here:
 ; https://www.reddit.com/r/emacs/comments/68zacv/using_tidemode_to_typecheck_javascript/
 
+(add-hook 'js2-mode-hook #'js2-imenu-extras-mode)
+
 ;; END CONFIG
 
 (provide 'init)
