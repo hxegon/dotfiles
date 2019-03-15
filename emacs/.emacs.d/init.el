@@ -193,6 +193,10 @@
 
 (add-hook 'js2-mode-hook #'js2-imenu-extras-mode)
 
+;; DIRED
+(load "dired-x") ; gives F command in dired (open all marked files)
+; https://stackoverflow.com/questions/1110118/in-emacs-dired-how-to-find-visit-multiple-files
+
 ;; END CONFIG
 
 (provide 'init)
