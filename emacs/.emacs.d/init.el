@@ -120,6 +120,7 @@
 ; Default org-directory is ~/org, We switch to ~/Documents/org so we can sync in iCloud
 (setq org-directory "~/Dropbox/Org")
 (setq org-default-notes-file (concat org-directory "/notes.org"))
+(setq org-default-journal-file (concat org-directory "/journal.org"))
 
 (define-key global-map "\C-cc" 'org-capture)
 
@@ -132,7 +133,10 @@
          "* TODO %?")
 	("c" "Code Todo (prompts for file link description)"
 	 entry (file+headline org-default-notes-file "Code TODOs")
-	 "* TODO %?\n  %i\n  %A")))
+	 "* TODO %?\n  %i\n  %A")
+	("j" "Journal Entry"
+	 entry (file+datetree org-default-journal-file)
+	 "* %?")))
 
 ;; Org-Refile
 (setq org-refile-targets
