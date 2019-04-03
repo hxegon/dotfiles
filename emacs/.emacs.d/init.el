@@ -211,6 +211,11 @@
 (global-set-key (kbd "C-.") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-,") 'mc/mark-previous-like-this)
 
+; phi-search settings (replacement for built in isearch that works with multiple-cursors)
+(require 'phi-search)
+(global-set-key (kbd "C-s") 'phi-search)
+(global-set-key (kbd "C-r") 'phi-search-backward)
+
 ;; END CONFIG
 
 (provide 'init)
