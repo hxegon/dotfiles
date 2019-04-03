@@ -30,6 +30,13 @@
 ;; remap M-/ to hippie-expand
 (global-set-key (kbd "M-/") 'hippie-expand)
 
+;; C-x O counter-clockwise other-window (C-x o)
+(defun reverse-other-window ()
+  (interactive)
+  (other-window -1))
+
+(global-set-key (kbd "C-x O") 'reverse-other-window)
+
 ;; Global modes
 (which-key-mode)
 (ido-mode)
