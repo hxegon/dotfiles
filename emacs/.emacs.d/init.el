@@ -204,6 +204,13 @@
 (load "dired-x") ; gives F command in dired (open all marked files)
 ; https://stackoverflow.com/questions/1110118/in-emacs-dired-how-to-find-visit-multiple-files
 
+;; MULTIPLE-CURSORS
+(require 'multiple-cursors)
+(global-set-key (kbd "C-c .") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-c S") 'mc/edit-lines)
+(global-set-key (kbd "C-.") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-,") 'mc/mark-previous-like-this)
+
 ;; END CONFIG
 
 (provide 'init)
