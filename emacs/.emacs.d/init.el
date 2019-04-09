@@ -233,6 +233,13 @@
 ; Hide JOIN, PART, QUIT messages
 (setq circe-reduce-lurker-spam t)
 
+; Align messages
+(setq circe-format-say "{nick:-16s} {body}")
+
+; Colorize nicks
+(require 'circe-color-nicks)
+(enable-circe-color-nicks)
+
 ;; END CONFIG
 
 (provide 'init)
