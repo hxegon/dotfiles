@@ -96,7 +96,7 @@
 ;; RUBY
 ;; -> CHRUBY
 (require 'chruby) ; TODO: Add to package manager whenever that's figured out
-(chruby-use "ruby-2.5.3")
+(chruby-use "ruby-2.6.2")
 
 ;; Haskell
 ;; -> -mode
