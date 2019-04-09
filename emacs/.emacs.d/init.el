@@ -216,6 +216,19 @@
 (global-set-key (kbd "C-s") 'phi-search)
 (global-set-key (kbd "C-r") 'phi-search-backward)
 
+;; CIRCE (Client for IRC in Emacs)
+(setq circe-network-options
+      '(("Freenode"
+         :tls t
+         :nick "my-nick"
+         :sasl-username "my-nick"
+         :sasl-password "my-password"
+         :channels ("#ruby")
+         )))
+
+; Hide JOIN, PART, QUIT messages
+(setq circe-reduce-lurker-spam t)
+
 ;; END CONFIG
 
 (provide 'init)
