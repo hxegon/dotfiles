@@ -143,7 +143,11 @@
 	 "* TODO %?\n  %i\n  %A")
 	("j" "Journal Entry"
 	 entry (file+datetree org-default-journal-file)
-	 "* %?")))
+	 "* %?")
+	("g" "Grocery List"
+	 entry (file+headline org-default-notes-file "Groceries")
+	 "* TODO Grocery List%?\n | Item | Est. Price |\n|-+-|\n| | |\n| Total w/ tax: | |\n#+TBLFM: @>$2=vsum(@46..@-1)*1.08"
+	 )))
 
 ;; Org-Refile
 (setq org-refile-targets
