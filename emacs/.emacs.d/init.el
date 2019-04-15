@@ -35,6 +35,7 @@
   (interactive)
   (other-window -1))
 
+(global-set-key (kbd "s-o") 'other-window)
 (global-set-key (kbd "C-x O") 'reverse-other-window)
 
 ;; Global modes
