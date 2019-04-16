@@ -250,6 +250,17 @@
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x C-r") 'helm-recentf)
 
+;; PROJECTILE
+(projectile-mode +1)
+
+;; HELM-PROJECTILE
+(require 'helm-projectile)
+(helm-projectile-on)
+(global-set-key (kbd "s-p") 'helm-projectile-find-file)
+
+;; HYDRA
+
+
 ;; END CONFIG
 
 (provide 'init)
