@@ -37,6 +37,7 @@
 
 (global-set-key (kbd "s-o") 'other-window)
 (global-set-key (kbd "C-x O") 'reverse-other-window)
+(global-set-key (kbd "C-x C-o") 'other-frame)
 
 ;; Global modes
 (which-key-mode)
