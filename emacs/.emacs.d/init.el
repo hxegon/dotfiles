@@ -46,9 +46,6 @@
 (which-key-mode)
 (ido-mode)
 
-;; Local modes
-(add-hook 'prog-mode-hook 'linum-mode)
-
 ;; Diminish Modes
 (diminish 'which-key-mode)
 (diminish 'git-gutter-mode)
