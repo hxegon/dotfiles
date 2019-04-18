@@ -159,6 +159,7 @@
 ;; Org-Refile
 (setq org-refile-targets
       '((org-default-notes-file :maxlevel . 3)))
+(setq org-outline-path-complete-in-steps nil)
 
 ;; Org-Agenda
 (global-set-key (kbd "C-c a") 'org-agenda)
