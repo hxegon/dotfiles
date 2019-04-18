@@ -45,6 +45,8 @@
 ;; Global modes
 (which-key-mode)
 (ido-mode)
+(delete-selection-mode 1)
+(global-hl-line-mode 1)
 
 ;; Diminish Modes
 (diminish 'which-key-mode)
