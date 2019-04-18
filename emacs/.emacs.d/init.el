@@ -30,6 +30,9 @@
 ;; remap M-/ to hippie-expand
 (global-set-key (kbd "M-/") 'hippie-expand)
 
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(setq require-final-newline t)
+
 ;; C-x O counter-clockwise other-window (C-x o)
 (defun reverse-other-window ()
   (interactive)
