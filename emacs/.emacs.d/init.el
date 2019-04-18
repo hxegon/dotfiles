@@ -55,6 +55,7 @@
 (diminish 'auto-revert-mode)
 (diminish 'eldoc-mode)
 (diminish 'git-gutter-mode)
+(diminish 'helm-mode)
 
 ;; Global keys
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
