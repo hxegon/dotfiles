@@ -259,6 +259,9 @@
 (global-set-key (kbd "s-p") 'helm-projectile-find-file)
 (global-set-key (kbd "s-P") 'helm-projectile-switch-project)
 
+;; EMMET
+(require 'emmet-mode)
+
 ;; Thanks to Bozhidar Batsov
 ;; http://emacsredux.com/blog/2013/]05/22/smarter-navigation-to-the-beginning-of-a-line/
 (defun smarter-move-beginning-of-line (arg)
