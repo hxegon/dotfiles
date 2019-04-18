@@ -121,6 +121,7 @@
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-c SPC") nil)
   (define-key org-mode-map (kbd "C-c l") 'org-store-link))
+(setq initial-major-mode 'org-mode)
 
 ;; Org-Babel
 (org-babel-do-load-languages
