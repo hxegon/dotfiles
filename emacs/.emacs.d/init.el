@@ -292,6 +292,9 @@ point reaches the beginning or end of the buffer, stop there."
       (move-beginning-of-line 1))))
 (global-set-key (kbd "C-a") 'smarter-move-beginning-of-line)
 
+;; Helm-ag
+(global-set-key (kbd "s-f") 'helm-do-ag-project-root)
+
 ;; HYDRA
 
 
