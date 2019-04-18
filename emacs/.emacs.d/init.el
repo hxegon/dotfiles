@@ -1,3 +1,5 @@
+;; INIT
+
 (package-initialize)
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
@@ -7,7 +9,6 @@
 ;; load custom file, don't freak out if it's not there
 (load-file custom-file 'noerror)
 
-;; START MANUAL CONFIG
 (add-to-list 'load-path "~/.emacs.d/vendor")
 
 (require 'package)
@@ -19,13 +20,9 @@
   (require 'server)
   (unless (server-running-p)
     (server-start)))
-
 (run-server) ; This ensures that emacsclient will work even when there's no running server
 
-;; Change default set-mark-command binding (C-SPC) to C-return
-;; so it doesn't shadow the global quick add command from things app
-;; (global-unset-key (kbd "C-SPC"))
-;; (global-set-key (kbd "<C-return>") 'set-mark-command)
+;; END INIT
 
 ;; remap M-/ to hippie-expand
 (global-set-key (kbd "M-/") 'hippie-expand)
@@ -296,7 +293,6 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key (kbd "s-f") 'helm-do-ag-project-root)
 
 ;; HYDRA
-
 
 ;; END CONFIG
 
