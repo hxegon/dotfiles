@@ -60,15 +60,9 @@
 (global-set-key (kbd "C-c w") 'ace-window) ;; doesn't work in Eshell
 (define-key global-map (kbd "C-x C-b") 'ibuffer)
 
-;; Fix some backup/autosave behaviour, save in ~/.emacs-saves
-(setq backup-by-copying t      ; don't clobber symlinks
-      backup-directory-alist '(("." . "~/.emacs.d/saves"))    ; don't litter my fs tree
-      delete-old-versions t
-      kept-new-versions 6
-      kept-old-versions 2
-      version-control t)       ; use versioned backups
-(setq auto-save-file-name-transforms
-      `((".*" "~/.emacs.d/saves" t)))
+;; I give up on trying to keep autosave, backup files
+(setq auto-save-default nil)
+(setq make-backup-files nil)
 
 ;; ESHELL
 ;; https://www.youtube.com/watch?v=RhYNu6i_uY4&t=2162s
