@@ -34,9 +34,11 @@
   (interactive)
   (other-window -1))
 
-(global-set-key (kbd "s-o") 'other-window)
-(global-set-key (kbd "C-x O") 'reverse-other-window)
-(global-set-key (kbd "C-x C-o") 'other-frame)
+(defhydra hydra-nav (global-map "C-\\")
+  "navigation"
+  ("o" other-window "next window")
+  ("O" reverse-other-window "previous window")
+  ("f" other-frame "next frame"))
 
 ;; Global modes
 (which-key-mode)
@@ -214,10 +216,12 @@
 
 ;; MULTIPLE-CURSORS
 (require 'multiple-cursors)
-(global-set-key (kbd "C-c .") 'mc/mark-all-like-this)
-(global-set-key (kbd "C-c S") 'mc/edit-lines)
-(global-set-key (kbd "C-.") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-,") 'mc/mark-previous-like-this)
+(defhydra hydra-cursors (global-map "C-c m")
+  "multiple-cursors"
+  (">" mc/mark-next-like-this "mark next")
+  ("<" mc/mark-previous-like-this "mark previous")
+  ("." mc/mark-all-like-this "mark all like this")
+  ("s" mc/edit-lines "mark lines"))
 
 ; phi-search settings (replacement for built in isearch that works with multiple-cursors)
 (require 'phi-search)
