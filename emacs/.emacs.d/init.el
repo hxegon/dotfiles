@@ -288,6 +288,12 @@ point reaches the beginning or end of the buffer, stop there."
       (move-beginning-of-line 1))))
 (global-set-key (kbd "C-a") 'smarter-move-beginning-of-line)
 
+;; Spellcheck
+;; The built in commands for spell correction are ispell-*
+(setq ispell-program-name "aspell")
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+
 ;; Helm-ag
 (global-set-key (kbd "s-f") 'helm-do-ag-project-root)
 
