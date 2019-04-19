@@ -51,7 +51,6 @@
 (diminish 'git-gutter-mode)
 (diminish 'auto-revert-mode)
 (diminish 'eldoc-mode)
-(diminish 'git-gutter-mode)
 (diminish 'helm-mode)
 (diminish 'projectile-mode)
 
@@ -64,13 +63,6 @@
 (setq auto-save-default nil)
 (setq make-backup-files nil)
 
-;; ESHELL
-;; https://www.youtube.com/watch?v=RhYNu6i_uY4&t=2162s
-;; Above shows how to fix eshell not working with special display programs
-;; such as git diff
-(require 'em-term) ; eshell-visual vars don't exist without this loading first
-(add-to-list 'eshell-visual-subcommands
-	     '("git" "log" "diff" "show"))
 ;; Make tab completion case insensitive
 (setq eshell-cmpl-ignore-case t)
 
@@ -95,15 +87,6 @@
 ;; -> CHRUBY
 (require 'chruby) ; TODO: Add to package manager whenever that's figured out
 (chruby-use "ruby-2.6.2")
-
-;; Haskell
-;; -> -mode
-(require 'haskell-interactive-mode)
-(require 'haskell-process)
-(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-(eval-after-load 'haskell-mode
-  '(progn
-     (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-mode)))
 
 ;; EXPAND-REGION
 (require 'expand-region)
@@ -296,6 +279,34 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key (kbd "s-f") 'helm-do-ag-project-root)
 
 ;; HYDRA
+
+;; "Try out" Config
+
+;; Sublimity (Minimap, Smooth Scroll)
+(require 'sublimity)
+(require 'sublimity-scroll)
+(sublimity-mode 1)
+
+;; Dead config
+
+;; ESHELL
+;; https://www.youtube.com/watch?v=RhYNu6i_uY4&t=2162s
+;; Above shows how to fix eshell not working with special display programs
+;; such as git diff
+;; (require 'em-term) ; eshell-visual vars don't exist without this loading first
+;; (add-to-list 'eshell-visual-subcommands
+;; 	     '("git" "log" "diff" "show"))
+;; (add-to-list 'eshell-visual-commands
+;; 	     '("entr" "pry"))
+
+;; Haskell
+;; -> -mode
+;; (require 'haskell-interactive-mode)
+;; (require 'haskell-process)
+;; (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+;; (eval-after-load 'haskell-mode
+;;   '(progn
+;;      (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-mode)))
 
 ;; END CONFIG
 
