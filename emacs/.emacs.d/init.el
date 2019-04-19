@@ -91,6 +91,7 @@
 ;; EXPAND-REGION
 (require 'expand-region)
 (global-set-key (kbd "C-'") 'er/expand-region)
+(global-set-key (kbd "C-\"") 'er/contract-region)
 
 ;; Org-Mode
 (with-eval-after-load 'org
