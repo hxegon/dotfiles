@@ -55,7 +55,8 @@
 (diminish 'projectile-mode)
 
 ;; Global keys
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+(require 'avy)
+(global-set-key (kbd "C-;") 'avy-goto-char)
 (global-set-key (kbd "C-c w") 'ace-window) ;; doesn't work in Eshell
 (define-key global-map (kbd "C-x C-b") 'ibuffer)
 
