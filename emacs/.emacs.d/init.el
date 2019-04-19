@@ -276,7 +276,10 @@ point reaches the beginning or end of the buffer, stop there."
 (setq ispell-program-name "aspell")
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
-
+;; Ensure C-; avy-goto-char binding isn't overridden
+(with-eval-after-load 'flyspell
+  (define-key flyspell-mode-map (kbd "C-;") nil)
+  (globa  z-Sl-set-key  (kbd "C-;") 'avy-goto-char))
 ;; Helm-ag
 (global-set-key (kbd "s-f") 'helm-do-ag-project-root)
 
