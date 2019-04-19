@@ -279,6 +279,11 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key (kbd "s-f") 'helm-do-ag-project-root)
 
 ;; HYDRA
+(require 'hydra)
+(defhydra hydra-zoom (global-map "C-c z")
+  "zoom"
+  ("Z" text-scale-increase "larger")
+  ("z" text-scale-decrease "smaller"))
 
 ;; "Try out" Config
 
