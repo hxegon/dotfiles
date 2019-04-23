@@ -126,7 +126,7 @@
 (global-hl-line-mode 1)
 
 ;; Load nice dark theme
-(load-theme 'labburn)
+(load-theme 'doom-spacegrey)
 ;; Good themes list
 ;; doom-spacegrey, labburn, tsdh-light
 
