@@ -105,3 +105,4 @@ alias chr='chruby $(chruby | sed "s/\*/ /" | awk "{print $1}" | fzf)'
 alias dca="docker-compose run web ash"
 alias her="heroku run rails console -r"
 alias hel="heroku logs"
+alias ec="emacsclient -n"
