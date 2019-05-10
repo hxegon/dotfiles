@@ -32,8 +32,6 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=23'
 export BROWSER='firefox'
 
 which git > /dev/null && alias g='git'
-alias -g ni='nvim -p'
-alias -s $ext=nvim # What is this?
 which htop > /dev/null && alias -g htop='sudo htop'
 # Does this even work on OS X?
 alias buu='brew upgrade && brew cleanup -s'
