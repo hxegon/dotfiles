@@ -89,11 +89,10 @@ config () {
   $EDITOR $(echo $CONFIG_FILES | fzf --preview="bat --color=always ${PREFIX}{}" | awk -v p=${PREFIX} '{print p $0}')
 }
 
-alias c='config'
-alias -g pick="\$(fd --hidden -t f -E .git/ | fzf | awk -v pwd=\$(pwd) '{print pwd \"/\" \$0}')"
+# alias -g pick="\$(fd --hidden -t f -E .git/ | fzf | awk -v pwd=\$(pwd) '{print pwd \"/\" \$0}')"
 wttr () { curl http://wttr.in/$1 }
-alias chr='chruby $(chruby | sed "s/\*/ /" | awk "{print $1}" | fzf)'
-alias dca="docker-compose run web ash"
+# alias chr='chruby $(chruby | sed "s/\*/ /" | awk "{print $1}" | fzf)'
+# alias dca="docker-compose run web ash"
 alias her="heroku run rails console -r"
 alias hel="heroku logs"
 alias ec="emacsclient -n"
