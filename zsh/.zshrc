@@ -106,3 +106,5 @@ alias ec="emacsclient -n"
 # $. is the line number, 1-indexed.
 # -l auto #chomps line endings from $_
 rsv () { xsv fmt -t "\t" | ruby -ple $1 | xsv fmt -d "\t" }
+
+alias rec='ls -1t | head'
