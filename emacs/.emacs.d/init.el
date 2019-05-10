@@ -128,7 +128,7 @@
 ;; Load nice dark theme
 (load-theme 'doom-spacegrey)
 ;; Good themes list
-;; doom-spacegrey, labburn, tsdh-light
+;; doom-spacegrey, labburn, tsdh-light, material-light
 
 ;; Always wrap lines
 (global-visual-line-mode 1)
