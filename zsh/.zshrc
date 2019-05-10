@@ -37,7 +37,7 @@ which htop > /dev/null && alias -g htop='sudo htop'
 alias buu='brew upgrade && brew cleanup -s'
 alias bdump='brew bundle dump --force --global'
 which tmux > /dev/null && alias tm='tmux'
-alias resrc='source ~/.zshrc'
+alias resrc='source ~/.zshrc' # doesn't play well with antigen
 
 # Simple shortcuts for common directories
 alias proj='cd ~/Projects'
