@@ -96,3 +96,15 @@ wttr () { curl http://wttr.in/$1 }
 alias her="heroku run rails console -r"
 alias hel="heroku logs"
 alias ec="emacsclient -n"
+
+# Helper function requiring ruby and xsv spreadsheet tool
+#
+# uses xsv to format csv (from stdin) into fields
+# separated by tabs, feeds it to a ruby script string (first argument)
+# and formats the stdout of that script string output back
+# to csv format.
+# NOTES:
+# The ruby script prints whatever value $_ is at the end of a given line.
+# $. is the line number, 1-indexed.
+# -l auto #chomps line endings from $_
+rsv () { xsv fmt -t "\t" | ruby -ple $1 | xsv fmt -d "\t" }
