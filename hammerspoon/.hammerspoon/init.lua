@@ -71,15 +71,13 @@ hs.window.animationDuration = 0.0
 --------------
 
 -- Static app shortcuts
-launcher:bind("m", "Messages")
-launcher:bind("t", "iTerm")
-launcher:bind("s", "Spotify")
 launcher:bind("b", "Firefox")
--- launcher:bind("d", "Discord")
-launcher:bind("d", "Dash")
-launcher:bind("r", "Things3")
-launcher:bind("i", "Mail")
+launcher:bind("d", "Discord")
 launcher:bind("e", "Emacs")
+launcher:bind("i", "Mail")
+launcher:bind("m", "Messages")
+launcher:bind("s", "Spotify")
+launcher:bind("t", "iTerm")
 
 -- Show app shortcut bindings
 hs.hotkey.bind(launcher.prefix, "/", launcher:helpCall())
