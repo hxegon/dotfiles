@@ -109,3 +109,7 @@ rsv () { xsv fmt -t "\t" | ruby -ple $1 | xsv fmt -d "\t" }
 asv () { xsv fmt -t "\t" | awk -F "\t" $1 | xsv fmt -d "\t" }
 
 alias rec='ls -1t | head'
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
