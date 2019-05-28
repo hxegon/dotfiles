@@ -101,6 +101,9 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (setq require-final-newline t)
 
+(use-package popwin
+  :config (popwin-mode 1))
+
 
 ;; VISUALS
 ;; ===
