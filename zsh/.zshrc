@@ -29,26 +29,15 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=23'
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  # If in remote session
-  export EDITOR='kak'
-else
-  # if in local session
-  export EDITOR='kak'
-fi
-
 export BROWSER='firefox'
 
 which git > /dev/null && alias g='git'
-alias -g ni='nvim -p'
-alias -s $ext=nvim # What is this?
 which htop > /dev/null && alias -g htop='sudo htop'
 # Does this even work on OS X?
 alias buu='brew upgrade && brew cleanup -s'
 alias bdump='brew bundle dump --force --global'
 which tmux > /dev/null && alias tm='tmux'
-alias resrc='source ~/.zshrc'
+alias resrc='source ~/.zshrc' # doesn't play well with antigen
 
 # Simple shortcuts for common directories
 alias proj='cd ~/Projects'
@@ -98,11 +87,29 @@ config () {
   $EDITOR $(echo $CONFIG_FILES | fzf --preview="bat --color=always ${PREFIX}{}" | awk -v p=${PREFIX} '{print p $0}')
 }
 
-alias c='config'
-alias -g pick="\$(fd --hidden -t f -E .git/ | fzf | awk -v pwd=\$(pwd) '{print pwd \"/\" \$0}')"
+# alias -g pick="\$(fd --hidden -t f -E .git/ | fzf | awk -v pwd=\$(pwd) '{print pwd \"/\" \$0}')"
 wttr () { curl http://wttr.in/$1 }
-alias chr='chruby $(chruby | sed "s/\*/ /" | awk "{print $1}" | fzf)'
-alias dca="docker-compose run web ash"
+# alias chr='chruby $(chruby | sed "s/\*/ /" | awk "{print $1}" | fzf)'
+# alias dca="docker-compose run web ash"
 alias her="heroku run rails console -r"
 alias hel="heroku logs"
 alias ec="emacsclient -n"
+
+# Helper function requiring ruby and xsv spreadsheet tool
+#
+# uses xsv to format csv (from stdin) into fields
+# separated by tabs, feeds it to a ruby script string (first argument)
+# and formats the stdout of that script string output back
+# to csv format.
+# NOTES:
+# The ruby script prints whatever value $_ is at the end of a given line.
+# $. is the line number, 1-indexed.
+# -l auto #chomps line endings from $_
+rsv () { xsv fmt -t "\t" | ruby -ple $1 | xsv fmt -d "\t" }
+asv () { xsv fmt -t "\t" | awk -F "\t" $1 | xsv fmt -d "\t" }
+
+alias rec='ls -1t | head'
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

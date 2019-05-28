@@ -71,15 +71,15 @@ hs.window.animationDuration = 0.0
 --------------
 
 -- Static app shortcuts
-launcher:bind("m", "Messages")
-launcher:bind("t", "iTerm")
-launcher:bind("s", "Spotify")
+launcher:bind("a", "iTunes")
 launcher:bind("b", "Firefox")
--- launcher:bind("d", "Discord")
-launcher:bind("d", "Dash")
-launcher:bind("r", "Things3")
-launcher:bind("i", "Mail")
+launcher:bind("d", "Discord")
 launcher:bind("e", "Emacs")
+launcher:bind("i", "Mail")
+launcher:bind("m", "Messages")
+launcher:bind("s", "Spotify")
+launcher:bind("t", "iTerm")
+launcher:bind("r", "Things3")
 
 -- Show app shortcut bindings
 hs.hotkey.bind(launcher.prefix, "/", launcher:helpCall())
@@ -97,19 +97,14 @@ spoon.MiroWindowsManager:bindHotkeys({
   fullscreen = {mash, "f"}
 })
 
+-- Manual config reload binding
+hs.hotkey.bind(launcher.prefix, "return", hs.reload)
+
 ------------------
 -- OTHER CONFIG --
 ------------------
-function reloadConfig(files)
-    doReload = false
-    for _,file in pairs(files) do
-        if file:sub(-4) == ".lua" then
-            doReload = true
-        end
-    end
-    if doReload then
-        hs.reload()
-    end
-end
-myWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig):start()
-hs.alert.show("HammerSpoon loaded") -- KEEP AT END OF FILE
+
+myWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/dotfiles/hammerspoon/.hammerspoon/", hs.reload):start()
+
+-- KEEP AT END OF FILE
+hs.alert.show("HammerSpoon loaded")
