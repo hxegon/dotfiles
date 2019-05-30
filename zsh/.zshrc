@@ -24,6 +24,14 @@ antigen theme robbyrussell
 
 antigen apply
 
+autoload -Uz compinit
+
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+
+compinit -C
+
 export PATH="$HOME/.cargo/bin:/usr/local/heroku/bin:/Users/cooperlebrun/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Users/cooperlebrun/.local/bin:/usr/local/opt/llvm/bin:$PATH"
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=23'
