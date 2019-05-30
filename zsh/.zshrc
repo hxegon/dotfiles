@@ -1,28 +1,5 @@
-mkdir -p $HOME/.cache/antigen
-export ADOTDIR=$HOME/.cache/antigen
-source $HOME/.zsh/antigen.zsh
-
-antigen use oh-my-zsh
-antigen bundle git
-antigen bundle bundler
-antigen bundle osx
-antigen bundle heroku
-antigen bundle rake
-antigen bundle ruby
-antigen bundle sudo
-antigen bundle tmux
-antigen bundle zsh-autosuggestions
-antigen bundle colored-man-pages
-antigen bundle command-not-found
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-completions
-antigen bundle djui/alias-tips
-
-#antigen theme https://github.com/denysdovhan/spaceship-prompt spaceship
-#antigen theme lambda
-antigen theme robbyrussell
-
-antigen apply
+source <(antibody init)
+antibody bundle < $HOME/.antibody_plugins
 
 autoload -Uz compinit
 

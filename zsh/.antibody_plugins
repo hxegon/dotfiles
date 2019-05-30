@@ -1,0 +1,18 @@
+# robbyrussel/oh-my-zsh
+# git
+# bundler
+# osx
+# heroku
+# rake
+# ruby
+# sudo
+# tmux
+# zsh-autosuggestions
+# colored-man-pages
+# command-not-found
+mafredri/zsh-async
+zdharma/fast-syntax-highlighting
+zsh-users/zsh-completions
+zsh-users/zsh-autosuggestions
+djui/alias-tips
+sindresorhus/pure
