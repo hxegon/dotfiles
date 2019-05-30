@@ -1,3 +1,5 @@
+mkdir -p $HOME/.cache/antigen
+export ADOTDIR=$HOME/.cache/antigen
 source $HOME/.zsh/antigen.zsh
 
 antigen use oh-my-zsh
