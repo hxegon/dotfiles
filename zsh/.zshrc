@@ -41,25 +41,21 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=23'
 
 export BROWSER='firefox'
 
-which git > /dev/null && alias g='git'
-which htop > /dev/null && alias -g htop='sudo htop'
+alias g='git'
+alias -g htop='sudo htop'
 # Does this even work on OS X?
 alias buu='brew upgrade && brew cleanup -s'
 alias bdump='brew bundle dump --force --global'
-which tmux > /dev/null && alias tm='tmux'
+alias tm='tmux'
 alias resrc='source ~/.zshrc' # doesn't play well with antigen
 
 # Simple shortcuts for common directories
-alias proj='cd ~/Projects'
 alias dot='cd ~/dotfiles'
 
 # Heroku
-if type "heroku" &> /dev/null; then
-    alias he='heroku'
-    hscale() {
-	heroku ps:scale web=$2 --remote $1
-    }
-fi
+alias he='heroku'
+alias her="heroku run rails console -r"
+alias hel="heroku logs"
 
 # Docker
 if type "docker" &> /dev/null; then
@@ -84,25 +80,23 @@ export FZF_DEFAULT_OPTS="--reverse --border -m --preview='bat --color=\"always\"
 
 export BAT_THEME="zenburn"
 
-# TODO: enable multi/tweak fzf flags for pretty shit etc
-config () {
-  # what we need to prepend to a relative dotfile path to make it absolute
-  local PREFIX="${HOME}/dotfiles/"
+# # TODO: enable multi/tweak fzf flags for pretty shit etc
+# config () {
+#   # what we need to prepend to a relative dotfile path to make it absolute
+#   local PREFIX="${HOME}/dotfiles/"
 
-  # Get list of config files
-  pushd ~/dotfiles &>/dev/null
-  local CONFIG_FILES="$(git ls-files)"
-  popd &>/dev/null
+#   # Get list of config files
+#   pushd ~/dotfiles &>/dev/null
+#   local CONFIG_FILES="$(git ls-files)"
+#   popd &>/dev/null
 
-  $EDITOR $(echo $CONFIG_FILES | fzf --preview="bat --color=always ${PREFIX}{}" | awk -v p=${PREFIX} '{print p $0}')
-}
+#   $EDITOR $(echo $CONFIG_FILES | fzf --preview="bat --color=always ${PREFIX}{}" | awk -v p=${PREFIX} '{print p $0}')
+# }
 
 # alias -g pick="\$(fd --hidden -t f -E .git/ | fzf | awk -v pwd=\$(pwd) '{print pwd \"/\" \$0}')"
 wttr () { curl http://wttr.in/$1 }
 # alias chr='chruby $(chruby | sed "s/\*/ /" | awk "{print $1}" | fzf)'
 # alias dca="docker-compose run web ash"
-alias her="heroku run rails console -r"
-alias hel="heroku logs"
 alias ec="emacsclient -n"
 
 # Helper function requiring ruby and xsv spreadsheet tool
