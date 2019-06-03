@@ -336,7 +336,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;; Integrate with 'chruby' ruby version management tool
 (use-package chruby
-  :config (chruby-use "ruby-2.6.2"))
+  :config (chruby-use "ruby-2.6.3"))
 
 ;; Search for string in projects
 (use-package helm-ag
