@@ -1,13 +1,17 @@
 source <(antibody init)
 antibody bundle < $HOME/.antibody_plugins
 
+# only compinit once a day
 autoload -Uz compinit
-
 for dump in ~/.zcompdump(N.mh+24); do
   compinit
 done
-
 compinit -C
+
+# Setup history stuff
+HISTFILE="${HOME}/.zsh_history"
+HISTSIZE=10000
+SAVEHIST=10000
 
 export PATH="$HOME/.cargo/bin:/usr/local/heroku/bin:/Users/cooperlebrun/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Users/cooperlebrun/.local/bin:/usr/local/opt/llvm/bin:$PATH"
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
