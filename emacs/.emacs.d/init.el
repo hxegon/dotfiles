@@ -52,7 +52,6 @@
 
 ;; I'm good on this for now :)
 
-
 ;; SANE DEFAULTS
 ;; ===
 
@@ -103,7 +102,6 @@
 
 (use-package popwin
   :config (popwin-mode 1))
-
 
 ;; VISUALS
 ;; ===
