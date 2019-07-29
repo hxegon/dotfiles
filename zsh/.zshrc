@@ -79,6 +79,7 @@ wttr () { curl http://wttr.in/$1 }
 # alias chr='chruby $(chruby | sed "s/\*/ /" | awk "{print $1}" | fzf)'
 # alias dca="docker-compose run web ash"
 alias ec="emacsclient -n"
+alias e="emacs -nw"
 
 # Helper function requiring ruby and xsv spreadsheet tool
 #
