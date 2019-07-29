@@ -269,7 +269,14 @@ point reaches the beginning or end of the buffer, stop there."
 ;; Use helm to replace a lot of default menus
 (use-package helm
   :diminish helm-mode
-  :config (helm-mode 1)
+  :config
+  (helm-mode 1)
+  (setq helm-boring-buffer-regexp-list (list
+					(rx "*magit-")
+					(rx "*helm")
+					(rx "*Echo")
+					(rx "*Flycheck")
+					(rx "*org-src-font")))
   :bind
   ("C-x b" . helm-buffers-list)
   ("C-x C-f" . helm-find-files)
