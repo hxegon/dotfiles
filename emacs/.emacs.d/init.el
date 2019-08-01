@@ -45,7 +45,8 @@
 (run-server)
 
 (use-package diminish)
-(use-package hydra)
+(use-package hydra
+  :defer t)
 
 ;; MODIFIER KEYS
 ;; ===
