@@ -124,7 +124,7 @@
 (global-hl-line-mode 1)
 
 ;; Load nice dark theme
-(load-theme 'doom-spacegrey)
+(load-theme 'zenburn)
 ;; Good themes list
 ;; doom-spacegrey, labburn, tsdh-light, material-light, gruvbox, badwolf
 
@@ -272,15 +272,15 @@ point reaches the beginning or end of the buffer, stop there."
 					(rx "*helm")
 					(rx "*Echo")
 					(rx "*Flycheck")
-					(rx "*org-src-font")))
+					(rx "*org-src-font")
+					(rx "*Minibuf")
+					(rx "magit-process")))
   :bind
   ("C-x b" . helm-buffers-list)
   ("C-x C-f" . helm-find-files)
   ("M-x" . helm-M-x)
   ("C-x C-r" . helm-recentf))
 
-
-;; (ido-mode) ; Made obsolete by helm?
 
 ;; VERSION CONTROL WITH GIT
 ;; ===
