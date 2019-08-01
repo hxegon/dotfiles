@@ -196,6 +196,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;; EasyMotion style visual movement
 (use-package avy
+  :defer t
   :bind ("C-;" . avy-goto-char))
 
 (defhydra hydra-nav (global-map "C-\\")
@@ -243,9 +244,11 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;; Project switching and fuzzy file search in project with cmd-P and cmd-p
 (use-package projectile
+  :defer t
   :diminish projectile-mode
   :config (projectile-mode +1))
 (use-package helm-projectile
+  :defer t
   :config (helm-projectile-on)
   :bind
   ("s-p" . helm-projectile-find-file)
@@ -265,6 +268,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;; Use helm to replace a lot of default menus
 (use-package helm
+  :defer t
   :diminish helm-mode
   :config
   (helm-mode 1)
@@ -292,6 +296,7 @@ point reaches the beginning or end of the buffer, stop there."
   :config (global-git-gutter-mode +1))
 
 (use-package magit
+  :defer t
   :bind ("C-x g" . 'magit-status))
 
 
@@ -306,10 +311,12 @@ point reaches the beginning or end of the buffer, stop there."
 ;; ===
 
 ;; Use CSS-like syntax to quickly write html
-(use-package emmet-mode)
+(use-package emmet-mode
+  :defer t)
 
 ;; Completion engine
 (use-package company
+  :defer t
   :diminish company-mode)
 
 
@@ -332,16 +339,19 @@ point reaches the beginning or end of the buffer, stop there."
 
 ;; Automatic syntax checking and linting
 (use-package flycheck
+  :defer t
   :diminish flycheck-mode
   :commands global-flycheck-mode
   :init (add-hook 'prog-mode-hook 'global-flycheck-mode))
 
 ;; Integrate with 'chruby' ruby version management tool
 (use-package chruby
+  :defer t
   :config (chruby-use "ruby-2.6.3"))
 
 ;; Search for string in projects
 (use-package helm-ag
+  :defer t
   :bind ("s-f" . 'helm-do-ag-project-root))
 
 ;; ORG MODE
@@ -403,6 +413,7 @@ point reaches the beginning or end of the buffer, stop there."
 ;; ===
 
 (use-package circe
+  :defer t
   :config
   (setq circe-network-options
 	'(("Freenode"
