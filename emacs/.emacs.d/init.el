@@ -224,16 +224,11 @@ point reaches the beginning or end of the buffer, stop there."
   ("C-'" . er/expand-region)
   ("C-\"" . er/contract-region))
 
-;; Multiple cursors for simultaneous editing
 (use-package multiple-cursors
-  :config
-  (defhydra hydra-cursors (global-map "C-c m")
-    "multiple-cursors"
-    (">" mc/mark-next-like-this "mark next")
-    ("<" mc/mark-previous-like-this "mark previous")
-    ("." mc/mark-all-like-this "mark all like this")
-    ("s" mc/edit-lines "mark lines")))
-
+  :bind (("C-c ." .'mc/mark-all-like-this)
+	 ("C-c S" . 'mc/edit-lines)
+	 ("M-<down>" . 'mc/mark-next-like-this)
+	 ("M-<up>" . 'mc/mark-previous-like-this)))
 
 ;; WINDOW MANAGEMENT
 ;; ===
