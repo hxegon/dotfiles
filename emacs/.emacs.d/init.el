@@ -84,7 +84,6 @@
  cursor-in-non-selected-windows t	; Hide cursors in inactive windows
  echo-keystrokes 0.1			; show keystrokes right away
  initial-scratch-message nil		; Empty scratch buffer by default
- initial-major-mode 'org-mode		; Org-mode by default
  sentence-end-double-space nil		; Sentences should end in one space
  confirm-kill-emacs 'y-or-n-p		; y and n options for emacs quiting
  help-window-select t			; select help window immediately so I don't have to switch to it to quit
