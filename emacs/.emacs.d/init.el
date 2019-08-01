@@ -65,9 +65,6 @@
 (setq mouse-wheel-follow-mouse 't)
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 
-;; ESC as universal exit button
-(define-key key-translation-map (kbd "ESC") (kbd "C-g"))
-
 ;; Disable auto save and backup files
 (setq auto-save-default nil)
 (setq make-backup-files nil)
