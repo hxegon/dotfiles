@@ -80,6 +80,7 @@ wttr () { curl http://wttr.in/$1 }
 # alias dca="docker-compose run web ash"
 alias ec="emacsclient -n"
 alias e="emacs -nw"
+alias ni="nvim"
 
 # Helper function requiring ruby and xsv spreadsheet tool
 #
