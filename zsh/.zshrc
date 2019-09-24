@@ -1,6 +1,8 @@
 source <(antibody init)
 antibody bundle < $HOME/.antibody_plugins
 
+bindkey -e
+
 # only compinit once a day
 autoload -Uz compinit
 for dump in ~/.zcompdump(N.mh+24); do
