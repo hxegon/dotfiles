@@ -34,6 +34,9 @@ map global user 'c' '<a-|>pbcopy<ret>'                      -docstring 'clipboar
 map global user 'p' '|pbpaste<ret>'                         -docstring 'clipboard paste current selection'
 map global user 'h' 'Gh'                                    -docstring 'extend selection to beginning of line'
 map global user 'l' 'Gl'                                    -docstring 'extend selection to end of line'
+map global user 'n' ':new<ret>'                             -docstring 'open new tmux split of kak'
+map global user 'F' ':set buffer filetype '                 -docstring 'shortcut for manual filetype setting'
+map global user 'K' ':e ~/.config/kak/kakrc<ret>'           -docstring 'open kakoune config file'
 
 map global user '=' ':prompt math: %{exec "a%val{text}<lt>esc>|bc<lt>ret>"}<ret>' -docstring 'replace selections with prompted math results against values'
 
