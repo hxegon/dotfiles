@@ -78,11 +78,11 @@ export BAT_THEME="zenburn"
 
 # alias -g pick="\$(fd --hidden -t f -E .git/ | fzf | awk -v pwd=\$(pwd) '{print pwd \"/\" \$0}')"
 wttr () { curl http://wttr.in/$1 }
-# alias chr='chruby $(chruby | sed "s/\*/ /" | awk "{print $1}" | fzf)'
-# alias dca="docker-compose run web ash"
-alias ec="emacsclient -n"
-alias e="emacs -nw"
-alias ni="nvim"
+alias chr='chruby $(chruby | sed "s/\*/ /" | awk "{print $1}" | fzf)'
+alias dca="docker-compose run web ash"
+alias ls="exa"
+alias l="exa -lh --git"
+alias tma='tmux a -t $(tmux ls -F #{session_name} | fzf)'
 
 # Helper function requiring ruby and xsv spreadsheet tool
 #
