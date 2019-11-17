@@ -24,16 +24,15 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=23'
 
 export BROWSER='firefox'
 
+# Abbreviations
 alias g='git'
-alias -g htop='sudo htop'
-# Does this even work on OS X?
-alias buu='brew upgrade && brew cleanup -s'
-alias bdump='brew bundle dump --force --global'
 alias tm='tmux'
-alias resrc='source ~/.zshrc' # doesn't play well with antigen
-
-# Simple shortcuts for common directories
+alias -g htop='sudo htop'
 alias dot='cd ~/dotfiles'
+
+alias buu='brew upgrade && brew cleanup -s' # brew upgrade / clean old packages
+alias bdump='brew bundle dump --force --global' # show all installed brew packages
+alias resrc='source ~/.zshrc' # doesn't play well with antigen
 
 # Heroku
 alias he='heroku'
