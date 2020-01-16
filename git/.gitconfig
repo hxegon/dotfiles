@@ -11,6 +11,7 @@
 	br = branch -v
 	re = remote -v
 	hist = log --graph --pretty=format:'%an: %s - %Cred%h%Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+	l = log --oneline
   type = cat-file -t
   dump = cat-file -p
 	aa = add --all
