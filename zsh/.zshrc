@@ -22,6 +22,9 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=23'
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
+# Turn off terminal bell/beep for ambiguous list completions
+unsetopt LIST_BEEP
+
 export BROWSER='firefox'
 
 # Abbreviations
