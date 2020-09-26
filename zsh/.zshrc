@@ -78,6 +78,8 @@ export BAT_THEME="zenburn"
 #   $EDITOR $(echo $CONFIG_FILES | fzf --preview="bat --color=always ${PREFIX}{}" | awk -v p=${PREFIX} '{print p $0}')
 # }
 
+alias ed='nvim $(git ls-files | fzf)'
+
 # alias -g pick="\$(fd --hidden -t f -E .git/ | fzf | awk -v pwd=\$(pwd) '{print pwd \"/\" \$0}')"
 wttr () { curl http://wttr.in/$1 }
 alias chr='chruby $(chruby | sed "s/\*/ /" | awk "{print $1}" | fzf)'
