@@ -78,6 +78,11 @@ export BAT_THEME="zenburn"
 #   $EDITOR $(echo $CONFIG_FILES | fzf --preview="bat --color=always ${PREFIX}{}" | awk -v p=${PREFIX} '{print p $0}')
 # }
 
+# After getting burned by using rm, I'd like to make an effort to correct bad
+# habits.
+alias del="rmtrash" # Don't alias rm to rmtrash. I want to correct the habit, not slap a bandaid on it
+alias rm="echo 'Use del, or the full path of rm if you really need in (/bin/rm)'"
+
 alias ed='nvim $(git ls-files | fzf)'
 
 # alias -g pick="\$(fd --hidden -t f -E .git/ | fzf | awk -v pwd=\$(pwd) '{print pwd \"/\" \$0}')"
