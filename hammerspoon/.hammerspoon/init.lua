@@ -45,7 +45,7 @@ function Launcher:dAppFOLCall ()
 end
 function Launcher:dAppSetCall ()
   return function ()
-    local curAppName = hs.application.name(hs.application.frontmostApplication())
+    local curAppName = hs.application.frontmostApplication():title()
     hs.alert.show(curAppName .. " bound to " .. showKeys(self.prefix) .. "+space key")
     self.dynamicApp=curAppName
   end
