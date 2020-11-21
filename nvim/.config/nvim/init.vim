@@ -21,6 +21,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary' " comment stuff with gc, e.g. gcap
 " Plug 'ervandew/supertab' " Might reenable, messes with tab completion snippet
 Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-rooter' " find project root, installed to fix usage issues with fzf.vim
 if has('mac')
   Plug '/usr/local/opt/fzf'
 elseif has('unix')
@@ -231,16 +232,11 @@ nnoremap <leader>U :PlugUpgrade \| PlugClean \| PlugUpdate<CR>
 nnoremap <leader>n :NERDTreeToggle<CR>
 
 " FZF
+let g:fzf_layout = { 'down': '~40%' } " default layout of 'window' is broken for me, and I prefer this anyway
 nnoremap <leader>g :ProjectFiles<CR>
 nnoremap <leader>p :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>h :History<CR>
-
-function! s:find_git_root()
-  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
-endfunction
-
-command! ProjectFiles execute 'Files' s:find_git_root()
 
 " Easy Align Mappings
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
