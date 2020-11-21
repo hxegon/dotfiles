@@ -16,7 +16,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'tpope/vim-surround'
 Plug 'junegunn/vim-easy-align'
 Plug 'xolox/vim-misc'
-Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
 " Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-commentary' " comment stuff with gc, e.g. gcap
 " Plug 'ervandew/supertab' " Might reenable, messes with tab completion snippet
@@ -228,8 +228,8 @@ nnoremap <leader>U :PlugUpgrade \| PlugClean \| PlugUpdate<CR>
 " let g:gist_post_anonymous = 1
 " vnoremap <leader>G :Gist -a -b<CR>
 
-" NERDtree
-nnoremap <leader>n :NERDTreeToggle<CR>
+" Use built in file explorer instead of Nerdtree
+nnoremap <leader>n :Sex<CR>
 
 " FZF
 let g:fzf_layout = { 'down': '~40%' } " default layout of 'window' is broken for me, and I prefer this anyway
