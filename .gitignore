@@ -4,3 +4,4 @@
 xmonad/.xmonad/*
 kakoune/.config/kak/plugins/*
 emacs/.emacs.d/saves/*
+emacs/.emacs.d/custom.el
