@@ -55,8 +55,22 @@ Plug 'tpope/vim-fugitive' "
 Plug 'ngmy/vim-rubocop'
 Plug 'nelstrom/vim-textobj-rubyblock' | Plug 'kana/vim-textobj-user'
 
+" Clojure
+Plug 'guns/vim-clojure-static'                    " Better syntax/filetype support
+Plug 'tpope/vim-fireplace'                        " repl / eval integration
+Plug 'guns/vim-sexp'                              " s-expression text-objects
+Plug 'tpope/vim-sexp-mappings-for-regular-people' " better + more mappings for vim-sexp
+Plug 'tpope/vim-salve'                            " leiningen integration
+Plug 'kien/rainbow_parentheses.vim'               " paren pairing differentiation
+
 " Go
 Plug 'fatih/vim-go'
+
+" Zig
+Plug 'ziglang/zig.vim'
+
+" Fish syntax highlighting
+Plug 'dag/vim-fish'
 
 " Misc
 " Plug 'mattn/gist-vim' | Plug 'mattn/webapi-vim'
