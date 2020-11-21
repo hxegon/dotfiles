@@ -212,7 +212,7 @@ point reaches the beginning or end of the buffer, stop there."
   ("C-r" . phi-search-backward))
 
 ;; Load dired-x, comes with 'F' command (opens all marked files)
-(load "dired-x")
+;; (load "dired-x")
 
 
 ;; TEXT EDITING
@@ -339,6 +339,13 @@ point reaches the beginning or end of the buffer, stop there."
   :commands global-flycheck-mode
   :init (add-hook 'prog-mode-hook 'global-flycheck-mode))
 
+;; (use-package lsp-mode
+;;   :commands lsp
+;;   :config (require 'lsp-clients))
+
+;;(use-package lsp-ui)
+;;(use-package company-lsp)
+
 ;; Integrate with 'chruby' ruby version management tool
 (use-package chruby
   :defer t
@@ -348,6 +355,19 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package helm-ag
   :defer t
   :bind ("s-f" . 'helm-do-ag-project-root))
+
+;; (use-package toml-mode)
+
+(use-package rust-mode
+  :defer t
+  ;; :hook (rust-mode . lsp)
+  :config
+  (setq rust-format-on-save t))
+
+(use-package flycheck-rust
+  :defer t
+  :config
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
 ;; ORG MODE
 ;; ===
