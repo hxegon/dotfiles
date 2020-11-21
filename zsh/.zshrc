@@ -32,6 +32,7 @@ export BROWSER='firefox'
 
 # Abbreviations
 alias g='git'
+alias be='bundle exec'
 alias tm='tmux'
 alias -g htop='sudo htop'
 alias dot='cd ~/dotfiles'
@@ -95,6 +96,8 @@ alias dca="docker-compose run web ash"
 alias ls="exa"
 alias l="exa -lh --git"
 alias tma='tmux a -t $(tmux ls -F #{session_name} | fzf)'
+
+copyonchange () { echo $1 | entr -cps "cat $1 | pbcopy" }
 
 # Helper function requiring ruby and xsv spreadsheet tool
 #
