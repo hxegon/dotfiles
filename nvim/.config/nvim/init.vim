@@ -30,7 +30,7 @@ endif
 Plug 'tpope/vim-eunuch' " *shell helpers like :Move, :Mkdir, :Rename 
 Plug 'mattn/emmet-vim' " HTML structure completion e.g. sidebar>.side-sub*5<C-y>
 Plug 'itchyny/lightline.vim'
-Plug 'mhinz/vim-startify'
+Plug 'mhinz/vim-startify' " useful starting screen
 Plug 'jremmen/vim-ripgrep'
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " auto-completion, requires yarn
 
@@ -48,8 +48,8 @@ Plug 'mswift42/vim-themes'
 Plug 'liuchengxu/space-vim-dark'
 
 " Git
-Plug 'airblade/vim-gitgutter' " 
-Plug 'tpope/vim-fugitive' " 
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 
 " Ruby
 Plug 'ngmy/vim-rubocop'
@@ -80,8 +80,6 @@ Plug 'easymotion/vim-easymotion'
 call plug#end()
 
 runtime macros/matchit.vim " Is this required for something?
-
-" COLORSCHEME
 
 colorscheme nord
 
@@ -125,7 +123,8 @@ set wildmenu
 set showmode
 set laststatus=2
 set noswapfile
-set hidden
+set hidden " might be required for vim-go
+set cmdheight=2 " Better message display
 set nobackup
 set autoread
 set ttyfast
