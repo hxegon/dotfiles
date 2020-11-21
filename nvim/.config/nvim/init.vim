@@ -29,10 +29,9 @@ endif
 Plug 'tpope/vim-eunuch' " *shell helpers like :Move, :Mkdir, :Rename 
 Plug 'mattn/emmet-vim' " HTML structure completion e.g. sidebar>.side-sub*5<C-y>
 Plug 'itchyny/lightline.vim'
-Plug 'w0rp/ale' " Asynchronous linting
 Plug 'mhinz/vim-startify'
 Plug 'jremmen/vim-ripgrep'
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " auto-completion, requires yarn
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " auto-completion, requires yarn
 
 " Colorschemes
 Plug 'arcticicestudio/nord-vim'
@@ -127,6 +126,32 @@ set tabstop=2
 set shiftwidth=2
 set ttimeoutlen=-1
 
+" Completion settings
+" suggested by vim-go
+set updatetime=300 " Smaller then default time for CursorHold triggers
+set shortmess+=c " Don't clutter with completion menu messages
+set signcolumn=yes " Show signcolumns
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
 " MAPPINGS
 
 " alternate leader key: , instead of \
@@ -198,11 +223,6 @@ nnoremap <leader>U :PlugUpgrade \| PlugClean \| PlugUpdate<CR>
 " BEGIN PLUGIN SETTINGS
 " ---------------------
 
-" ale
-let g:ale_completion_enabled = 1
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
-
 " Gist plugin settings
 " let g:gist_post_anonymous = 1
 " vnoremap <leader>G :Gist -a -b<CR>
@@ -248,5 +268,18 @@ vmap <space> <Plug>(easymotion-bd-f)
 
 " vim-ripgrep
 nnoremap <leader>R :Rg<CR>
-nnoremap <leader>r :Rg <C-r>"<CR>
-let g:rg_derive_root = 1
+"nnoremap <leader>r :Rg <C-r>"<CR> " disabled in favor of Coc binding for symbol renaming
+let g:rg_derive_root = 1" Show commands
+
+" Coc
+" List CoC commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Symbol renaming
+nmap <leader>rn <Plug>(coc-rename)
+" GoTo code navigation
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+
+" Format selections
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
