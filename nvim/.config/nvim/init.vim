@@ -19,7 +19,7 @@ Plug 'xolox/vim-misc'
 Plug 'scrooloose/nerdtree'
 " Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-commentary' " comment stuff with gc, e.g. gcap
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab' " Might reenable, messes with tab completion snippet
 Plug 'junegunn/fzf.vim'
 if has('mac')
   Plug '/usr/local/opt/fzf'
