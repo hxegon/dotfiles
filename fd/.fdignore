@@ -1,0 +1,26 @@
+.DS_Store
+.Trash/
+.antigen
+.cache/
+.cargo/
+.emacs.d/
+.gem/
+.git
+.local/
+.m2/
+.node-gyp/
+.npm/
+.rubies/
+.rustup
+.tldrc/
+.vscode/
+A-OK\ Power\ Equipment/
+DaggerfallGameFiles/
+DaggerfallUnity.app
+Electronic\ Arts/
+Flashpoint\ Infinity\ for\ Mac\ Beta/
+Google\ Drive/
+Library/
+The Sims 4.app
+libc/
+migrate/
