@@ -8,6 +8,7 @@ set -gx GOPATH $HOME/Code/Go
 set -gx GOROOT /usr/local/opt/go/libexec
 
 # FZF
+set -gx FZF_DEFAULT_OPTS "--layout=reverse --border --preview 'bat --style=numbers --color=always {}'"
 set -gx FZF_DEFAULT_COMMAND "fd --hidden -d 8 --type d --type f . $HOME"
 set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 set -gx FZF_ALT_C_COMMAND "fd --hidden -d 8 -t d . $HOME"
@@ -24,8 +25,12 @@ alias llg="ls -lh | grep -i"
 alias tm="tmux"
 alias e="$EDITOR"
 alias ez="$EDITOR (fzf)"
+alias eg="$EDITOR (git ls-files | fzf)"
 alias g="git"
 alias config="$EDITOR $HOME/.config/fish/config.fish"
+alias be="bundle exec"
+alias d-clean 'docker rm (docker ps -qa --no-trunc --filter "status=exited") && docker rmi (docker images --filter "dangling=true" -q --no-trunc)'
+alias gac="git add --all && git commit"
 
 # "Most Recent Download", gives the past for the most recently added file in ~/Downloads
 function mrd

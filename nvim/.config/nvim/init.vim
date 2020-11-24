@@ -246,7 +246,7 @@ nnoremap <leader>n :Sex<CR>
 
 " FZF
 let g:fzf_layout = { 'down': '~40%' } " default layout of 'window' is broken for me, and I prefer this anyway
-nnoremap <leader>g :ProjectFiles<CR>
+nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>p :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>h :History<CR>
