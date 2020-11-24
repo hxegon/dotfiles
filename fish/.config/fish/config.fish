@@ -25,8 +25,12 @@ alias llg="ls -lh | grep -i"
 alias tm="tmux"
 alias e="$EDITOR"
 alias ez="$EDITOR (fzf)"
+alias eg="$EDITOR (git ls-files | fzf)"
 alias g="git"
 alias config="$EDITOR $HOME/.config/fish/config.fish"
+alias be="bundle exec"
+alias d-clean 'docker rm (docker ps -qa --no-trunc --filter "status=exited") && docker rmi (docker images --filter "dangling=true" -q --no-trunc)'
+alias gac="git add --all && git commit"
 
 # "Most Recent Download", gives the past for the most recently added file in ~/Downloads
 function mrd
