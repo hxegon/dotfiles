@@ -8,9 +8,9 @@ set -gx GOPATH $HOME/Code/Go
 set -gx GOROOT /usr/local/opt/go/libexec
 
 # FZF
-set -gx FZF_DEFAULT_OPTS "--layout=reverse --border --preview 'bat --style=numbers --color=always {}'"
-set -gx FZF_DEFAULT_COMMAND "fd --hidden -d 8 --type d --type f . $HOME"
-set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
+set -gx FZF_DEFAULT_OPTS "-0 --layout=reverse --border --bind '?:toggle-preview' --preview 'bat --style=numbers --color=always {}' --preview-window hidden"
+set -gx FZF_DEFAULT_COMMAND "fd --hidden -d 8 ."
+set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND -t f $HOME"
 set -gx FZF_ALT_C_COMMAND "fd --hidden -d 8 -t d . $HOME"
 
 # RUBY
