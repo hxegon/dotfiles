@@ -16,11 +16,7 @@ call plug#begin('~/.config/nvim/plugged')
 "" Plugs Groups
 Plug 'tpope/vim-surround'
 Plug 'junegunn/vim-easy-align'
-Plug 'xolox/vim-misc'
-" Plug 'scrooloose/nerdtree'
-" Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-commentary' " comment stuff with gc, e.g. gcap
-" Plug 'ervandew/supertab' " Might reenable, messes with tab completion snippet
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter' " find project root, installed to fix usage issues with fzf.vim
 if has('mac')
@@ -28,86 +24,91 @@ if has('mac')
 elseif has('unix')
   Plug '/home/linuxbrew/.linuxbrew/opt/fzf'
 endif
-Plug 'tpope/vim-eunuch' " *shell helpers like :Move, :Mkdir, :Rename 
-Plug 'mattn/emmet-vim' " HTML structure completion e.g. sidebar>.side-sub*5<C-y>
-Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-startify' " useful starting screen
-Plug 'jremmen/vim-ripgrep'
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " auto-completion, requires yarn
-
+" Plug 'jremmen/vim-ripgrep'
+Plug 'dstein64/vim-startuptime', { 'on': 'StartupTime' }
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+Plug 'unblevable/quick-scope'
 " Colorschemes
-Plug 'arcticicestudio/nord-vim'
-Plug 'endel/vim-github-colorscheme'
-Plug 'Lokaltog/vim-distinguished'
-Plug 'morhetz/gruvbox'
-Plug 'w0ng/vim-hybrid'
 Plug 'sickill/vim-monokai'
-Plug 'sjl/badwolf'
-Plug 'kristijanhusak/vim-hybrid-material'
-Plug 'vim-ruby/vim-ruby'
-Plug 'mswift42/vim-themes'
-Plug 'liuchengxu/space-vim-dark'
+" Plug 'arcticicestudio/nord-vim'
+" Plug 'endel/vim-github-colorscheme'
+" Plug 'morhetz/gruvbox'
+" Plug 'w0ng/vim-hybrid'
+" Plug 'kristijanhusak/vim-hybrid-material'
+" Plug 'mswift42/vim-themes'
+" Plug 'liuchengxu/space-vim-dark'
 
 " Git
 Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
 
 " Ruby
-Plug 'ngmy/vim-rubocop'
-Plug 'nelstrom/vim-textobj-rubyblock' | Plug 'kana/vim-textobj-user'
+" Plug 'ngmy/vim-rubocop'
+" Plug 'nelstrom/vim-textobj-rubyblock' | Plug 'kana/vim-textobj-user'
 
 " Clojure
-Plug 'guns/vim-clojure-static'                    " Better syntax/filetype support
-Plug 'tpope/vim-fireplace'                        " repl / eval integration
-Plug 'guns/vim-sexp'                              " s-expression text-objects
-Plug 'tpope/vim-sexp-mappings-for-regular-people' " better + more mappings for vim-sexp
-Plug 'tpope/vim-salve'                            " leiningen integration
-Plug 'kien/rainbow_parentheses.vim'               " paren pairing differentiation
+" TODO: Comment with streamlined guide to configure/use
+" Better syntax/filetype support
+Plug 'guns/vim-clojure-static',                    { 'for': 'clojure' }
+" repl / eval integration
+Plug 'tpope/vim-fireplace',                        { 'for': 'clojure' }
+" s-expression text-objects
+Plug 'guns/vim-sexp',                              { 'for': 'clojure' }
+" better + more mappings for vim-sexp
+Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
+" >e, <e: move element
+" >f, <f: move form
+" <(, >), >(, <): slurp/barf
+" leiningen integration
+Plug 'tpope/vim-salve', { 'for': 'clojure' }
+" paren pairing differentiation
+Plug 'kien/rainbow_parentheses.vim', { 'for': 'clojure' }
 
 " Go
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'for': 'go' }
 
 " Zig
-Plug 'ziglang/zig.vim'
+Plug 'ziglang/zig.vim', { 'for': 'zig' }
 
 " Fish syntax highlighting
-Plug 'dag/vim-fish'
-
-" Misc
-" Plug 'mattn/gist-vim' | Plug 'mattn/webapi-vim'
-" move around a file easier, mapped to <leader><space>
-Plug 'easymotion/vim-easymotion'
+Plug 'dag/vim-fish', { 'for': 'fish' }
 
 call plug#end()
 
-runtime macros/matchit.vim " Is this required for something?
+" runtime macros/matchit.vim " Is this required for something?
 
-colorscheme nord
+colorscheme monokai " loads in 9ms
+" colorscheme zenburn
 
 " SETTINGS AND AUTOCOMMANDS
 
-set scrolloff=18
-set ruler
-set number
-set shell=zsh
-set colorcolumn=81
+set scrolloff=18 " try to keep cursor centered-ish when scrolling
+set ruler " Show line:character in modeline
+set number " Show line numbers
+set shell=fish
+set colorcolumn=81 " highlight 81st column as *suggestion* to keep lines shorter
 set clipboard=unnamedplus
 set list listchars=tab:▸\ ,eol:¬
-set confirm " ask for force instead of making you recommand with !
+set confirm " ask for force instead of making you retype with !
 set mouse=a " Enable mouse usage
 set inccommand=nosplit " :*s/highlight/livereplace
-set completeopt=menu,menuone,preview,noselect,noinsert " allegedly fixes ale issue
+set completeopt=menuone,noselect,noinsert
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 set splitright "open vsplit on right
 set splitbelow "open split on bottom
  
 " v- gets rid of | in split gutters
 set fillchars+=vert:\ 
 set t_Co=256
-augroup CursorLineOnlyInActiveWindow
-  autocmd!
-  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  autocmd WinLeave * setlocal nocursorline
-augroup END
+" augroup CursorLineOnlyInActiveWindow
+"   autocmd!
+"   autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+"   autocmd WinLeave * setlocal nocursorline
+" augroup END
 
 " Stop automatically inserting comments into newlines after commented lines
 au FileType * set fo-=cro
@@ -146,26 +147,6 @@ set ttimeoutlen=-1
 set updatetime=300 " Smaller then default time for CursorHold triggers
 set shortmess+=c " Don't clutter with completion menu messages
 set signcolumn=yes " Show signcolumns
-
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " MAPPINGS
 
@@ -208,25 +189,12 @@ nnoremap <leader>w <c-w>
 " turn off search highlighting
 nnoremap <leader><BS> :nohlsearch<CR>
 
-" alternate tilda in normal mode. My tmux prefix is `, so this is easier:w
-nnoremap <leader>. `` 
-vnoremap <leader>. ``
-
-" tabs
-"nnoremap <leader>tc :tabnew<CR>
-"nnoremap <leader>tx :tabclose<CR>
-"nnoremap <leader>ts :tabnew ~/.config/nvim/bundle/vim-snippets/snippets<CR>
-
 " source vimrc
 nnoremap <leader>v :source ~/.config/nvim/init.vim<CR>
 nnoremap <leader>V :e ~/.config/nvim/init.vim<CR>
 
 " Eval whole file (clojure, vim-fireplace)
 "nnoremap <leader>E :%Eval<CR>
-
-" Expand-region
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
 
 " Toggle spell-checking
 nnoremap <leader>P :set spell!<CR>
@@ -237,10 +205,6 @@ nnoremap <leader>U :PlugUpgrade \| PlugClean \| PlugUpdate<CR>
 " ---------------------
 " BEGIN PLUGIN SETTINGS
 " ---------------------
-
-" Gist plugin settings
-" let g:gist_post_anonymous = 1
-" vnoremap <leader>G :Gist -a -b<CR>
 
 " Use built in file explorer instead of Nerdtree
 nnoremap <leader>n :Sex<CR>
@@ -263,33 +227,19 @@ nmap ga <Plug>(EasyAlign)
 nnoremap # :Commentary<CR>
 vnoremap # :Commentary<CR>
 
-" Fugitive bindings
-" remember, in a status window, '-' adds/removes from staging, and 'p' adds/removes patch wise
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gd :Gdiff<CR>
-nnoremap <leader>gc :Gcommit<CR>
+lua <<EOF
+local lspconfig = require'lspconfig'
+local my_on_attach = function(_, bufnr)
+  require('completion').on_attach()
+  -- require('diagnostic').on_attach()
+end
+lspconfig.tsserver.setup{
+  on_attach = my_on_attach,
+}
+lspconfig.solargraph.setup{
+  on_attach = my_on_attach,
+}
+EOF
 
-" Easymotion
-" rebind default leader to not leader leader
-map \ <Plug>(easymotion-prefix)
-" <space><char> opens bi-directional easymotion character match
-nmap <space> <Plug>(easymotion-bd-f)
-vmap <space> <Plug>(easymotion-bd-f)
-
-" vim-ripgrep
-nnoremap <leader>R :Rg<CR>
-"nnoremap <leader>r :Rg <C-r>"<CR> " disabled in favor of Coc binding for symbol renaming
-let g:rg_derive_root = 1" Show commands
-
-" Coc
-" List CoC commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Symbol renaming
-nmap <leader>rn <Plug>(coc-rename)
-" GoTo code navigation
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-
-" Format selections
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+nnoremap <leader>k :lua vim.lsp.buf.hover()<CR>
+nnoremap <leader>r :lua vim.lsp.buf.rename()<CR>
