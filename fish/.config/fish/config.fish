@@ -40,6 +40,7 @@ end
 # Chruby
 source /usr/local/share/chruby/chruby.fish
 source /usr/local/share/chruby/auto.fish
+chruby ruby-2.7.2
 
 ## POST CONFIG
 chruby $MY_DEFAULT_RUBY
