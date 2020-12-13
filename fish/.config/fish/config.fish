@@ -32,11 +32,6 @@ alias be="bundle exec"
 alias d-clean 'docker rm (docker ps -qa --no-trunc --filter "status=exited") && docker rmi (docker images --filter "dangling=true" -q --no-trunc)'
 alias gac="git add --all && git commit"
 
-# "Most Recent Download", gives the past for the most recently added file in ~/Downloads
-function mrd
-  echo ~/Downloads/(ls -t ~/Downloads | head -n 1)
-end
-
 # Chruby
 source /usr/local/share/chruby/chruby.fish
 source /usr/local/share/chruby/auto.fish
