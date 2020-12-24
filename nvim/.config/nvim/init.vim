@@ -164,6 +164,9 @@ map Q @q
 " quick save mapping
 nnoremap <leader><leader> :w<CR>
 
+" More ergonomic 'jump-back' shortcut
+nnoremap <leader>. ``
+
 nnoremap j gj
 nnoremap k gk
 
