@@ -44,14 +44,5 @@ alias ez="$EDITOR (fzf)"
 alias eg="$EDITOR (git ls-files | fzf)"
 alias g="git"
 alias config="$EDITOR $HOME/.config/fish/config.fish"
-alias be="bundle exec"
 alias d-clean 'docker rm (docker ps -qa --no-trunc --filter "status=exited") && docker rmi (docker images --filter "dangling=true" -q --no-trunc)'
 alias gac="git add --all && git commit"
-
-# Chruby
-source /usr/local/share/chruby/chruby.fish
-source /usr/local/share/chruby/auto.fish
-chruby ruby-2.7.2
-
-## POST CONFIG
-chruby $MY_DEFAULT_RUBY
