@@ -35,8 +35,6 @@ function vterm_printf;
 end
 
 # abbreviations
-alias del='rmtrash'
-alias rm='echo Use rmtrash or /bin/rm if you really need to delete something'
 alias buu='brew upgrade && brew cleanup -s' # brew upgrade / clean old packages
 alias lg="ls | grep -i"
 alias llg="ls -lh | grep -i"
