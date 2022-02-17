@@ -16,6 +16,24 @@ set -gx FZF_ALT_C_COMMAND "fd --hidden -d 8 -t d . $HOME"
 # RUBY
 set -gx MY_DEFAULT_RUBY ruby-2.7.2
 
+# NVM
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+# [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
+
+# emacs vterm integration
+function vterm_printf;
+    if begin; [  -n "$TMUX" ]  ; and  string match -q -r "screen|tmux" "$TERM"; end
+        # tell tmux to pass the escape sequences through
+        printf "\ePtmux;\e\e]%s\007\e\\" "$argv"
+    else if string match -q -- "screen*" "$TERM"
+        # GNU screen (screen, screen-256color, screen-256color-bce)
+        printf "\eP\e]%s\007\e\\" "$argv"
+    else
+        printf "\e]%s\e\\" "$argv"
+    end
+end
+
 # abbreviations
 alias del='rmtrash'
 alias rm='echo Use rmtrash or /bin/rm if you really need to delete something'
