@@ -76,9 +76,11 @@
 # A REFERENCE ONLY, WHEN MAKING YOUR OWN CONFIGURATION..          #
 # ############################################################### #
 
-# launch common apps (browser, terminal, emacs)
-cmd - return : osascript -e 'tell application "iTerm2" to create window with default profile command ""' || open -na iTerm
+# close windows the yabai way
+# ctrl + alt - w : yabai -w window --close
 
+# launch common apps (browser, terminal, emacs)
+# cmd - return : osascript -e 'tell application "iTerm2" to create window with default profile command ""' || open -na iTerm
 
 # toggle between horizontal and vertical split
 alt - space : yabai -m window --toggle split
@@ -86,13 +88,19 @@ alt - space : yabai -m window --toggle split
 # fullscreen toggle
 ctrl + cmd - space : yabai -m window --toggle zoom-fullscreen
 
-# next/prev window in space (OVERRIDES CMD + TAB SYSTEM SHORTCUT)
+# focus next/prev window in space (OVERRIDES CMD + TAB SYSTEM SHORTCUT)
 cmd - tab : yabai -m window --focus next || yabai -m window --focus first
 cmd + shift - tab : yabai -m window --focus prev || yabai -m window --focus last
+
+# cycle monitor focus
+ctrl + cmd - tab  : yabai -m display --focus next || yabai -m display --focus first
 
 # swap windows
 alt - tab : yabai -m window --swap next || yabai -m window --swap first
 alt + shift - tab : yabai -m window --swap prev || yabai -m window --swap last
+
+# swap windows between monitors, following focus
+alt + ctrl - tab : yabai -m window --display next && yabai -m display --focus next || yabai -m window --display first && yabai -m display --focus first
 
 # rotate space
 ctrl + cmd - r : yabai -m space --rotate 90
@@ -115,14 +123,11 @@ ctrl + cmd - 5 : yabai -m window --space 5
 ctrl + cmd - 6 : yabai -m window --space 6
 ctrl + cmd - 7 : yabai -m window --space 7
 
-# window increase size
-ctrl + cmd - left : yabai -m window --resize left:-60:0 || yabai -m window --resize right:-60:0
-ctrl + cmd - up : yabai -m window --resize top:0:-60 || yabai -m window --resize bottom:0:-60
-ctrl + cmd - right : yabai -m window --resize right:60:0 || yabai -m window --resize left:60:0
-ctrl + cmd - down : yabai -m window --resize bottom:0:60 || yabai -m window --resize top:0:60
-
-# focus next monitor
-ctrl + cmd - n  : yabai -m display --focus next
+# window change size
+alt - left : yabai -m window --resize left:-60:0 || yabai -m window --resize right:-60:0
+alt - up : yabai -m window --resize top:0:-60 || yabai -m window --resize bottom:0:-60
+alt - right : yabai -m window --resize right:60:0 || yabai -m window --resize left:60:0
+alt - down : yabai -m window --resize bottom:0:60 || yabai -m window --resize top:0:60
 
 # send window to next monitor and follow focus
 ctrl + cmd - c  : yabai -m window --display next; yabai -m display --focus next
