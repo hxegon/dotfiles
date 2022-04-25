@@ -76,6 +76,9 @@
 # A REFERENCE ONLY, WHEN MAKING YOUR OWN CONFIGURATION..          #
 # ############################################################### #
 
+# TODO:
+#   Come up with consistent shortcut scheme and detail here
+
 # close windows the yabai way
 # ctrl + alt - w : yabai -w window --close
 
@@ -92,14 +95,16 @@ ctrl + cmd - space : yabai -m window --toggle zoom-fullscreen
 cmd - tab : yabai -m window --focus next || yabai -m window --focus first
 cmd + shift - tab : yabai -m window --focus prev || yabai -m window --focus last
 
-# cycle monitor focus
-ctrl + cmd - tab  : yabai -m display --focus next || yabai -m display --focus first
-
 # swap windows
 alt - tab : yabai -m window --swap next || yabai -m window --swap first
 alt + shift - tab : yabai -m window --swap prev || yabai -m window --swap last
 
+# focus monitor #, then focus on first window
+ctrl + cmd - 1  : yabai -m display --focus 1 && yabai -m window --focus first
+ctrl + cmd - 2  : yabai -m display --focus 2 && yabai -m window --focus first
+
 # swap windows between monitors, following focus
+# alt + ctrl - tab : yabai -m window --display next && yabai -m display --focus next || yabai -m window --display first && yabai -m display --focus first
 alt + ctrl - tab : yabai -m window --display next && yabai -m display --focus next || yabai -m window --display first && yabai -m display --focus first
 
 # rotate space
@@ -115,13 +120,13 @@ cmd - 6 : yabai -m space --focus 6
 cmd - 7 : yabai -m space --focus 7
 
 # move windows between spaces
-ctrl + cmd - 1 : yabai -m window --space 1
-ctrl + cmd - 2 : yabai -m window --space 2
-ctrl + cmd - 3 : yabai -m window --space 3
-ctrl + cmd - 4 : yabai -m window --space 4
-ctrl + cmd - 5 : yabai -m window --space 5
-ctrl + cmd - 6 : yabai -m window --space 6
-ctrl + cmd - 7 : yabai -m window --space 7
+ctrl + alt - 1 : yabai -m window --space 1
+ctrl + alt - 2 : yabai -m window --space 2
+ctrl + alt - 3 : yabai -m window --space 3
+ctrl + alt - 4 : yabai -m window --space 4
+ctrl + alt - 5 : yabai -m window --space 5
+ctrl + alt - 6 : yabai -m window --space 6
+ctrl + alt - 7 : yabai -m window --space 7
 
 # window change size
 alt - left : yabai -m window --resize left:-60:0 || yabai -m window --resize right:-60:0
@@ -148,13 +153,10 @@ ctrl + cmd - c  : yabai -m window --display next; yabai -m display --focus next
 # shift + cmd - z : yabai -m window --space next; yabai -m space --focus next
 # shift + cmd - 2 : yabai -m window --space  2; yabai -m space --focus 2
 
-# focus monitor
-# ctrl + alt - z  : yabai -m display --focus prev
-# ctrl + alt - 3  : yabai -m display --focus 3
-
 # send window to monitor and follow focus
 # ctrl + cmd - c  : yabai -m window --display next; yabai -m display --focus next
 # ctrl + cmd - 1  : yabai -m window --display 1; yabai -m display --focus 1
+
 
 # move floating window
 # shift + ctrl - a : yabai -m window --move rel:-20:0
