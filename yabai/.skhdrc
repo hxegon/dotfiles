@@ -111,13 +111,7 @@ alt + ctrl - tab : yabai -m window --display next && yabai -m display --focus ne
 ctrl + cmd - r : yabai -m space --rotate 90
 
 # move between spaces
-cmd - 1 : yabai -m space --focus 1
-cmd - 2 : yabai -m space --focus 2
-cmd - 3 : yabai -m space --focus 3
-cmd - 4 : yabai -m space --focus 4
-cmd - 5 : yabai -m space --focus 5
-cmd - 6 : yabai -m space --focus 6
-cmd - 7 : yabai -m space --focus 7
+# enable in System prefs > Keyboard -> Shortcuts -> Mission Control
 
 # move windows between spaces
 ctrl + alt - 1 : yabai -m window --space 1
