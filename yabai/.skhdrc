@@ -5,7 +5,7 @@
 # ctrl + alt - w : yabai -w window --close
 
 # launch common apps (browser, terminal, emacs)
-cmd - return : osascript -e 'tell application "iTerm2" to create window with default profile command ""' || open -na iTerm
+cmd - return : open -na iTerm
 
 # toggle between horizontal and vertical split
 alt - space : yabai -m window --toggle split
