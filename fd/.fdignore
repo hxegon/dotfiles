@@ -3,7 +3,6 @@
 .antigen
 .cache/
 .cargo/
-.emacs.d/
 .gem/
 .git
 .local/
@@ -26,3 +25,4 @@ The Sims 4.app
 libc/
 migrate/
 Klei/
+*Pictures*
