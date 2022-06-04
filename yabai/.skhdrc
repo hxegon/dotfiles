@@ -26,19 +26,17 @@ ctrl + cmd - space : yabai -m window --toggle zoom-fullscreen
 
 # focus next/prev window in space (OVERRIDES CMD + TAB SYSTEM SHORTCUT)
 cmd - tab : yabai -m window --focus next || yabai -m window --focus first
-cmd + shift - tab : yabai -m window --focus prev || yabai -m window --focus last
 
-# swap windows
+# swap windows in space
 alt - tab : yabai -m window --swap next || yabai -m window --swap first
 alt + shift - tab : yabai -m window --swap prev || yabai -m window --swap last
 
-# focus monitor #, then focus on first window
-ctrl + cmd - 1  : yabai -m display --focus 1 && yabai -m window --focus first
-ctrl + cmd - 2  : yabai -m display --focus 2 && yabai -m window --focus first
+# TODO
+# cycle monitors (works with 2)
+cmd + shift - tab : yabai -m display --focus recent && yabai -m window --focus next || yabai -m window --focus first
 
-# swap windows between monitors, following focus
-# alt + ctrl - tab : yabai -m window --display next && yabai -m display --focus next || yabai -m window --display first && yabai -m display --focus first
-alt + ctrl - tab : yabai -m window --display next && yabai -m display --focus next || yabai -m window --display first && yabai -m display --focus first
+# swap windows between monitors, following focus (works with 2 monitors
+alt + ctrl - tab : yabai -m window --display recent && yabai -m display --focus recent && yabai -m window --focus next || yabai -m window --focus first
 
 # rotate space
 ctrl + cmd - r : yabai -m space --rotate 90
