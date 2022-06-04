@@ -1,6 +1,7 @@
 # TODO:
 #   Come up with consistent shortcut scheme and detail here
 #   Intuitive monitor switching shortcut
+#   Switch spaces and consistently focus last window (or any window)
 
 # Restart yabai and skhd
 ctrl + cmd + alt - y : brew services restart yabai
@@ -14,9 +15,6 @@ ctrl + cmd + alt - t : say "skhd on"
 
 # close windows the yabai way
 # ctrl + alt - w : yabai -w window --close
-
-# launch common apps (browser, terminal, emacs)
-cmd - return : open -na iTerm
 
 # toggle between horizontal and vertical split
 alt - space : yabai -m window --toggle split
@@ -59,7 +57,9 @@ alt - right : yabai -m window --resize right:60:0 || yabai -m window --resize le
 alt - down : yabai -m window --resize bottom:0:60 || yabai -m window --resize top:0:60
 
 # send window to next monitor and follow focus
-ctrl + cmd - c  : yabai -m window --display next; yabai -m display --focus next
+# ctrl + cmd - c  : yabai -m window --display next; yabai -m display --focus next
+
+### DEFAULTS BEGIN
 
 ### EXAMPLE ###
 
