@@ -1,5 +1,16 @@
 # TODO:
 #   Come up with consistent shortcut scheme and detail here
+#   Intuitive monitor switching shortcut
+
+# Restart yabai and skhd
+ctrl + cmd + alt - y : brew services restart yabai
+ctrl + cmd + alt - s : brew services restart skhd
+
+# test skhd
+ctrl + cmd + alt - t : say "skhd on"
+
+# move between spaces
+# enable in System prefs > Keyboard -> Shortcuts -> Mission Control
 
 # close windows the yabai way
 # ctrl + alt - w : yabai -w window --close
