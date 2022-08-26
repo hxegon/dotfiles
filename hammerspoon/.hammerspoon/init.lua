@@ -17,6 +17,7 @@ Launcher = {
   helpDuration = 5,
   dynamicApp   = nil
 }
+
 function Launcher:bind(key, appname)
   -- WARNING: This will error if you don't set pre first!
   -- bind the key
