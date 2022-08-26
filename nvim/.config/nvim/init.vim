@@ -14,39 +14,35 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 "" Plugs Groups
+Plug 'easymotion/vim-easymotion'
+" prefix is <leader><leader>
+
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-commentary' " comment stuff with gc, e.g. gcap
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter' " find project root, installed to fix usage issues with fzf.vim
-if has('mac')
-  Plug '/usr/local/opt/fzf'
-elseif has('unix')
-  Plug '/home/linuxbrew/.linuxbrew/opt/fzf'
-endif
 Plug 'mhinz/vim-startify' " useful starting screen
-" Plug 'jremmen/vim-ripgrep'
+Plug 'jremmen/vim-ripgrep'
 Plug 'dstein64/vim-startuptime', { 'on': 'StartupTime' }
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
-Plug 'unblevable/quick-scope'
 " Colorschemes
-Plug 'sickill/vim-monokai'
-" Plug 'arcticicestudio/nord-vim'
-" Plug 'endel/vim-github-colorscheme'
-" Plug 'morhetz/gruvbox'
-" Plug 'w0ng/vim-hybrid'
+" Plug 'sickill/vim-monokai'
+Plug 'arcticicestudio/nord-vim'
+Plug 'endel/vim-github-colorscheme'
+Plug 'morhetz/gruvbox'
+Plug 'w0ng/vim-hybrid'
 " Plug 'kristijanhusak/vim-hybrid-material'
 " Plug 'mswift42/vim-themes'
-" Plug 'liuchengxu/space-vim-dark'
-
+Plug 'liuchengxu/space-vim-dark'
+Plug 'liuchengxu/vim-which-key'
 " Git
 Plug 'airblade/vim-gitgutter'
 " Plug 'tpope/vim-fugitive'
-
-" Ruby
-" Plug 'ngmy/vim-rubocop'
-" Plug 'nelstrom/vim-textobj-rubyblock' | Plug 'kana/vim-textobj-user'
+Plug 'jreybert/vimagit'
 
 " Clojure
 " TODO: Comment with streamlined guide to configure/use
@@ -66,28 +62,18 @@ Plug 'tpope/vim-salve', { 'for': 'clojure' }
 " paren pairing differentiation
 Plug 'kien/rainbow_parentheses.vim', { 'for': 'clojure' }
 
-" Go
-Plug 'fatih/vim-go', { 'for': 'go' }
-
-" Zig
-Plug 'ziglang/zig.vim', { 'for': 'zig' }
-
-" Fish syntax highlighting
-Plug 'dag/vim-fish', { 'for': 'fish' }
-
 call plug#end()
 
 " runtime macros/matchit.vim " Is this required for something?
 
-colorscheme monokai " loads in 9ms
-" colorscheme zenburn
+colorscheme nord
 
 " SETTINGS AND AUTOCOMMANDS
 
-set scrolloff=18 " try to keep cursor centered-ish when scrolling
+set scrolloff=8 " try to keep cursor centered-ish when scrolling
 set ruler " Show line:character in modeline
-set number " Show line numbers
-set shell=fish
+" set number " Show line numbers
+set shell=zsh
 set colorcolumn=81 " highlight 81st column as *suggestion* to keep lines shorter
 set clipboard=unnamedplus
 set list listchars=tab:▸\ ,eol:¬
@@ -104,19 +90,19 @@ set splitbelow "open split on bottom
 " v- gets rid of | in split gutters
 set fillchars+=vert:\ 
 set t_Co=256
-" augroup CursorLineOnlyInActiveWindow
-"   autocmd!
-"   autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-"   autocmd WinLeave * setlocal nocursorline
-" augroup END
+augroup CursorLineOnlyInActiveWindow
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+augroup END
 
 " Stop automatically inserting comments into newlines after commented lines
 au FileType * set fo-=cro
 
 " Enables proper terminal colors in iTerm2 (with "report terminal" set to xterm-256color)
 set termguicolors
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 syntax enable
 filetype plugin indent on
@@ -151,8 +137,9 @@ set signcolumn=yes " Show signcolumns
 " MAPPINGS
 
 " alternate leader key: , instead of \
-let mapleader = ","
-let g:mapleader = ","
+let mapleader = " "
+let g:mapleader = " "
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 " map common ex-command typos to their intended commands
 command! Q q
@@ -162,7 +149,7 @@ command! W w
 map Q @q
 
 " quick save mapping
-nnoremap <leader><leader> :w<CR>
+nnoremap <leader>, :w<CR>
 
 " More ergonomic 'jump-back' shortcut
 nnoremap <leader>. ``
@@ -175,7 +162,7 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 
 " Escape terminal with normal <esc> key.
-tnoremap <Esc> <C-\><C-n>
+" tnoremap <Esc> <C-\><C-n>
 
 " Y yanks to end of line like other capitals
 map Y y$
@@ -209,15 +196,30 @@ nnoremap <leader>U :PlugUpgrade \| PlugClean \| PlugUpdate<CR>
 " BEGIN PLUGIN SETTINGS
 " ---------------------
 
+" GITGUTTER
+nnoremap <leader>hk <Plug>(GitGutterPrevHunk)
+nnoremap <leader>hj <Plug>(GitGutterNextHunk)
+
 " Use built in file explorer instead of Nerdtree
 nnoremap <leader>n :Sex<CR>
 
-" FZF
-let g:fzf_layout = { 'down': '~40%' } " default layout of 'window' is broken for me, and I prefer this anyway
-nnoremap <leader>g :GFiles<CR>
-nnoremap <leader>p :Files<CR>
-nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>h :History<CR>
+" FZF MAPPINGS
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } } " default layout of 'window' is broken for me, and I prefer this anyway
+let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4"
+nnoremap <leader>p :GFiles<CR>
+nnoremap <leader>f :Files ~/<CR>
+nnoremap <leader>bb :Buffers<CR>
+nnoremap <leader>bd :bd<CR>
+nnoremap <leader>c :Commands<CR>
+nnoremap <leader>r :History<CR>
+nnoremap <leader>s :BLines<CR>
+nnoremap <leader>/ :Rg
+" INSTALL ULTISNIPS https://github.com/SirVer/ultisnips
+" nnoremap <leader>S :Snippets<CR>
+
+
+" EasyMotion
+nmap <leader><leader>s <Plug>(easymotion-overwin-f2)
 
 " Easy Align Mappings
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
@@ -236,14 +238,12 @@ local my_on_attach = function(_, bufnr)
   require('completion').on_attach()
   -- require('diagnostic').on_attach()
 end
-lspconfig.tsserver.setup{
-  on_attach = my_on_attach,
-}
-lspconfig.solargraph.setup{
-  on_attach = my_on_attach,
-}
+-- Example lsp even tho no TS anymore
+-- lspconfig.tsserver.setup{
+  -- on_attach = my_on_attach,
+-- }
 EOF
 
 nnoremap <leader>k :lua vim.lsp.buf.hover()<CR>
-nnoremap <leader>r :lua vim.lsp.buf.rename()<CR>
+nnoremap <leader>R :lua vim.lsp.buf.rename()<CR>
 nnoremap <leader>d :lua vim.lsp.buf.definition()<CR>
