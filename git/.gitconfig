@@ -1,32 +1,42 @@
 [color]
   ui = auto
+
+# personal github creds
 [user]
 	email = cooperlebrun@gmail.com
 	name = Cooper LeBrun
+
 [alias]
   df = diff
   dc = diff --cached
-	ci = commit
-	st = status --short
-	br = branch -v
-	re = remote -v
-	hist = log --graph --pretty=format:'%an: %s - %Cred%h%Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
-	l = log --oneline
+  ci = commit
+  st = status --short
+  br = branch -v
+  re = remote -v
+  hist = log --graph --pretty=format:'%an: %s - %Cred%h%Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+  l = log --oneline
   type = cat-file -t
   dump = cat-file -p
-	aa = add --all
-	ch = checkout
-	ph = push
+  aa = add --all
+  ch = checkout
+  ph = push
   fuck = reset --soft HEAD~
   unstage = reset HEAD *
-	ap = add -p
-	mnf = merge --no-ff
-	amend = commit --amend
+  ap = add -p
+  mnf = merge --no-ff
+  amend = commit --amend
+
 [push]
-	default = simple
+  default = simple
+
 [github]
-	user = clebrun
+  user = clebrun
+
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+  clean = git-lfs clean %f
+  smudge = git-lfs smudge %f
+  required = true
+
+# use work git config if in work dir
+[includeIf "gitdir:/Users/cooperlebrun/Projects/Code/comcast/"]
+   path = "/Users/cooperlebrun/Projects/Code/comcast/.gitconfig"
