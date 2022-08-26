@@ -41,7 +41,9 @@ alias bdump='brew bundle dump --force --global' # show all installed brew packag
 alias resrc='source ~/.zshrc' # doesn't play well with antigen
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_OPTS="--reverse --border -m --preview='bat --color=\"always\" {}'"
+export FZF_DEFAULT_COMMAND='rg --files --hidden'
+export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
+export FZF_DEFAULT_OPTS="--ansi --reverse --border -m --preview='bat --color=\"always\" {}'"
 
 export BAT_THEME="zenburn"
 
@@ -82,3 +84,5 @@ copyonchange () { echo $1 | entr -cps "cat $1 | pbcopy" }
 export NVM_DIR="$HOME/.nvm"
 alias loadnvm='[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"'
 
+# Load z
+. /opt/homebrew/etc/profile.d/z.sh
