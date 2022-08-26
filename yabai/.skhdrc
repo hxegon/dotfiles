@@ -23,7 +23,7 @@ alt - space : yabai -m window --toggle split
 ctrl + cmd - space : yabai -m window --toggle zoom-fullscreen
 
 # focus next/prev window in space (OVERRIDES CMD + TAB SYSTEM SHORTCUT)
-cmd - tab : yabai -m window --focus next || yabai -m window --focus first
+cmd + shift - tab : yabai -m window --focus next || yabai -m window --focus first
 
 # swap windows in space
 alt - tab : yabai -m window --swap next || yabai -m window --swap first
