@@ -1,5 +1,5 @@
-source <(antibody init)
-antibody bundle < $HOME/.antibody_plugins
+# source <(antibody init)
+# antibody bundle < $HOME/.antibody_plugins
 
 bindkey -e
 
