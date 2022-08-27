@@ -200,17 +200,20 @@ nnoremap <leader>P :set spell!<CR>
 let g:floaterm_width = 0.8
 let g:floaterm_height = 0.9
 
-"" Initialize 'console' floaterm when neovim starts for toggling
+" CONSOLE INIT
 autocmd VimEnter * :FloatermNew --name=console --silent --opener=edit --autoclose=2 --title=console($1/$2) --cwd=/Users/cooperlebrun
 
-"" In case you need to restart the console fterm
+" LAUNCH NEW CONSOLE
 nnoremap <leader>tc :FloatermNew --name=console --opener=edit --autoclose=2 --title=console($1/$2) --cwd=/Users/cooperlebrun<CR>
 
-" Open terminal at project root
+" PROJECT TERMINAL (TODO only opens at pwd root, not buffer root)
 nnoremap <leader>tp :FloatermNew --name=project --opener=edit --autoclose=2 --title=project($1/$2) --cwd=<root><CR>
 
-" Git UI
-nnoremap <leader>tg :FloatermNew --title=lazygit($1/$2) lazygit<CR>
+" LAZYGIT
+nnoremap <leader>tg :FloatermNew --title=lazygit($1/$2) --height=0.98 lazygit<CR>
+
+" LF FILE MANAGER
+nnoremap <leader>tf :FloatermNew --name=lf --title=lf($1/$2) --cwd=<buffer> lf<CR>
 
 " Open console
 nnoremap <silent> <leader>tt :FloatermToggle<CR>
