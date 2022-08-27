@@ -269,6 +269,6 @@ end
 -- }
 EOF
 
-nnoremap <leader>k :lua vim.lsp.buf.hover()<CR>
-nnoremap <leader>R :lua vim.lsp.buf.rename()<CR>
-nnoremap <leader>d :lua vim.lsp.buf.definition()<CR>
+" nnoremap <leader>k :lua vim.lsp.buf.hover()<CR>
+" nnoremap <leader>R :lua vim.lsp.buf.rename()<CR>
+" nnoremap <leader>d :lua vim.lsp.buf.definition()<CR>
