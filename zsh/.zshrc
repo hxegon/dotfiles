@@ -16,8 +16,6 @@ HISTSIZE=10000
 SAVEHIST=10000
 
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
 source /opt/homebrew/Cellar/zsh-autosuggestions/0.7.0/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
