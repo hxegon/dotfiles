@@ -244,7 +244,7 @@ nnoremap <leader>/ :Rg
 
 
 " EasyMotion
-nmap <leader><leader>s <Plug>(easymotion-overwin-f2)
+nmap <leader>. <Plug>(easymotion-overwin-f2)
 
 " Easy Align Mappings
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
