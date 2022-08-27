@@ -253,10 +253,6 @@ vmap <Enter> <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-" Quick comment
-nnoremap # :Commentary<CR>
-vnoremap # :Commentary<CR>
-
 lua <<EOF
 local lspconfig = require'lspconfig'
 local my_on_attach = function(_, bufnr)
