@@ -42,7 +42,8 @@ Plug 'liuchengxu/vim-which-key'
 " Git
 Plug 'airblade/vim-gitgutter'
 " Plug 'tpope/vim-fugitive'
-Plug 'jreybert/vimagit'
+" Plug 'jreybert/vimagit'
+Plug 'voldikss/vim-floaterm'
 
 " Clojure
 " TODO: Comment with streamlined guide to configure/use
