@@ -38,7 +38,7 @@ Plug 'w0ng/vim-hybrid'
 " Plug 'kristijanhusak/vim-hybrid-material'
 " Plug 'mswift42/vim-themes'
 Plug 'liuchengxu/space-vim-dark'
-Plug 'liuchengxu/vim-which-key'
+Plug 'folke/which-key.nvim'
 " Git
 Plug 'airblade/vim-gitgutter'
 " Plug 'tpope/vim-fugitive'
@@ -140,7 +140,6 @@ set signcolumn=yes " Show signcolumns
 " alternate leader key: , instead of \
 let mapleader = " "
 let g:mapleader = " "
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 " map common ex-command typos to their intended commands
 command! Q q
@@ -275,6 +274,25 @@ vmap <Enter> <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" which key
+lua << EOF
+  require("which-key").setup {}
+EOF
+
+" Example which-key register (put in lua block)
+" https://github.com/folke/which-key.nvim
+" wk.register({
+"   f = {
+"     name = "file", -- optional group name
+"     f = { "<cmd>Telescope find_files<cr>", "Find File" }, -- create a binding with label
+"     r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File", noremap=false, buffer = 123 }, -- additional options for creating the keymap
+"     n = { "New File" }, -- just a label. don't create any mapping
+"     e = "Edit File", -- same as above
+"     ["1"] = "which_key_ignore",  -- special label to hide it in the popup
+"     b = { function() print("bar") end, "Foobar" } -- you can also pass functions!
+"   },
+" }, { prefix = "<leader>" })
 
 lua <<EOF
 local lspconfig = require'lspconfig'
