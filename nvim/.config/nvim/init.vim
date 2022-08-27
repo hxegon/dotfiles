@@ -190,40 +190,44 @@ nnoremap <leader>V :e ~/.config/nvim/init.vim<CR>
 " Toggle spell-checking
 nnoremap <leader>P :set spell!<CR>
 
-" Quick plug update all
-nnoremap <leader>U :PlugUpgrade \| PlugClean \| PlugUpdate<CR>
-
 " ---------------------
 " BEGIN PLUGIN SETTINGS
 " ---------------------
 
 " FLOATERM
+" TODO: tp only opens at whole nvim pwd root, not current buffer project root
+" TODO: set defaults for floaterm height/width
+
+let g:floaterm_width = 0.8
+let g:floaterm_height = 0.9
+
 "" Initialize 'console' floaterm when neovim starts for toggling
-autocmd VimEnter * :FloatermNew --name=console --silent --width=0.8 --height=0.9 --opener=edit --autoclose=2 --title=console($1/$2) --cwd=/Users/cooperlebrun
+autocmd VimEnter * :FloatermNew --name=console --silent --opener=edit --autoclose=2 --title=console($1/$2) --cwd=/Users/cooperlebrun
 
 "" In case you need to restart the console fterm
-nnoremap <leader>T :FloatermNew --name=console --width=0.8 --height=0.9 --opener=edit --autoclose=2 --title=console($1/$2) --cwd=/Users/cooperlebrun<CR>
+nnoremap <leader>tc :FloatermNew --name=console --opener=edit --autoclose=2 --title=console($1/$2) --cwd=/Users/cooperlebrun<CR>
 
 " Open terminal at project root
-nnoremap <leader>R :FloatermNew --name=project --width=0.8 --height=0.9 --opener=edit --autoclose=2 --title=project($1/$2) --cwd=<root><CR>
+nnoremap <leader>tp :FloatermNew --name=project --opener=edit --autoclose=2 --title=project($1/$2) --cwd=<root><CR>
 
 " Git UI
-nnoremap <leader>g :FloatermNew --title=lazygit($1/$2) --width=0.9 --height=0.9 lazygit<CR>
+nnoremap <leader>tg :FloatermNew --title=lazygit($1/$2) lazygit<CR>
 
 " Open console
-nnoremap <silent> <leader>t :FloatermToggle<CR>
+nnoremap <silent> <leader>tt :FloatermToggle<CR>
 " Toggle whatever fterm you're in
 tnoremap <silent> <C-h> <C-\><C-n>:FloatermToggle<CR>
 " Next fterm
-tnoremap <silent> <C-n> <C-\><C-n>:FloatermNext<CR>
+tnoremap <silent> <C-f> <C-\><C-n>:FloatermNext<CR>
 " Previous fterm
-tnoremap <silent> <C-p> <C-\><C-n>:FloatermPrev<CR>
+tnoremap <silent> <C-b> <C-\><C-n>:FloatermPrev<CR>
 " KILL fterm
 tnoremap <silent> <C-k> <C-\><C-n>:FloatermKill<CR>
 
 " GITGUTTER
 nnoremap <leader>hk <Plug>(GitGutterPrevHunk)
 nnoremap <leader>hj <Plug>(GitGutterNextHunk)
+nnoremap <leader>hs <Plug>(GitGutterStageHunk)
 
 " Use built in file explorer instead of Nerdtree
 nnoremap <leader>n :Sex<CR>
@@ -231,20 +235,39 @@ nnoremap <leader>n :Sex<CR>
 " FZF MAPPINGS
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } } " default layout of 'window' is broken for me, and I prefer this anyway
 let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4"
-nnoremap <leader>p :GFiles<CR>
-nnoremap <leader>f :Files ~/<CR>
-nnoremap <leader>bb :Buffers<CR>
-nnoremap <leader>bd :bd<CR>
-nnoremap <leader>c :Commands<CR>
-nnoremap <leader>r :History<CR>
-nnoremap <leader>s :BLines<CR>
-nnoremap <leader>/ :Rg
+
+" Search
+nnoremap <leader>sp :GFiles<CR>
+nnoremap <leader>sf :Files ~/<CR>
+nnoremap <leader>sb :Buffers<CR>
+nnoremap <leader>sc :Commands<CR>
+nnoremap <leader>sr :History<CR>
+nnoremap <leader>sl :BLines<CR>
+
+" nnoremap <leader>/ :Rg " Non-helpful, probably needs some options
+
+" Buffer
+nnoremap <leader>bd :bd<CR> " delete buffer
+nnoremap <leader>bn :bn<CR> " next buffer
+nnoremap <leader>bp :bp<CR> " previous buffer
+nnoremap <leader>bp :bp<CR> " previous buffer
+
+" Utility
+nnoremap <leader>ut :! safari-tab-to-clipboard<CR>
+" Quick plug update all
+nnoremap <leader>uU :PlugUpgrade \| PlugClean \| PlugUpdate<CR>
+
+" Snippets
 " INSTALL ULTISNIPS https://github.com/SirVer/ultisnips
 " nnoremap <leader>S :Snippets<CR>
 
-
 " EasyMotion
-nmap <leader>. <Plug>(easymotion-overwin-f2)
+" TODO: Integrate with vim-repeat
+" https://github.com/tpope/vim-repeat
+
+let g:EasyMotion_smartcase = 1
+map , <Plug>(easymotion-prefix)
+nmap ,<space> <Plug>(easymotion-overwin-f2)
 
 " Easy Align Mappings
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
