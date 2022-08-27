@@ -197,6 +197,30 @@ nnoremap <leader>U :PlugUpgrade \| PlugClean \| PlugUpdate<CR>
 " BEGIN PLUGIN SETTINGS
 " ---------------------
 
+" FLOATERM
+"" Initialize 'console' floaterm when neovim starts for toggling
+autocmd VimEnter * :FloatermNew --name=console --silent --width=0.8 --height=0.9 --opener=edit --autoclose=2 --title=console($1/$2) --cwd=/Users/cooperlebrun
+
+"" In case you need to restart the console fterm
+nnoremap <leader>T :FloatermNew --name=console --width=0.8 --height=0.9 --opener=edit --autoclose=2 --title=console($1/$2) --cwd=/Users/cooperlebrun<CR>
+
+" Open terminal at project root
+nnoremap <leader>R :FloatermNew --name=project --width=0.8 --height=0.9 --opener=edit --autoclose=2 --title=project($1/$2) --cwd=<root><CR>
+
+" Git UI
+nnoremap <leader>g :FloatermNew --title=lazygit($1/$2) --width=0.9 --height=0.9 lazygit<CR>
+
+" Open console
+nnoremap <silent> <leader>t :FloatermToggle<CR>
+" Toggle whatever fterm you're in
+tnoremap <silent> <C-h> <C-\><C-n>:FloatermToggle<CR>
+" Next fterm
+tnoremap <silent> <C-n> <C-\><C-n>:FloatermNext<CR>
+" Previous fterm
+tnoremap <silent> <C-p> <C-\><C-n>:FloatermPrev<CR>
+" KILL fterm
+tnoremap <silent> <C-k> <C-\><C-n>:FloatermKill<CR>
+
 " GITGUTTER
 nnoremap <leader>hk <Plug>(GitGutterPrevHunk)
 nnoremap <leader>hj <Plug>(GitGutterNextHunk)
