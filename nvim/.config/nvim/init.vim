@@ -150,7 +150,7 @@ command! W w
 map Q @q
 
 " quick save mapping
-nnoremap <leader>, :w<CR>
+nnoremap <leader><leader> :w<CR>
 
 " More ergonomic 'jump-back' shortcut
 nnoremap <leader>. ``
