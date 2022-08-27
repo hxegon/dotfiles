@@ -5,6 +5,7 @@ xmonad/.xmonad/*
 kakoune/.config/kak/plugins/*
 emacs/.emacs.d/saves/*
 emacs/.emacs.d/custom.el
+emacs/.emacs.d/elpa/
 fish/.config/fish/*
 !fish/.config/fish/config.fish
 !fish/.config/fish/functions
