@@ -30,7 +30,7 @@ export BROWSER='Safari'
 # Abbreviations
 alias g='git'
 alias tm='tmux'
-alias vi='nvim'
+alias ni='nvim'
 alias -g htop='sudo htop'
 alias dot='cd ~/dotfiles'
 
@@ -77,6 +77,9 @@ copyonchange () { echo $1 | entr -cps "cat $1 | pbcopy" }
 # asv () { xsv fmt -t "\t" | awk -F "\t" $1 | xsv fmt -d "\t" }
 
 # alias rec='ls -1t | head'
+
+autoload -U promptinit; promptinit
+prompt spaceship
 
 # Load NVM
 export NVM_DIR="$HOME/.nvm"
