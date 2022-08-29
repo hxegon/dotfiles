@@ -32,12 +32,19 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 
+
+" Telescope: Completing/Fuzzy finding/Picking engine
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
+
+" Stopgap until I can get current_buffer_fuzzy_find
+Plug 'mfussenegger/nvim-fzy'
+
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-commentary' " comment stuff with gc, e.g. gcap
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter' " find project root, installed to fix usage issues with fzf.vim
 Plug 'mhinz/vim-startify' " useful starting screen
 Plug 'jremmen/vim-ripgrep'
@@ -224,7 +231,6 @@ nnoremap <leader>tc :FloatermNew --name=console --opener=edit --autoclose=2 --ti
 nnoremap <leader>tp :FloatermNew --name=project --opener=edit --autoclose=2 --title=project($1/$2) --cwd=<root><CR>
 
 " LAZYGIT
-nnoremap <leader>tg :FloatermNew --title=lazygit($1/$2) --height=0.98 --cwd=<buffer> lazygit<CR>
 
 " LF FILE MANAGER
 nnoremap <leader>tf :FloatermNew --name=lf --title=lf($1/$2) --cwd=<buffer> lf<CR>
@@ -248,17 +254,21 @@ nnoremap <leader>hs <Plug>(GitGutterStageHunk)
 " Use built in file explorer instead of Nerdtree
 nnoremap <leader>n :Sex<CR>
 
-" FZF MAPPINGS
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } } " default layout of 'window' is broken for me, and I prefer this anyway
-let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4"
 
 " Search
-nnoremap <leader>sp :GFiles<CR>
-nnoremap <leader>sf :Files ~/<CR>
-nnoremap <leader>sb :Buffers<CR>
-nnoremap <leader>sc :Commands<CR>
-nnoremap <leader>sr :History<CR>
-nnoremap <leader>sl :BLines<CR>
+nnoremap <leader>b <cmd>Telescope buffers<cr>
+nnoremap <leader>p <cmd>Telescope git_files<cr>
+nnoremap <leader>r <cmd>Telescope oldfiles<cr>
+lua fzy = require('fzy')
+nnoremap <leader>s :lua fzy.actions.buf_lines()<CR>
+" Broken for now
+" nnoremap <leader>s <cmd>Telescope current_buffer_fuzzy_find<cr>
+nnoremap <leader>/ <cmd>Telescope live_grep<cr>
+nnoremap <leader>o <cmd>Telescope lsp_document_symbols<cr>
+nnoremap <leader>O <cmd>Telescope lsp_workspace_symbols<cr>
+nnoremap <leader>d <cmd>Telescope diagnostics bufnr=0<cr>
+nnoremap <leader>C <cmd>Telescope command_history<cr>
+nnoremap <leader>S <cmd>Telescope search_history<cr>
 
 " nnoremap <leader>/ :Rg " Non-helpful, probably needs some options
 
@@ -294,6 +304,13 @@ lua << EOF
 -- WHICH KEY
 require("which-key").setup {}
 local wk = require("which-key")
+
+
+-- TELESCOPE
+local telescope = require('telescope')
+-- requires 'fzy' package
+telescope.setup()
+telescope.load_extension('fzy_native')
 
 
 -- TREESITTER
