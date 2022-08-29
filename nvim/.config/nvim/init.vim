@@ -69,19 +69,27 @@ Plug 'voldikss/vim-floaterm'
 " Clojure
 " TODO: Comment with streamlined guide to configure/use
 " Better syntax/filetype support
-Plug 'guns/vim-clojure-static',                    { 'for': 'clojure' }
+" Plug 'guns/vim-clojure-static',                    { 'for': 'clojure' }
 " repl / eval integration
-Plug 'tpope/vim-fireplace',                        { 'for': 'clojure' }
+" Plug 'tpope/vim-fireplace',                        { 'for': 'clojure' }
 " s-expression text-objects
-Plug 'guns/vim-sexp',                              { 'for': 'clojure' }
+" Plug 'guns/vim-sexp',                              { 'for': 'clojure' }
 " better + more mappings for vim-sexp
-Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
+" Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
 " >e, <e: move element
 " >f, <f: move form
 " <(, >), >(, <): slurp/barf
 " leiningen integration
-Plug 'tpope/vim-salve', { 'for': 'clojure' }
+" Plug 'tpope/vim-salve', { 'for': 'clojure' }
 " paren pairing differentiation
+
+" trying out a fresh clojure setup
+Plug 'tpope/vim-dispatch'
+Plug 'radenling/vim-dispatch-neovim'
+Plug 'clojure-vim/vim-jack-in'
+
+Plug 'Olical/conjure'
+
 Plug 'kien/rainbow_parentheses.vim', { 'for': 'clojure' }
 
 call plug#end()
@@ -161,6 +169,8 @@ set signcolumn=yes " Show signcolumns
 " alternate leader key: , instead of \
 let mapleader = " "
 let g:mapleader = " "
+let maplocalleader = ","
+let g:maplocalleader = ","
 
 " map common ex-command typos to their intended commands
 command! Q q
@@ -170,7 +180,7 @@ command! W w
 map Q @q
 
 " quick save mapping
-nnoremap <leader><leader> :w<CR>
+nnoremap <leader>, :w<CR>
 
 " More ergonomic 'jump-back' shortcut
 nnoremap <leader>. ``
@@ -285,8 +295,8 @@ nnoremap <leader>uU :PlugUpgrade \| PlugClean \| PlugUpdate<CR>
 " https://github.com/tpope/vim-repeat
 
 let g:EasyMotion_smartcase = 1
-map , <Plug>(easymotion-prefix)
-nmap ,<space> <Plug>(easymotion-overwin-f2)
+let g:EasyMotion_do_mapping = 0
+nmap <leader><leader> <Plug>(easymotion-overwin-f2)
 
 " Easy Align Mappings
 
