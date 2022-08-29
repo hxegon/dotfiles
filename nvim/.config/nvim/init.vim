@@ -17,6 +17,15 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'easymotion/vim-easymotion'
 " prefix is <leader><leader>
 
+"""""""""""""""""""""""""""""" IDE
+
+"""" TREESITTER """"
+Plug 'nvim-treesitter/nvim-treesitter', {'do': 'TSUpdate'}
+
+""" LSPPPPPP """"
+Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
+
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'junegunn/vim-easy-align'
@@ -27,7 +36,6 @@ Plug 'airblade/vim-rooter' " find project root, installed to fix usage issues wi
 Plug 'mhinz/vim-startify' " useful starting screen
 Plug 'jremmen/vim-ripgrep'
 Plug 'dstein64/vim-startuptime', { 'on': 'StartupTime' }
-Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 " Colorschemes
 " Plug 'sickill/vim-monokai'
@@ -278,35 +286,114 @@ vmap <Enter> <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-" which key
 lua << EOF
   require("which-key").setup {}
 EOF
 
-" Example which-key register (put in lua block)
-" https://github.com/folke/which-key.nvim
-" wk.register({
-"   f = {
-"     name = "file", -- optional group name
-"     f = { "<cmd>Telescope find_files<cr>", "Find File" }, -- create a binding with label
-"     r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File", noremap=false, buffer = 123 }, -- additional options for creating the keymap
-"     n = { "New File" }, -- just a label. don't create any mapping
-"     e = "Edit File", -- same as above
-"     ["1"] = "which_key_ignore",  -- special label to hide it in the popup
-"     b = { function() print("bar") end, "Foobar" } -- you can also pass functions!
-"   },
-" }, { prefix = "<leader>" })
+" Treesitter + LSP config
+lua << EOF
+-- WHICH KEY
+local wk = require("which-key")
 
-lua <<EOF
+
+-- TREESITTER
+local configs = require'nvim-treesitter.configs'
+
+configs.setup {
+  -- ensure_installed = "maintained", -- only use maintained parsers
+
+
+  auto_install = true,
+  highlight = { --enable highlighting
+    enable = true,
+  },
+  indent = { -- enable indentation
+    enable = true,
+  }
+}
+
+-- LSP Installer
+
+require("nvim-lsp-installer").setup{}
+
+-- LSP
+
+
 local lspconfig = require'lspconfig'
-local my_on_attach = function(_, bufnr)
-  require('completion').on_attach()
-  -- require('diagnostic').on_attach()
+
+local on_attach = function(client, bufnr)
+  -- Enable completion triggered by <c-x><c-o>
+  -- Uses omnifunc, not sure if this is what I'll be using
+  -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  vim.keymap.set('n', '<leader>lD', vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set('n', '<leader>ld', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', '<leader>l.', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', '<leader>li', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', '<leader>ls', vim.lsp.buf.signature_help, bufopts)
+  vim.keymap.set('n', '<leader>lt', vim.lsp.buf.type_definition, bufopts)
+  vim.keymap.set('n', '<leader>lR', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', '<leader>lr', vim.lsp.buf.references, bufopts)
+  vim.keymap.set('n', '<leader>lf', vim.lsp.buf.formatting, bufopts)
+  -- TODO Don't really use workspace functions but should try this out at some point
+  -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+  -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+  -- vim.keymap.set('n', '<space>wl', function()
+  --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  -- end, bufopts)
+
+  -- TODO: Use which key to -define- the above mappings
+  -- Register LSP mappings in which key (only when lsp is active in that buffer)
+  wk.register({
+    l         = {
+      name    = "LSP",
+      D       = "Declaration",
+      d       = "Definition",
+      ["."]   = "Hover",
+      i       = "Implementation",
+      s       = "Signature",
+      t       = "Type Definition",
+      ["R"]   = "Rename",
+      a       = "code action",
+      r       = "References",
+      f       = "Formatting",
+    },
+  }, { prefix = "<leader>", buffer = bufnr })
 end
--- Example lsp even tho no TS anymore
--- lspconfig.tsserver.setup{
-  -- on_attach = my_on_attach,
--- }
+
+-- ADD BORDERS TO SIGNATURE, HOVER POPUP WINDOWS
+
+local border = {
+      {"🭽", "FloatBorder"},
+      {"▔", "FloatBorder"},
+      {"🭾", "FloatBorder"},
+      {"▕", "FloatBorder"},
+      {"🭿", "FloatBorder"},
+      {"▁", "FloatBorder"},
+      {"🭼", "FloatBorder"},
+      {"▏", "FloatBorder"},
+}
+
+local hover_border_handlers = {
+  ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = border}),
+  ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = border}),
+}
+
+
+local lsp_flags = {
+  -- This is the default in Nvim 0.7+
+  debounce_text_changes = 150,
+}
+
+lspconfig['clojure_lsp'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+    handlers = hover_border_handlers,
+}
 EOF
 
 " nnoremap <leader>k :lua vim.lsp.buf.hover()<CR>
