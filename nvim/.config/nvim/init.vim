@@ -43,6 +43,7 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'endel/vim-github-colorscheme'
 Plug 'morhetz/gruvbox'
 Plug 'w0ng/vim-hybrid'
+Plug 'Mofiqul/dracula.nvim'
 " Plug 'kristijanhusak/vim-hybrid-material'
 " Plug 'mswift42/vim-themes'
 Plug 'liuchengxu/space-vim-dark'
@@ -75,7 +76,7 @@ call plug#end()
 
 " runtime macros/matchit.vim " Is this required for something?
 
-colorscheme nord
+colorscheme dracula
 
 " SETTINGS AND AUTOCOMMANDS
 
