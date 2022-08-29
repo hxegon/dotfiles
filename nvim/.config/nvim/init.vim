@@ -224,7 +224,7 @@ nnoremap <leader>tc :FloatermNew --name=console --opener=edit --autoclose=2 --ti
 nnoremap <leader>tp :FloatermNew --name=project --opener=edit --autoclose=2 --title=project($1/$2) --cwd=<root><CR>
 
 " LAZYGIT
-nnoremap <leader>tg :FloatermNew --title=lazygit($1/$2) --height=0.98 lazygit<CR>
+nnoremap <leader>tg :FloatermNew --title=lazygit($1/$2) --height=0.98 --cwd=<buffer> lazygit<CR>
 
 " LF FILE MANAGER
 nnoremap <leader>tf :FloatermNew --name=lf --title=lf($1/$2) --cwd=<buffer> lf<CR>
