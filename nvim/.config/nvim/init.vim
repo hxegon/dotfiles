@@ -1,4 +1,3 @@
-" vim-plug plugin manager boilerplate
 set nocompatible " be iMproved, required filetype off
 
 "---------------------
@@ -286,12 +285,8 @@ nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
 
 lua << EOF
-  require("which-key").setup {}
-EOF
-
-" Treesitter + LSP config
-lua << EOF
 -- WHICH KEY
+require("which-key").setup {}
 local wk = require("which-key")
 
 
@@ -389,9 +384,9 @@ local lsp_flags = {
 }
 
 lspconfig['clojure_lsp'].setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
-    handlers = hover_border_handlers,
+    on_attach    = on_attach,
+    flags        = lsp_flags,
+    handlers     = hover_border_handlers,
 }
 EOF
 
