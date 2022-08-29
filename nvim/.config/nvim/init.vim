@@ -246,14 +246,13 @@ tnoremap <silent> <C-b> <C-\><C-n>:FloatermPrev<CR>
 " KILL fterm
 tnoremap <silent> <C-k> <C-\><C-n>:FloatermKill<CR>
 
-" GITGUTTER
-nnoremap <leader>hk <Plug>(GitGutterPrevHunk)
-nnoremap <leader>hj <Plug>(GitGutterNextHunk)
-nnoremap <leader>hs <Plug>(GitGutterStageHunk)
-
-" Use built in file explorer instead of Nerdtree
-nnoremap <leader>n :Sex<CR>
-
+" GIT
+" Hunk actions
+nnoremap <leader>gk <Plug>(GitGutterPrevHunk)
+nnoremap <leader>gj <Plug>(GitGutterNextHunk)
+nnoremap <leader>gs <Plug>(GitGutterStageHunk)
+" Open lazygit
+nnoremap <leader>gg :FloatermNew --title=lazygit($1/$2) --height=0.98 --cwd=<buffer> lazygit<CR>
 
 " Search
 nnoremap <leader>b <cmd>Telescope buffers<cr>
@@ -271,12 +270,6 @@ nnoremap <leader>C <cmd>Telescope command_history<cr>
 nnoremap <leader>S <cmd>Telescope search_history<cr>
 
 " nnoremap <leader>/ :Rg " Non-helpful, probably needs some options
-
-" Buffer
-nnoremap <leader>bd :bd<CR> " delete buffer
-nnoremap <leader>bn :bn<CR> " next buffer
-nnoremap <leader>bp :bp<CR> " previous buffer
-nnoremap <leader>bp :bp<CR> " previous buffer
 
 " Utility
 nnoremap <leader>ut :! safari-tab-to-clipboard<CR>
