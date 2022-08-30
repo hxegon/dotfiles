@@ -73,16 +73,13 @@ hs.window.animationDuration = 0.0
 
 -- Static app shortcuts
 
-launcher:bind("b", "Google Chrome")
+launcher:bind("b", "Safari")
+launcher:bind("w", "Firefox") -- the browser I use for Work
 launcher:bind("d", "Discord")
-launcher:bind("e", "Emacs")
-launcher:bind("g", "Microsoft Teams")
-launcher:bind("h", "Things3")
-launcher:bind("l", "Slack")
-launcher:bind("m", "Messages")
-launcher:bind("n", "Notes")
-launcher:bind("o", "Microsoft Outlook")
-launcher:bind("s", "Spotify")
+launcher:bind("c", "Messages") -- "Communicatin" Terrible I know.
+launcher:bind("n", "Notion")
+launcher:bind("s", "Slack")
+launcher:bind("m", "Spotify") -- Music
 launcher:bind("t", "iterm")
 
 -- Show app shortcut bindings
