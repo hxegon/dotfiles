@@ -180,10 +180,7 @@ command! W w
 map Q @q
 
 " quick save mapping
-nnoremap <leader>, :w<CR>
-
-" More ergonomic 'jump-back' shortcut
-nnoremap <leader>. ``
+nnoremap <leader><leader> :w<CR>
 
 nnoremap j gj
 nnoremap k gk
@@ -296,7 +293,7 @@ nnoremap <leader>uU :PlugUpgrade \| PlugClean \| PlugUpdate<CR>
 
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_do_mapping = 0
-nmap <leader><leader> <Plug>(easymotion-overwin-f2)
+nmap <leader>. <Plug>(easymotion-overwin-f2)
 
 " Easy Align Mappings
 
