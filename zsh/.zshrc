@@ -78,8 +78,9 @@ copyonchange () { echo $1 | entr -cps "cat $1 | pbcopy" }
 
 # alias rec='ls -1t | head'
 
-autoload -U promptinit; promptinit
-prompt spaceship
+source "/opt/homebrew/opt/spaceship/spaceship.zsh"
+autoload -Uz promptinit; promptinit
+# prompt -s spaceship
 
 # Load NVM
 export NVM_DIR="$HOME/.nvm"
