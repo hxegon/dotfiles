@@ -15,6 +15,14 @@ HISTFILE="${HOME}/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
 
+export MY_BIN="$HOME/bin"
+export MC_MC="$HOME/Project/Code/comcast/mc/bin/mc"
+export RUST_BIN="$HOME/.cargo/bin"
+export DOOM_BIN="$HOME/.emacs.d/bin"
+
+export LOCAL_BIN="$HOME/.local/bin"
+
+export PATH="$PATH:$DOOM_BIN:$RUST_BIN:$MC_MC:$MY_BIN:$LOCAL_BIN"
 
 source /opt/homebrew/Cellar/zsh-autosuggestions/0.7.0/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
