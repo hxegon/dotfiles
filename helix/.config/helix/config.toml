@@ -1,0 +1,16 @@
+theme = "dracula"
+
+[editor]
+bufferline = "multiple"
+line-number = "relative"
+
+[editor.file-picker]
+hidden = false
+
+[keys.normal."minus"]
+w = ":w"                # save file
+r = ":config-reload"    # Reload helix config
+H = ":config-open"    # Reload helix config
+b = { c = ":bc" }
+C = ":pipe cgpt --code" # have ChatGPT-3.5-turbo write code and replace the selected prompt
+# Wanted: append cgpt response after line
