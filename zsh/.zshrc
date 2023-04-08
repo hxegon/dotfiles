@@ -22,7 +22,7 @@ export DOOM_BIN="$HOME/.emacs.d/bin"
 
 export LOCAL_BIN="$HOME/.local/bin"
 
-export PATH="$PATH:$DOOM_BIN:$RUST_BIN:$MC_MC:$MY_BIN:$LOCAL_BIN"
+export PATH="$DOOM_BIN:$RUST_BIN:$MC_MC:$MY_BIN:$LOCAL_BIN:$PATH:"
 
 source /opt/homebrew/Cellar/zsh-autosuggestions/0.7.0/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
@@ -32,23 +32,28 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=23'
 # Turn off terminal bell/beep for ambiguous list completions
 unsetopt LIST_BEEP
 
-export EDITOR='nvim'
-export BROWSER='Safari'
+export EDITOR='hx'
+export BROWSER='open'
 
 # Abbreviations
 alias g='git'
+alias lg='lazygit'
 alias tm='tmux'
-alias ni='nvim'
+alias ni='lvim'
+alias niconf='nvim ~/.config/nvim/init.vim'
 alias -g htop='sudo htop'
 alias dot='cd ~/dotfiles'
+alias ls='ls -G'
+alias ldcr='lein do clean, repl'
 
+alias bjava='brew outdated | grep -i openjdk'
 alias buu='brew upgrade && brew cleanup -s' # brew upgrade / clean old packages
 alias bdump='brew bundle dump --force --global' # show all installed brew packages
 alias resrc='source ~/.zshrc' # doesn't play well with antigen
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND='rg --files --hidden'
-export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
+export FZF_DEFAULT_COMMAND='rg --files --hidden ~'
+export FZF_CTRL_T_COMMAND='rg --files --hidden'
 export FZF_DEFAULT_OPTS="--ansi --reverse --border -m --preview='bat --color=\"always\" {}'"
 
 export BAT_THEME="zenburn"
@@ -67,6 +72,14 @@ export BAT_THEME="zenburn"
 # }
 
 # alias -g pick="\$(fd --hidden -t f -E .git/ | fzf | awk -v pwd=\$(pwd) '{print pwd \"/\" \$0}')"
+
+alias gch="git branch --list | rev | cut -d' ' -f1 | rev | fzy | xargs -n 1 git checkout"
+alias gbr="git branch --list | rev | cut -d' ' -f1 | rev | fzy | xargs -n 1 "
+alias gls="git status --porcelain | fzy | cut -c4-"
+
+# Configure thefuck
+eval $(thefuck --alias)
+
 wttr () { curl http://wttr.in/$1 }
 
 copyonchange () { echo $1 | entr -cps "cat $1 | pbcopy" }
@@ -86,7 +99,7 @@ copyonchange () { echo $1 | entr -cps "cat $1 | pbcopy" }
 
 # alias rec='ls -1t | head'
 
-source "/opt/homebrew/opt/spaceship/spaceship.zsh"
+source "$(brew --prefix)/opt/spaceship/spaceship.zsh"
 autoload -Uz promptinit; promptinit
 # prompt -s spaceship
 
@@ -94,5 +107,33 @@ autoload -Uz promptinit; promptinit
 export NVM_DIR="$HOME/.nvm"
 alias loadnvm='[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"'
 
+# TESTING: Faster nvm
+eval "$(fnm env --use-on-cd)"
+
 # Load z
 . /opt/homebrew/etc/profile.d/z.sh
+
+# TODO Figure out how to bind this to somthing like CMD+c
+fzydir () {
+  rg --files-with-matches scoop | xargs -n 1 dirname | fzy
+}
+
+# Ruby
+## load chruby
+source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh
+source $(brew --prefix)/opt/chruby/share/chruby/auto.sh
+
+# Containers
+# set DOCKER_HOST as a uri for a podman socket
+# https://github.com/containers/podman/issues/13069
+# export DOCKER_HOST="$(podman system connection ls --format="{{.URI}}" | grep root)"
+
+# That wasn't working, trying this instead
+
+# export DOCKER_HOST="`cat ~/.config/containers/containers.conf | grep -ioE "ssh://core@localhost:[0-9]+"`"
+
+# check this out if it doesn't work
+# https://github.com/containers/podman/issues/11397#issuecomment-910726355
+
+## Aliases
+alias be='bundle exec'
