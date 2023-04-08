@@ -58,7 +58,8 @@ end
 -------------------
 -- INITIALIZATION -
 -------------------
-local mash = {"cmd", "alt", "ctrl"}
+-- local mash = {"cmd", "alt", "ctrl"}
+local mash = {"cmd", "ctrl"}
 
 launcher        = Launcher
 launcher.prefix = mash
