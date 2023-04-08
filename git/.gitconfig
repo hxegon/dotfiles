@@ -1,3 +1,6 @@
+[init]
+  defaultBranch = master
+
 [color]
   ui = auto
 
@@ -7,12 +10,16 @@
 	name = Cooper LeBrun
 
 [alias]
+  rs = restore
   df = diff
   dc = diff --cached
   ci = commit
   st = status --short
   br = branch -v
   re = remote -v
+  wt = worktree
+  pre = pull origin master --rebase
+  fpre = pull origin master --rebase --autostash
   hist = log --graph --pretty=format:'%an: %s - %Cred%h%Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
   l = log --oneline
   type = cat-file -t
