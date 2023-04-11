@@ -27,7 +27,7 @@
   aa = add --all
   ch = checkout
   ph = push
-  fuck = reset --soft HEAD~
+  unci = reset --soft HEAD~
   unstage = reset HEAD *
   ap = add -p
   mnf = merge --no-ff
