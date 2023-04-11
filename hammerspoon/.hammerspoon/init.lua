@@ -74,23 +74,22 @@ hs.window.animationDuration = 0.0
 
 -- Static app shortcuts
 
-launcher:bind("b", "Safari")
-launcher:bind("w", "Firefox") -- the browser I use for Work
+launcher:bind("b", "Chromium") -- browser
 launcher:bind("d", "Discord")
-launcher:bind("c", "Messages") -- "Communicatin" Terrible I know.
-launcher:bind("n", "Notion")
-launcher:bind("s", "Slack")
-launcher:bind("m", "Spotify") -- Music
-launcher:bind("t", "iterm")
+launcher:bind("s", "Spotify")  -- music
+launcher:bind("m", "Messages") -- texts
+launcher:bind("t", "kitty")    -- terminal
 
 -- Show app shortcut bindings
 hs.hotkey.bind(launcher.prefix, "/", launcher:helpCall())
 
--- Dynamic app key binding. Use with prefix+space, set with prefix+delete
+-- Dynamic app key binding.
+-- Set current application with mash+/, and bring it up with mash+space
 hs.hotkey.bind(launcher.prefix, "delete", launcher:dAppSetCall())
 hs.hotkey.bind(launcher.prefix, "space", launcher:dAppFOLCall())
 
 -- Miro Window Manager bindings
+-- TODO: Seems broken?
 spoon.MiroWindowsManager:bindHotkeys({
   up         = {mash, "up"},
   down       = {mash, "down"},
@@ -100,7 +99,7 @@ spoon.MiroWindowsManager:bindHotkeys({
 })
 
 -- Manual config reload binding
-hs.hotkey.bind(launcher.prefix, "return", hs.reload)
+-- hs.hotkey.bind(launcher.prefix, "return", hs.reload)
 
 ------------------
 -- OTHER CONFIG --
