@@ -1,16 +1,62 @@
-theme = "dracula"
+# theme = "dracula"
+theme = "gruvbox"
 
 [editor]
-bufferline = "multiple"
-line-number = "relative"
+bufferline    = "multiple"         # show tab bar if multiple buffers are open
+line-number   = "relative"         # relative
+color-modes   = true               # change mode indicator colors
+shell         = ["zsh", "-c"]      # execute shell commands with zsh
+rulers        = [81]               # highlight 81st column
+cursorline    = true               # highlight lines with cursors
+soft-wrap     = { enable = true }
+file-picker   = { hidden = false } # Show .files in file picker
+indent-guides = { render = true }  # Show indentation guides
 
-[editor.file-picker]
-hidden = false
+[editor.statusline]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
 
-[keys.normal."minus"]
-w = ":w"                # save file
-r = ":config-reload"    # Reload helix config
-H = ":config-open"    # Reload helix config
-b = { c = ":bc" }
-C = ":pipe cgpt --code" # have ChatGPT-3.5-turbo write code and replace the selected prompt
-# Wanted: append cgpt response after line
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[keys.normal]
+esc = ["collapse_selection", "keep_primary_selection"]
+D   = "kill_to_line_end"
+
+# (G)it
+[keys.normal."minus".g]
+g = ":sh tmux display-popup -h 90% -w 80% -E lazygit"
+# Can't do things like "Open short git diff for current file"
+# until helix implements better ex-mode variables
+# Would need "current file path relative to project root"
+
+# (C)ode
+[keys.normal."minus".c]
+p = ":pipe cgpt --code" # have ChatGPT-3.5-turbo write code and replace the selected prompt
+
+# (B)uffer
+[keys.normal."minus".b]
+c = ":bc" # Close buffer
+s = ":w"  # Save buffer
+S = ":wa" # Save all buffers
+
+# (C)onfig
+[keys.normal."minus".C]
+o = ":config-open"   # Open helix config
+r = ":config-reload" # Reload helix config
+
+# (H)elp
+[keys.normal."minus".h]
+# Open helix docs in browser
+h = ":sh open https://docs.helix-editor.com/" 
+# lazygit bindings
+g = ":sh open https://github.com/jesseduffield/lazygit/blob/master/docs/keybindings/Keybindings_en.md#lazygit-keybindings"
+
+# (T)mux bindings
+# TODO: binding for opening temporary lf or lg sessions
+[keys.normal."minus".t]
+# lazygit popup
+t = [":sh tmux send-keys -t :.! !! C-m"]
