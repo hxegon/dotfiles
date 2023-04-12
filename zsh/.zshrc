@@ -137,3 +137,8 @@ source $(brew --prefix)/opt/chruby/share/chruby/auto.sh
 
 ## Aliases
 alias be='bundle exec'
+
+# Open tmux project switcher with C-f
+# requires 'tmux-sessionizer' -> `cargo install tmux-sessionizer`
+# Also requires tms paths to be configured, `tms config --paths path1 path2 ...`
+bindkey -s ^f "tms\n"
