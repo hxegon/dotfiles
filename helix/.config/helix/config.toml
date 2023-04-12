@@ -1,5 +1,4 @@
-# theme = "dracula"
-theme = "gruvbox"
+theme = "gruvbox_dark_hard"
 
 [editor]
 bufferline    = "multiple"         # show tab bar if multiple buffers are open
