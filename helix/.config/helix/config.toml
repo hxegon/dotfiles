@@ -25,6 +25,9 @@ select = "underline"
 esc = ["collapse_selection", "keep_primary_selection"]
 D   = "kill_to_line_end"
 
+[keys.normal."minus"]
+o = ":pipe xargs -n 1 open" # "open" Can work on many things...
+
 # (G)it
 [keys.normal."minus".g]
 g = ":sh tmux display-popup -h 90% -w 80% -E lazygit"
