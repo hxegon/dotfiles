@@ -1,6 +1,11 @@
 # source <(antibody init)
 # antibody bundle < $HOME/.antibody_plugins
 
+# Enable completion
+autoload -Uz compinit && compinit
+# Case insensitive completion
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
 bindkey -e
 
 # only compinit once a day
