@@ -45,6 +45,7 @@ r = ":pipe cgpt --code"
 # misc (E)xternal program pipes
 [keys.normal."minus".e]
 f = [":pipe fmt"] # Format selection as paragraph
+d = [":insert-output date +'%B %d, %Y'"]
 
 # (B)uffer
 [keys.normal."minus".b]
@@ -64,6 +65,8 @@ r = ":config-reload" # Reload helix config
 h = ":sh open https://docs.helix-editor.com/" 
 # lazygit bindings
 g = ":sh open https://github.com/jesseduffield/lazygit/blob/master/docs/keybindings/Keybindings_en.md#lazygit-keybindings"
+# Kitty (terminal) documentation
+k = ":sh open https://sw.kovidgoyal.net/kitty/overview/#"
 
 # (T)mux bindings
 # TODO: binding for opening temporary lf or lg sessions
