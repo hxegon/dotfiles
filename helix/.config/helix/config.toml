@@ -52,10 +52,12 @@ d = [":insert-output date +'%B %d, %Y'"]
 
 # (B)uffer
 [keys.normal."minus".b]
-c = ":bc" # Close buffer
-s = ":w"  # Save buffer
-r = ":reload"  # Reload buffer
-S = ":wa" # Save all buffers
+c = ":bc"     # Close buffer
+s = ":w"      # Save buffer
+r = ":reload" # Reload buffer
+S = ":wa"     # Save all buffers
+n = ":bn"     # next buffer
+p = ":bp"     # previous buffer
 
 # (C)onfig
 [keys.normal."minus".C]
