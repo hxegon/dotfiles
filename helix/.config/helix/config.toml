@@ -37,11 +37,14 @@ g = ":sh tmux display-popup -h 90% -w 80% -E lazygit"
 
 # (C)ode
 [keys.normal."minus".c]
-p = ":pipe cgpt --code" # have ChatGPT-3.5-turbo write code and replace the selected prompt
+# Prompt chat gpt
+p = ":pipe cgpt"
+# Prompt chat gpt to write code
+r = ":pipe cgpt --code"
 
-# (F)ormat
-[keys.normal."minus".f]
-p = [":pipe fmt"] # Format selection as paragraph
+# misc (E)xternal program pipes
+[keys.normal."minus".e]
+f = [":pipe fmt"] # Format selection as paragraph
 
 # (B)uffer
 [keys.normal."minus".b]
