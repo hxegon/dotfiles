@@ -1,3 +1,5 @@
+### SETTINGS ###
+
 theme = "gruvbox_dark_hard"
 
 [editor]
@@ -7,7 +9,7 @@ color-modes   = true               # change mode indicator colors
 shell         = ["zsh", "-c"]      # execute shell commands with zsh
 rulers        = [81]               # highlight 81st column
 cursorline    = true               # highlight lines with cursors
-soft-wrap     = { enable = true }
+soft-wrap     = { enable = true }  # wrap lines instead of extending them off screen
 file-picker   = { hidden = false } # Show .files in file picker
 indent-guides = { render = true }  # Show indentation guides
 
@@ -20,6 +22,8 @@ mode.select = "SELECT"
 insert = "bar"
 normal = "block"
 select = "underline"
+
+### BINDINGS ###
 
 [keys.normal]
 esc = ["collapse_selection", "keep_primary_selection"]
