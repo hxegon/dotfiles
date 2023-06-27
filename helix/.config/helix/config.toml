@@ -49,6 +49,11 @@ p = ":pipe cgpt"
 # Prompt chat gpt to write code
 r = ":pipe cgpt --code"
 
+# (A)lign
+# [keys.normal."minus".a]
+# "=" = ["select_regex", "="]
+
+
 # misc (E)xternal program pipes
 [keys.normal."minus".e]
 f = [":pipe fmt"] # Format selection as paragraph
@@ -81,4 +86,5 @@ k = ":sh open https://sw.kovidgoyal.net/kitty/overview/#"
 # TODO: binding for opening temporary lf or lg sessions
 [keys.normal."minus".t]
 # lazygit popup
-t = [":sh tmux send-keys -t :.! !! C-m"]
+"." = [":sh tmux send-keys -t :.! !! C-m"]
+t = ":sh tmux display-popup -h 90% -w 80%"
