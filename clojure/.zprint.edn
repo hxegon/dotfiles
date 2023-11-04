@@ -1,0 +1,11 @@
+{:search-config? true
+ :fn-map         {"->>" :gt3-force-nl
+                  "->"  :gt3-force-nl}
+ ;; Only force \n on ->, ->> args if there are more than 3
+ :map            {:comma?        false
+                  :lift-ns?      false
+                  :nl-separator? false}
+ :style          [:community
+                  :justified
+                  :hiccup
+                  :respect-nl]}

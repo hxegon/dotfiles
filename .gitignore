@@ -11,3 +11,4 @@ fish/.config/fish/*
 !fish/.config/fish/functions
 kitty/.config/kitty/theme.conf
 kitty/.config/kitty/kitty-themes
+clojure/.clojure/.cpcache
