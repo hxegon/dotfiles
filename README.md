@@ -24,6 +24,3 @@ nvim
 
 when you use the stow command, it drops a symlinked version of that into $HOME,
 without destroying the other contents of $HOME/.config.
-
-So if you have $HOME/.config/.fish, and you ```stow nvim```
-there will still be $HOME/.config/.fish, and there will also be $HOME/.config/nvim.
