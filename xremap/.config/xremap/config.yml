@@ -1,0 +1,12 @@
+modmap:
+  - name: Capslock to esc/ctrl
+    remap:
+      CapsLock:
+        held: CTRL_L
+        alone: ESC
+        alone_timeout_millis: 150
+  - name: Space is super when held
+    remap:
+      KEY_SPACE:
+        held: SUPER_L
+        alone: KEY_SPACE
