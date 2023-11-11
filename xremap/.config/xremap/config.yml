@@ -1,4 +1,7 @@
 modmap:
+  - name: Esc to Capslock
+    remap:
+      ESC: CapsLock
   - name: Capslock to esc/ctrl
     remap:
       CapsLock:
