@@ -9,9 +9,7 @@
     // Choose the order of the modules
     "modules-left": ["clock", "hyprland/workspaces"],
     "modules-center": ["hyprland/window"],
-    // "modules-center": ["idle_inhibitor", "network", "cpu", "memory", "temperature",],
     "modules-right": ["wireplumber", "backlight", "bluetooth", "battery", "tray"],
-    // "modules-right": ["backlight", "wireplumber", "battery", "clock", "bluetooth", "tray"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -111,11 +109,11 @@
     },
     "battery": {
         "states": {
-            // "good": 95,
-            "warning": 30,
-            "critical": 15
+            "good": 75,
+            "warning": 50,
+            "critical": 25
         },
-        "format": "{capacity}% {icon}",
+        "format": "{capacity}% <big>{icon}</big>",
         "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",

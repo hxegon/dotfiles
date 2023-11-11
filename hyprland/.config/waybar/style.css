@@ -2,19 +2,21 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: Cartograph CF Nerd Font, monospace;
+  font-family: Iosevka Nerd Font Mono, monospace;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 12px;
   min-height: 0;
 }
 
 * window#waybar {
-  background: rgba(21, 18, 27, 0);
-  color: #cdd6f4;
+  /*  background: rgba(21, 18, 27, 0); */
+  /*  color: #cdd6f4; */
+  margin-top: 0; padding-top: 0;
+  margin-bottom: 0; padding-bottom: 0;
 }
 
 tooltip {
-  background: #1e1e2e;
+  /* background: #1e1e2e; */
   border-radius: 10px;
   border-width: 2px;
   border-style: solid;
@@ -22,7 +24,8 @@ tooltip {
 }
 
 #workspaces button {
-  padding: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
   color: #313244;
   margin-right: 5px;
 }
@@ -46,7 +49,12 @@ tooltip {
 }
 
 #custom-language, #custom-updates, #custom-caffeine, #custom-weather, #window, #clock, #battery, #wireplumber, #bluetooth, #pulseaudio, #network, #workspaces, #tray, #backlight {
-  background: #1e1e2e; padding: 0px 10px; margin: 3px 0px; margin-top: 10px; border: 1px solid #181825;
+  background: #1e1e2e;
+  padding: 0px 10px;
+  /* margin: 3px 0px; */
+  /* margin-top: 5px; */
+  border: 1px solid #181825;
+  min-width: 25px;
 }
 
 #tray {
@@ -79,7 +87,17 @@ tooltip {
 }
 
 #battery {
-  color: #a6e3a1; border-radius: 0 10px 10px 0; margin-right: 20px; padding-right: 15px;
+  /* color: #a6e3a1; */
+  border-radius: 0 10px 10px 0; margin-right: 20px; padding-right: 15px;
+}
+
+#battery.plugged { color: #2ac3de }
+#battery.good { color: #a6e3a1; }
+#battery.warning { color: #ff9e64; }
+
+#battery.critical {
+  color: #f38ba8;
+  animation: blinker 2s linear infinite;
 }
 
 #pulseaudio { color: #89b4fa; border-left: 0px; border-right: 0px; }
