@@ -17,5 +17,5 @@ if [[ $(hyprctl monitors) =~ "\sDP-[0-9+]" ]]; then
 # No external monitor AND lid is closing
 elif [[ $1 == "close" ]]; then
     # Lock screen and suspend
-    swaylock & systemctl suspend
+    swaylock --image ~/Pictures/Wallpapers/cumulonimbus.webp --clock & systemctl suspend
 fi
