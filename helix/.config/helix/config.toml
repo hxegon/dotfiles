@@ -1,6 +1,6 @@
 ### SETTINGS ###
 
-theme = "gruvbox_dark_hard"
+theme = "catppuccin_macchiato"
 
 [editor]
 bufferline    = "multiple"         # show tab bar if multiple buffers are open
