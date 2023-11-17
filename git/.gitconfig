@@ -43,7 +43,3 @@
   clean = git-lfs clean %f
   smudge = git-lfs smudge %f
   required = true
-
-# use work git config if in work dir
-[includeIf "gitdir:/Users/cooperlebrun/Projects/Code/comcast/"]
-   path = "/Users/cooperlebrun/Projects/Code/comcast/.gitconfig"
