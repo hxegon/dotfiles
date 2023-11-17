@@ -15,7 +15,7 @@ fi
 
 ### PATH ###
 
-export MY_BIN="$HOME/bin"
+export MY_BIN="$HOME/scripts"
 export DOOM_BIN="$HOME/.config/emacs/bin"
 export HYPR_BIN="$HOME/.config/hypr/bin"
 export PATH="$MY_BIN:$DOOM_BIN:$HYPR_BIN:$PATH"
