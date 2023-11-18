@@ -35,18 +35,19 @@ alias hx="helix"
 alias t="tmux"
 
 
-## Program specific env vars
-# FZF
-export FZF_CTRL_T_COMMAND='rg --files --hidden'
-export FZF_DEFAULT_OPTS="--ansi --reverse --border -m --preview='bat --color=\"always\" {}'"
-export BAT_THEME="zenburn"
-
 ## Convenience functions
 copyonchange () { echo $1 | entr -cps "cat $1 | pbcopy" }
 
 ## Initializations
 # Initialize antidote (zsh package manager)
 source '/usr/share/zsh-antidote/antidote.zsh' && antidote load || echo 'failed to load antidote'
+
+# fzy plugin
+bindkey '\ec' fzy-cd-widget
+bindkey '^T'  fzy-file-widget
+bindkey '^R'  fzy-history-widget
+zstyle :fzy:file command fd -j2 -tf -HIL -c never --ignore-file ~/.fdignore
+zstyle :fzy:tmux enabled no
 
 # opam configuration
 [[ ! -r /home/hxe/.opam/opam-init/init.zsh ]] || source /home/hxe/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
