@@ -1,0 +1,2 @@
+agkozak/zsh-z
+unixorn/fzf-zsh-plugin
