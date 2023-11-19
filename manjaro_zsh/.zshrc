@@ -50,6 +50,7 @@ bindkey '\ec' fzy-cd-widget
 bindkey '^T'  fzy-file-widget
 bindkey '^R'  fzy-history-widget
 zstyle :fzy:file command fd -j2 -tf -HIL -c never --ignore-file ~/.fdignore
+zstyle :fzy:history command tac $HOME/.zhistory
 zstyle :fzy:tmux enabled no
 
 # opam configuration
