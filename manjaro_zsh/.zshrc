@@ -32,8 +32,11 @@ alias vi="nvim"
 alias ni="nvim"
 alias lg="lazygit"
 alias hx="helix"
-alias t="tmux"
 
+alias tm="tmux"
+alias tn="tmux new -s" # new tmux session <named>
+alias ta="tmux a" # attach to last tmux session
+alias ts="tms" # open tmux switcher (~/scripts/tms)
 
 ## Convenience functions
 copyonchange () { echo $1 | entr -cps "cat $1 | pbcopy" }
