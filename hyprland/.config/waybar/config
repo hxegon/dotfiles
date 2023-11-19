@@ -7,7 +7,7 @@
     // "width": 1280, // Waybar width
     "spacing": 0, // Gaps between modules (4px)
     // Choose the order of the modules
-    "modules-left": ["clock", "hyprland/workspaces"],
+    "modules-left": ["custom/controls", "clock", "hyprland/workspaces"],
     "modules-center": ["hyprland/window"],
     "modules-right": ["wireplumber", "backlight", "bluetooth", "battery", "tray"],
     // Modules configuration
@@ -169,5 +169,9 @@
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+    "custom/controls": {
+        "format": " ⚙️",
+        "on-click": "$(find $HOME/.config/hypr/bin/ -type f -printf '%p\n' | wofi --show dmenu)"
     }
 }
