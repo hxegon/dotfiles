@@ -125,7 +125,8 @@
         "format-off": " BT: OFF ",
         "format-on": " BT: ON ",
         "format-connected": " BT: CON ",
-        "on-click": "blueman-manager"
+        "on-click": "blueman-manager",
+	"on-click-right": "$HOME/.config/hypr/bin/bluetooth-toggle.sh"
     },
     "battery#bat2": {
         "bat": "BAT2"
