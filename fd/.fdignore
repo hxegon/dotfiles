@@ -35,10 +35,10 @@ Google\ Drive/
 Library/
 _build/
 _files/
+_opam/
 classes/
 customMetadata/
 jar-manifest/
-js/
 libc/
 magento/
 migrate/
