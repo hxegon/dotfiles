@@ -21,6 +21,9 @@ export HYPR_BIN="$HOME/.config/hypr/bin"
 export PATH="$MY_BIN:$DOOM_BIN:$HYPR_BIN:$PATH"
 
 ### END PATH
+
+export EDITOR=nvim
+
 ### BEGIN ALIASES ###
 
 # forgetting sudo with pamac is annoying as hell
