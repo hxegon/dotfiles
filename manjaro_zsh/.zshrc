@@ -35,6 +35,8 @@ alias vi="nvim"
 alias ni="nvim"
 alias lg="lazygit"
 alias hx="helix"
+alias opamdeps="opam install --deps-only --yes ."
+alias opamenv='eval $(opam env)'
 
 alias tm="tmux"
 alias tn="tmux new -s" # new tmux session <named>
@@ -58,6 +60,7 @@ zstyle :fzy:tmux enabled no
 
 # opam configuration
 [[ ! -r /home/hxe/.opam/opam-init/init.zsh ]] || source /home/hxe/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+eval $(opam env)
 
 # enable asdf
 . /opt/asdf-vm/asdf.sh
