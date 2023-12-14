@@ -67,3 +67,5 @@ eval $(opam env)
 
 # starship prompt
 eval "$(starship init zsh)"
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
