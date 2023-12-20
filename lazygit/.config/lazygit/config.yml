@@ -1,11 +1,38 @@
+gui:
+  scrollOffMargin: 6
+  sidePanelWidth: 0.3
+  commandLogSize: 3
+  # expandFocusedSidePanel: true
+  showBottomLine: false
+  # windowSize: 'full'
+  mainPanelSplitMode: 'horizontal'
+  border: 'rounded'
+  # showCommandLog: false
+  # portraitMode: 'auto'
 os:
+  open: 'nvim {{filename}}'
   edit: 'nvim {{filename}}'
   editAtLine: 'nvim +{{line}} {{filename}}'
   editAtLineAndWait: 'nvim +{{line}} {{filename}}'
-  # editAtLineAndWait: 'nvim --block +{{line}} {{filename}}'
   editInTerminal: true
   openDirInEditor: 'nvim {{dir}}'
 git:
   paging:
     colorArg: always
-    pager: delta --dark --paging=never
+    pager: delta --dark --paging=never --24-bit-color=never
+  log:
+    showGraph: 'always'
+    # showWholeGraph: true
+keybinding:
+  universal:
+    gotoTop: ''
+    gotoBottom: ''
+    nextTab: '>'
+    prevTab: '<'
+    # unbind/rebind left/right arrow keys
+    nextBlock: ''
+    prevBlock: ''
+    nextScreenMode: '<right>'
+    prevScreenMode: '<left>'
+    # scrollUpMain: '<up>'
+    # scrollDownMain: '<down>'
