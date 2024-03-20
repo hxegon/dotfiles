@@ -1,5 +1,5 @@
 # Use powerline
-USE_POWERLINE="true"
+# USE_POWERLINE="true"
 # Has weird character width
 # Example:
 #    is not a diamond
@@ -79,3 +79,6 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Hint for electron applications (version > 28) to use wayland
 export ELECTRON_OZONE_PLATFORM_HINT=wayland
+
+autoload -U compinit
+compinit
