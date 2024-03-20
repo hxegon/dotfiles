@@ -43,6 +43,9 @@ alias tn="tmux new -s" # new tmux session <named>
 alias ta="tmux a" # attach to last tmux session
 alias ts="tms" # open tmux switcher (~/scripts/tms)
 
+# Kitty terminal has ssh issues that need a workaround:
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+
 ## Convenience functions
 copyonchange () { echo $1 | entr -cps "cat $1 | pbcopy" }
 
