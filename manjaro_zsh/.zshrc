@@ -72,3 +72,6 @@ eval $(opam env)
 eval "$(starship init zsh)"
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# Hint for electron applications (version > 28) to use wayland
+export ELECTRON_OZONE_PLATFORM_HINT=wayland
