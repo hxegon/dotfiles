@@ -18,7 +18,8 @@ fi
 export MY_BIN="$HOME/scripts"
 export DOOM_BIN="$HOME/.config/emacs/bin"
 export HYPR_BIN="$HOME/.config/hypr/bin"
-export PATH="$MY_BIN:$DOOM_BIN:$HYPR_BIN:$PATH"
+export GOBIN="$HOME/go/bin"
+export PATH="$MY_BIN:$GOBIN:$DOOM_BIN:$HYPR_BIN:$PATH"
 
 ### END PATH
 
@@ -37,6 +38,9 @@ alias lg="lazygit"
 alias hx="helix"
 alias opamdeps="opam install --deps-only --yes ."
 alias opamenv='eval $(opam env)'
+alias m="make"
+alias j="just"
+alias jc="just --choose"
 
 alias tm="tmux"
 alias tn="tmux new -s" # new tmux session <named>
