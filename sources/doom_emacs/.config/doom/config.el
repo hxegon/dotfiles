@@ -75,4 +75,10 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+
+;; Testing this out to help with the escape delay problem with tmux + evil
+(setq evil-esc-delay 0.005) ;; default is 10ms (0.01 seconds)
+
+;; PACKAGES
+
 (use-package! just-mode)

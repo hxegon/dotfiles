@@ -18,7 +18,7 @@
         # Shorten the delay tmux uses to see if an esc key code is actually for a meta combination
         # The default is long enough to cause problems when using modal editing. see:
         # https://evil.readthedocs.io/en/latest/faq.html#problems-with-the-escape-key-in-the-terminal
-        escapeTime = 200; # default is 500
+        escapeTime = 25; # (milliseconds) default is 500ms
 
         prefix = "C-Space";
         terminal = "screen-256color";
