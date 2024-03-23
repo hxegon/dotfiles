@@ -3,7 +3,10 @@
 # TODO: Break these up into modules!!
 {
 
-  imports = [ ./modules/zsh.nix ];
+  imports = [
+     ./modules/zsh.nix
+     ./modules/tmux.nix
+  ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -31,7 +34,6 @@
     neovim
     lazygit # Best git interface
     asdf-vm # universal version manager
-    tmux # terminal multiplexer
     just # command runner like make or rake
     bat # better pager
     # System monitors
@@ -53,7 +55,6 @@
     chromium # dev tools + having a backup so if a site doesn't work with FF
     discord
     whatsapp-for-linux
-
 
     nixfmt
 
