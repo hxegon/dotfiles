@@ -12,11 +12,34 @@ test:
 switch:
     sudo nixos-rebuild switch --flake .#{{FLAKE}}
 
-# Clean out the nix store
+# Delete unreachable paths in /nix/store
+gc:
+    nix store gc
+
+# deduplicate nix store
+optimise:
+    nix store optimise
+
+# Maintenance task for cleaning out /nix/store (doesn't include deleting old profiles)
+[confirm("This is gonna take a while. Start? (y/n)")]
 clean:
-    nix-store --gc
+    @echo "Starting size:"
+    @du -sh /nix/store
+    @just gc
+    @just optimise
+    @echo "After GC + Optimization:"
+    @du -sh /nix/store
+
+# Delete profiles older than n days
+[confirm("Leave at least a few days of profiles please ;-;. Continue? (y/n)")]
+wipe-older-than DAYS:
+    nix profiles wipe-history --older-than {{DAYS}}d
 
 # Update flakes
 update:
     nix flake update
-    echo "Don't forget to add+commit your flake.lock!"
+    @echo "Don't forget to add+commit your flake.lock!"
+
+# Search for a package in nixpkgs
+search *QUERY:
+    nix search nixpkgs {{QUERY}}
