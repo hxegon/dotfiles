@@ -33,7 +33,6 @@
     curl
     wget
     neovim
-    lazygit # Best git interface
     asdf-vm # universal version manager
     just # command runner like make or rake
     bat # better pager
