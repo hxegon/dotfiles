@@ -7,6 +7,12 @@
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # https://nixos.wiki/wiki/Storage_optimization
+  # automatically deduplicate files in nix store during every build
+  # saves 25% - 50% of space, but SLOWWW
+  # Commenting out for now in favor of manually doing it through `just clean`
+  # nix.settings.auto-optimise-store = true;
+
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default
