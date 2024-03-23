@@ -1,6 +1,6 @@
 FLAKE := "theseus"
 
-default:
+_default:
     @just --list
 
 # Build and activate current config without adding it as a boot option
