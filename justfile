@@ -15,3 +15,8 @@ switch:
 # Clean out the nix store
 clean:
     nix-store --gc
+
+# Update flakes
+update:
+    nix flake update
+    echo "Don't forget to add+commit your flake.lock!"
