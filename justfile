@@ -11,3 +11,7 @@ test:
 [confirm("Really switch to this build?")]
 switch:
     sudo nixos-rebuild switch --flake .#{{FLAKE}}
+
+# Clean out the nix store
+clean:
+    nix-store --gc
