@@ -2,12 +2,12 @@
 
 # TODO: Break these up into modules!!
 {
-
   imports = [
      ./modules/zsh.nix
      ./modules/tmux.nix
      ./modules/git.nix
      ./modules/doom-emacs.nix
+     ./modules/scripts.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
