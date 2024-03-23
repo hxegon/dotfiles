@@ -25,11 +25,6 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    # CLI
-    zsh
-    oh-my-zsh
-    fzf
-
     git
     curl
     wget
@@ -48,7 +43,6 @@
     zstd # my preferred compression stuff
     tldr # Quick examples for a lot of stuff
     xsel # cli for clipboards (cat foo.txt | xsel -ib)
-    fzf # All purpose fuzzy finder
     tree # List files/folders in a tree view
     watch # run a command / display output repeatedly
 
