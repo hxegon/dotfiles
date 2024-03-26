@@ -54,6 +54,7 @@
 
     vscode
 
+    zoom-us # the video call/meeting software.
     chromium # dev tools + having a backup so if a site doesn't work with FF
     discord
     whatsapp-for-linux
