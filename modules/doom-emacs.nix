@@ -22,7 +22,8 @@
 
     home.file.".config/doom" = {
     	enable = true;
-	source = ../sources/doom_emacs/.config/doom;
-	recursive = true;
+	    source = ../sources/doom_emacs/.config/doom;
+	    recursive = true;
+        # onChange = "~/.config/emacs/bin/doom sync";
     };
 }
