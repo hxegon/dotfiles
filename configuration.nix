@@ -113,6 +113,8 @@
     curl
     git
     keyd
+
+    libvirt # virtualization
   ];
 
   # https://github.com/NixOS/nixpkgs/issues/290161
@@ -158,4 +160,5 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
 
+  virtualisation.libvirtd.enable = true;
 }

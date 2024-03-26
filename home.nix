@@ -8,6 +8,7 @@
      ./modules/git.nix
      ./modules/doom-emacs.nix
      ./modules/scripts.nix
+     ./modules/vm.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -58,6 +59,7 @@
     whatsapp-for-linux
 
     nixfmt
+    qemu
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
