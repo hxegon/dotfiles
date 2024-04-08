@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
 {
+    # TODO: Use emacs client/server setup
+
     home.packages = with pkgs; [
         # core doom emacs dependencies
         git
@@ -10,6 +12,8 @@
         clang
 
         shellcheck
+
+        emacsPackages.vterm
     ];
 
     home.sessionPath = [
