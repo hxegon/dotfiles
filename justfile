@@ -33,7 +33,7 @@ clean:
 # Delete profiles older than n days
 [confirm("Leave at least a few days of profiles please ;-;. Continue? (y/n)")]
 wipe-older-than DAYS:
-    nix profiles wipe-history --older-than {{DAYS}}d
+    nix profile wipe-history --older-than {{DAYS}}d
 
 # Update flakes
 update:
