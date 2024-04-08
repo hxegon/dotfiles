@@ -3,12 +3,12 @@
 # TODO: Break these up into modules!!
 {
   imports = [
-     ./modules/zsh.nix
-     ./modules/tmux.nix
-     ./modules/git.nix
-     ./modules/doom-emacs.nix
-     ./modules/scripts.nix
-     ./modules/vm.nix
+    ./modules/zsh.nix
+    ./modules/tmux.nix
+    ./modules/git.nix
+    ./modules/doom-emacs.nix
+    ./modules/scripts.nix
+    ./modules/vm.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -49,6 +49,7 @@
     xsel # cli for clipboards (cat foo.txt | xsel -ib)
     tree # List files/folders in a tree view
     watch # run a command / display output repeatedly
+    direnv
 
     nerdfonts # TODO: Pick specific fonts, all of nerdfonts is huge and uneccesary
 
