@@ -82,3 +82,7 @@
 ;; PACKAGES
 
 (use-package! just-mode)
+
+;; org-roam settings
+(setq
+ org-roam-directory "~/Notes")

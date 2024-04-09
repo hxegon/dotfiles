@@ -14,6 +14,10 @@
     shellcheck
 
     emacsPackages.vterm
+
+    # For org-roam
+    sqlite
+    emacsPackages.emacsql
   ];
 
   home.sessionPath = [ "$HOME/.config/emacs/bin" ];
@@ -26,4 +30,5 @@
     recursive = true;
     # onChange = "~/.config/emacs/bin/doom sync";
   };
+
 }
