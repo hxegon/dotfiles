@@ -84,5 +84,13 @@
 (use-package! just-mode)
 
 ;; org-roam settings
-(setq
- org-roam-directory "~/Notes")
+(setq org-roam-directory "~/Notes")
+
+;; Show the workspaces in the minibuffer whenever it's not otherwise used
+(after! persp-mode
+  (defun display-workspaces-in-minibuffer ()
+    (with-current-buffer " *Minibuf-0*"
+      (erase-buffer)
+      (insert (+workspace--tabline))))
+  (run-with-idle-timer 1 t #'display-workspaces-in-minibuffer)
+  (+workspace/display))
