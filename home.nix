@@ -31,6 +31,10 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    # System monitors
+    btop
+    htop
+
     git
     curl
     wget
@@ -38,30 +42,30 @@
     asdf-vm # universal version manager
     just # command runner like make or rake
     bat # better pager
-    # System monitors
-    btop
-    htop
+
     fd # `find` with a human friendly interface
     ripgrep # BLAZINGLY FAST text search
     lf # cli file manager
     zstd # my preferred compression stuff
-    tldr # Quick examples for a lot of stuff
-    xsel # cli for clipboards (cat foo.txt | xsel -ib)
+    tldr # Quick command examples for a lot of stuff
+    xsel # clipboard cli (cat foo.txt | xsel -ib)
     tree # List files/folders in a tree view
     watch # run a command / display output repeatedly
-    direnv
+    direnv # Automatic shell env setup per folder/project (automatically use a project's flake.nix!)
 
     nerdfonts # TODO: Pick specific fonts, all of nerdfonts is huge and uneccesary
 
-    vscode
+    vscode # in case emacs is having issues
 
-    zoom-us # the video call/meeting software.
-    chromium # dev tools + having a backup so if a site doesn't work with FF
+    zoom-us # video call/meeting app.
+    chromium # browser dev tools + having a backup in case a site doesn't work with firefox
+
+    # Messages
     discord
     whatsapp-for-linux
 
-    nixfmt
-    qemu
+    nixfmt-classic
+    qemu # VMs
 
     libreoffice # Productivity tools
     # gimp # Photo editing
@@ -82,7 +86,7 @@
   ];
 
   home.sessionVariables = {
-    EDITOR = "nvim";
+    EDITOR = "emacs -nw";
     BROWSER = "firefox";
   };
 
