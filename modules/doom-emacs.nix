@@ -1,10 +1,13 @@
 { config, pkgs, ... }: {
   # TODO: Use emacs client/server setup
+  # TODO: Emacs29 lets you specify a custom init folder, maybe init directly from sources
+  # to avoid having to rebuild nix every time?
+  # TODO: Automatically doom sync when config changes.
 
   home.packages = with pkgs; [
     # core doom emacs dependencies
     git
-    emacs
+    emacs29
     ripgrep
     coreutils
     fd
@@ -15,9 +18,7 @@
 
     emacsPackages.vterm
 
-    # For org-roam
-    sqlite
-    emacsPackages.emacsql
+    sqlite # For org-roam
   ];
 
   home.sessionPath = [ "$HOME/.config/emacs/bin" ];
