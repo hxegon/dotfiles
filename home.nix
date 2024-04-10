@@ -85,10 +85,7 @@
     # '')
   ];
 
-  home.sessionVariables = {
-    EDITOR = "emacs -nw";
-    BROWSER = "firefox";
-  };
+  home.sessionVariables = { BROWSER = "firefox"; };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

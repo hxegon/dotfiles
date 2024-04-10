@@ -1,5 +1,6 @@
-{ config, pkgs, ... }: {
-  # TODO: Use emacs client/server setup
+{ config, pkgs, ... }:
+let doomAlias = "emacsclient -t";
+in {
   # TODO: Emacs29 lets you specify a custom init folder, maybe init directly from sources
   # to avoid having to rebuild nix every time?
   # TODO: Automatically doom sync when config changes.
@@ -22,8 +23,10 @@
   ];
 
   home.sessionPath = [ "$HOME/.config/emacs/bin" ];
+  home.sessionVariables = { EDITOR = doomAlias; };
 
-  home.shellAliases = { e = "emacs -nw"; };
+  # dm alias will start a emacs server if there isn't one already
+  home.shellAliases = { dm = doomAlias; };
 
   home.file.".config/doom" = {
     enable = true;
