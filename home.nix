@@ -1,6 +1,5 @@
 { config, pkgs, ... }:
 
-# TODO: Break these up into modules!!
 {
   imports = [
     ./modules/zsh.nix
