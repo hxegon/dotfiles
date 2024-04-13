@@ -1,5 +1,5 @@
 { config, pkgs, ... }:
-let doomAlias = "emacsclient -t";
+let editorCommand = "emacsclient -t -a ''";
 in {
   # TODO: Emacs29 lets you specify a custom init folder, maybe init directly from sources
   # to avoid having to rebuild nix every time?
@@ -23,10 +23,10 @@ in {
   ];
 
   home.sessionPath = [ "$HOME/.config/emacs/bin" ];
-  home.sessionVariables = { EDITOR = doomAlias; };
+  home.sessionVariables = { EDITOR = editorCommand; };
 
   # dm alias will start a emacs server if there isn't one already
-  home.shellAliases = { dm = doomAlias; };
+  home.shellAliases = { dm = editorCommand; };
 
   home.file.".config/doom" = {
     enable = true;
@@ -34,5 +34,4 @@ in {
     recursive = true;
     # onChange = "~/.config/emacs/bin/doom sync";
   };
-
 }
