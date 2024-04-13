@@ -51,4 +51,4 @@
 
 (package! just-mode)
 (package! benchmark-init)
-;; (package! easy-hugo)
+(package! zoom)
