@@ -101,5 +101,5 @@
   (add-hook 'doom-first-input-hook #'benchmark-init/deactivate))
 
 (after! zoom
-  (setq zoom-mode t
-        zoom-size '(0.618 . 0.618)))
+  (zoom-mode)
+  (setq zoom-size '(0.6 . 0.6)))
