@@ -8,6 +8,7 @@
     ./modules/doom-emacs.nix
     ./modules/scripts.nix
     ./modules/vm.nix
+    ./modules/python.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should

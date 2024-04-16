@@ -52,3 +52,4 @@
 (package! just-mode)
 (package! benchmark-init)
 (package! zoom)
+(package! inheritenv)

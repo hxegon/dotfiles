@@ -103,3 +103,6 @@
 (after! zoom
   (zoom-mode)
   (setq zoom-size '(0.6 . 0.6)))
+
+(after! dap-mode
+  (setq dap-python-debugger 'debugpy))
