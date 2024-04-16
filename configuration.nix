@@ -42,7 +42,7 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
+  services.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.desktopManager.plasma5.useQtScaling = true;
 
@@ -118,9 +118,7 @@
   ];
 
   # https://github.com/NixOS/nixpkgs/issues/290161
-  systemd.services.keyd.serviceConfig.CapabilityBoundingSet = [
-   "CAP_SETGID"
-  ];      
+  systemd.services.keyd.serviceConfig.CapabilityBoundingSet = [ "CAP_SETGID" ];
 
   services.keyd = {
     enable = true;
