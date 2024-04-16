@@ -1,11 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    zsh
-    oh-my-zsh
-    fzf
-  ];
+  home.packages = with pkgs; [ zsh oh-my-zsh fzf ];
 
   programs.zsh = {
     enable = true;
