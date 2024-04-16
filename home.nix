@@ -52,6 +52,8 @@
     watch # run a command / display output repeatedly
     direnv # Automatic shell env setup per folder/project (automatically use a project's flake.nix!)
 
+    yt-dlp # CLI rip video/audio from various sites
+
     nerdfonts # TODO: Pick specific fonts, all of nerdfonts is huge and uneccesary
 
     vscode # in case emacs is having issues
@@ -67,6 +69,8 @@
     qemu # VMs
 
     libreoffice # Productivity tools
+
+    vlc # simple media player
     # gimp # Photo editing
     # rawtherapee # raw photo editing
 
