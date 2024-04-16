@@ -18,6 +18,7 @@ in {
     shellcheck
 
     emacsPackages.vterm
+    nodePackages.pyright # python LSP # TODO: Move to python nix module?
 
     sqlite # For org-roam
   ];
