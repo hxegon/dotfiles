@@ -9,6 +9,7 @@
     ./modules/scripts.nix
     ./modules/vm.nix
     ./modules/python.nix
+    ./modules/go.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
