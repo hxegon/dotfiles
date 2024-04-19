@@ -106,3 +106,5 @@
 
 (after! dap-mode
   (setq dap-python-debugger 'debugpy))
+
+(map! :nv "-" #'avy-goto-char-2)
