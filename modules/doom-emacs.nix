@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
-let editorCommand = "emacsclient -t -a ''";
+let
+  editorCommand = "emacs -nw";
+  # editorCommand = "emacsclient -t -a ''";
 in {
   # TODO: Emacs29 lets you specify a custom init folder, maybe init directly from sources
   # to avoid having to rebuild nix every time?
