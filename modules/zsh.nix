@@ -21,6 +21,7 @@
       tm = "tmux";
       ni = "nvim";
       lg = "lazygit";
+      lt = "/home/hxegon/Code/hxegon/lazytsm/lazytsm"; # temporary
       j = "just";
       jc = "just --choose";
       ".." = "cd ../";
