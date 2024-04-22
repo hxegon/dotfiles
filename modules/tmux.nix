@@ -27,6 +27,7 @@
     # <prefix> C-g to launch lazygit
     # <prefix> C-j to launch the just command chooser
     extraConfig = ''
+      set-option -sa terminal-features ',xterm-kitty:RGB'
       bind -n M-h previous-window
       bind -n M-l next-window
 

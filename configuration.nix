@@ -108,7 +108,6 @@
   environment.systemPackages = with pkgs; [
     zsh
     vim
-    neovim
     wget
     curl
     git

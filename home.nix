@@ -6,6 +6,7 @@
     ./modules/tmux.nix
     ./modules/git.nix
     ./modules/doom-emacs.nix
+    ./modules/nvim.nix
     ./modules/scripts.nix
     ./modules/vm.nix
     ./modules/python.nix
@@ -39,7 +40,6 @@
     git
     curl
     wget
-    neovim
     asdf-vm # universal version manager
     just # command runner like make or rake
     bat # better pager
