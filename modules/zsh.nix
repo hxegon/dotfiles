@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ zsh oh-my-zsh fzf ];
+  home.packages = with pkgs; [ zsh oh-my-zsh fzf ripgrep ];
 
   programs.zsh = {
     enable = true;
@@ -20,6 +20,7 @@
       g = "git";
       tm = "tmux";
       lg = "lazygit";
+      lazytsm = "/home/hxegon/Code/hxegon/lazytsm/lazytsm"; # temporary
       lt = "/home/hxegon/Code/hxegon/lazytsm/lazytsm"; # temporary
       j = "just";
       jc = "just --choose";
@@ -40,5 +41,9 @@
     enable = true;
     enableZshIntegration = true;
     nix-direnv.enable = true;
+  };
+
+  programs.fzf = {
+    fileWidgetCommand = "rg --files";
   };
 }
