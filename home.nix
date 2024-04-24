@@ -42,6 +42,7 @@
     wget
     asdf-vm # universal version manager
     just # command runner like make or rake
+    entr # exec commands on file change
     bat # better pager
 
     fd # `find` with a human friendly interface
@@ -57,6 +58,8 @@
     yt-dlp # CLI rip video/audio from various sites
 
     nerdfonts # TODO: Pick specific fonts, all of nerdfonts is huge and uneccesary
+
+    vhs
 
     vscode # in case emacs is having issues
 
