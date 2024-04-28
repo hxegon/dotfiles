@@ -31,6 +31,13 @@
       bind -n M-h previous-window
       bind -n M-l next-window
 
+      bind C-s split-window -v
+      bind C-v split-window -h
+      bind l select-pane -R
+      bind k select-pane -U
+      bind j select-pane -D
+      bind h select-pane -L
+
       bind-key C-g popup -d "#{pane_current_path}" -h 90% -w 100% -E lazygit
       bind-key C-p popup -d "#{pane_current_path}" -h 80% -w 60% -E /home/hxegon/Code/hxegon/lazytsm/lazytsm
       bind-key C-j popup -d "#{pane_current_path}" -h 50% -w 50% -E just --choose
