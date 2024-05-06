@@ -5,7 +5,7 @@
     ./modules/zsh.nix
     ./modules/tmux.nix
     ./modules/git.nix
-    ./modules/doom-emacs.nix
+    # ./modules/doom-emacs.nix
     ./modules/nvim.nix
     ./modules/scripts.nix
     ./modules/vm.nix
