@@ -9,9 +9,35 @@ return {
     dependencies = { "rktjmp/lush.nvim" }
   },
   {
+    "rebelot/kanagawa.nvim",
+    name = "kanagawa"
+  },
+  {
+    "folke/tokyonight.nvim",
+    name = "tokyonight"
+  },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+  },
+  {
+    "nyoom-engineering/oxocarbon.nvim",
+    name = "oxocarbon"
+  },
+  {
+    "sainnhe/everforest",
+    name = "everforest"
+  },
+  {
+    "projekt0n/github-nvim-theme",
+    name = "github"
+  },
+  -- Set colorscheme here
+  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "rose-pine"
+      colorscheme = "kanagawa"
     }
   }
 }
