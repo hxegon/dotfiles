@@ -1,4 +1,5 @@
 return {
+  { "rktjmp/lush.nvim" }, -- Require up front to prevent some lazy loading issues
   {
     "rose-pine/neovim",
     name = "rose-pine"
