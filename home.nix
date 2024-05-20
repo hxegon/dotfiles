@@ -5,7 +5,6 @@
     ./modules/zsh.nix
     ./modules/tmux.nix
     ./modules/git.nix
-    # ./modules/doom-emacs.nix
     ./modules/nvim.nix
     ./modules/scripts.nix
     ./modules/vm.nix
@@ -13,7 +12,9 @@
     ./modules/go.nix
 
     # Tmp modules
-    ./modules/nsec.nix
+    ./modules/ctf.nix
+
+    # ./modules/doom-emacs.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
