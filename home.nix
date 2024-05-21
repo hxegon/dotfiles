@@ -8,6 +8,9 @@
     ./modules/nvim.nix
     ./modules/scripts.nix
     ./modules/vm.nix
+ 
+    # Languages
+    ./modules/clojure.nix
     ./modules/python.nix
     ./modules/go.nix
 
