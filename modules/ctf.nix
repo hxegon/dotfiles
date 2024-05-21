@@ -14,15 +14,15 @@ in {
     libxcrypt
     exiftool
     stegsolve
-    # binutils # collisions with toybox
-    toybox # provides strings
+    binutils # collisions with toybox
+    # toybox # Collides with many binutil stuff, need to re-evaluate this at a later date
     file
     sqlmap
     binwalk
     wireshark
     dirb
     thc-hydra # network logon cracker
-    john
+    john # Brute forcing
     burpsuite
     steghide
     trufflehog # Dig for credentials in git, FS, s3, docker...
@@ -30,8 +30,8 @@ in {
     php
     sqlitebrowser
     httpie
-    postman
     wfuzz
+    tcpdump
   ] ++ [ pythonEnv ];
 
   # home.sessionVariables = {
