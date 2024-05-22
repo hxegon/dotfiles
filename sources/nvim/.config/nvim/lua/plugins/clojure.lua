@@ -29,4 +29,17 @@ return {
       vim.g["conjure#debug"] = true
     end,
   },
+  {
+    "clojure-vim/vim-jack-in",
+    dependencies = {
+      {
+        "radenling/vim-dispatch-neovim",
+        dependencies = {
+          {
+            "tpope/vim-dispatch",
+          },
+        },
+      },
+    },
+  },
 }
