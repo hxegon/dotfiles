@@ -38,6 +38,8 @@ wipe-older-than DAYS:
 # Update flakes
 update:
     nix flake update
+    @just gc
+    @just optimise
     @echo "Don't forget to add+commit your flake.lock!"
 
 # Search for a package in nixpkgs
