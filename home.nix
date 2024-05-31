@@ -15,7 +15,7 @@
     ./modules/go.nix
 
     # Tmp modules
-    ./modules/ctf.nix
+    # ./modules/ctf.nix
 
     # ./modules/doom-emacs.nix
   ];
