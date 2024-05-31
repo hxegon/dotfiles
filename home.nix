@@ -64,7 +64,7 @@
 
     yt-dlp # CLI rip video/audio from various sites
 
-    nerdfonts # TODO: Pick specific fonts, all of nerdfonts is huge and uneccesary
+    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "IosevkaTerm" "Mononoki" ]; })
 
     vhs
 
