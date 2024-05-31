@@ -79,9 +79,9 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
   # Invert scroll direction (natural scrolling)
-  services.xserver.libinput.touchpad.naturalScrolling = true;
+  services.libinput.touchpad.naturalScrolling = true;
 
   # Enable zsh, otherwise we can't set my shell to it!
   programs.zsh.enable = true;
