@@ -4,8 +4,12 @@
   home.packages = with pkgs; [
     steam-run # required to give nvim/mason.nvim a more normal environment
     xsel
+
+    # plugin build dependencies
+    gnumake
+    gcc
     
-    kitty # lazyvim requires a modern terminal with truecolor and undercurl
+    kitty # Terminal with truecolor and undercurl support
   ];
 
   programs.neovim = {
