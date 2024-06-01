@@ -5,6 +5,7 @@
     ./modules/zsh.nix
     ./modules/tmux.nix
     ./modules/git.nix
+    ./modules/kitty.nix
     ./modules/nvim.nix
     ./modules/scripts.nix
     ./modules/vm.nix

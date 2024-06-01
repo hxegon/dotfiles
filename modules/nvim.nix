@@ -10,8 +10,6 @@
     gnumake
     gcc
     unzip
-    
-    kitty # Terminal with truecolor and undercurl support
   ];
 
   programs.neovim = {
