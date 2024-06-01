@@ -4,7 +4,9 @@
 
 -- Set H/L to first/last on line non-whitespace jump
 vim.keymap.set("n", "H", "_", { noremap = true, silent = true })
+vim.keymap.set("v", "H", "_", { noremap = true, silent = true })
 vim.keymap.set("n", "L", "g_", { noremap = true, silent = true })
+vim.keymap.set("v", "L", "g_", { noremap = true, silent = true })
 
 -- Bubble selection up/down
 vim.keymap.set("v", "J", ":m '>+1<cr>gv=gv", { silent = true })
