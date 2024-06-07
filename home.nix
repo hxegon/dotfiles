@@ -61,7 +61,6 @@
     xsel # clipboard cli (cat foo.txt | xsel -ib)
     tree # List files/folders in a tree view
     watch # run a command / display output repeatedly
-    direnv # Automatic shell env setup per folder/project (automatically use a project's flake.nix!)
 
     yt-dlp # CLI rip video/audio from various sites
 

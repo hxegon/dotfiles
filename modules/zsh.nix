@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ zsh oh-my-zsh fzf ripgrep ];
+  home.packages = with pkgs; [ zsh oh-my-zsh fzf ripgrep direnv ];
 
   programs.zsh = {
     enable = true;
