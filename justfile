@@ -34,6 +34,8 @@ clean:
 [confirm("Leave at least a few days of profiles please ;-;. Continue? (y/n)")]
 wipe-older-than DAYS:
     nix profile wipe-history --older-than {{DAYS}}d
+    @just gc
+    @just optimise
 
 # Update flakes
 update:
