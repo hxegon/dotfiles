@@ -12,7 +12,7 @@
  
     # Languages
     ./modules/clojure.nix
-    ./modules/python.nix
+    # ./modules/python.nix
     ./modules/go.nix
 
     ./modules/games.nix
