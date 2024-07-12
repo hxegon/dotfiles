@@ -15,6 +15,8 @@
     ./modules/python.nix
     ./modules/go.nix
 
+    ./modules/games.nix
+
     # Tmp modules
     # ./modules/ctf.nix
 
