@@ -89,6 +89,7 @@
     libreoffice # Productivity tools
 
     vlc # simple media player
+    deluge # torrent client
     # gimp # Photo editing
     # rawtherapee # raw photo editing
 
