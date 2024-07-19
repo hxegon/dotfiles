@@ -15,7 +15,11 @@
     # ./modules/python.nix
     ./modules/go.nix
 
+    # Misc
     ./modules/games.nix
+
+    # Scratch/Test module
+    ./modules/testing.nix
 
     # Tmp modules
     # ./modules/ctf.nix
