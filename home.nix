@@ -5,21 +5,21 @@
     ./modules/zsh.nix
     ./modules/tmux.nix
     ./modules/git.nix
-    ./modules/kitty.nix
+    #./modules/kitty.nix
     ./modules/nvim.nix
-    ./modules/scripts.nix
-    ./modules/vm.nix
+    #./modules/scripts.nix
+    #./modules/vm.nix
  
     # Languages
-    ./modules/clojure.nix
+    #./modules/clojure.nix
     # ./modules/python.nix
-    ./modules/go.nix
+    #./modules/go.nix
 
     # Misc
-    ./modules/games.nix
+    #./modules/games.nix
 
     # Scratch/Test module
-    ./modules/testing.nix
+    #./modules/testing.nix
 
     # Tmp modules
     # ./modules/ctf.nix
@@ -39,7 +39,7 @@
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "23.11"; # Please read the comment before changing.
+  home.stateVersion = "24.11"; # Please read the comment before changing.
 
   # allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -54,7 +54,7 @@
     git
     curl
     wget
-    asdf-vm # universal version manager
+    #asdf-vm # universal version manager
     just # command runner like make or rake
     entr # exec commands on file change
     bat # better pager
@@ -68,36 +68,30 @@
     tree # List files/folders in a tree view
     watch # run a command / display output repeatedly
 
-    yt-dlp # CLI rip video/audio from various sites
+    #yt-dlp # CLI rip video/audio from various sites
 
-    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "IosevkaTerm" "Mononoki" ]; })
+    # (pkgs.nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "IosevkaTerm" "Mononoki" ]; })
 
-    vhs
+    #vhs
 
-    vscode # in case emacs is having issues
+    #vscode # in case emacs is having issues
 
-    zoom-us # video call/meeting app.
-    chromium # browser dev tools + having a backup in case a site doesn't work with firefox
+    #zoom-us # video call/meeting app.
+    #chromium # browser dev tools + having a backup in case a site doesn't work with firefox
 
     # Messages
-    discord
-    whatsapp-for-linux
+    #discord
+    #whatsapp-for-linux
 
-    nixfmt-classic
-    qemu # VMs
+    #nixfmt-classic
+    #qemu # VMs
 
-    libreoffice # Productivity tools
+    #libreoffice # Productivity tools
 
-    vlc # simple media player
-    deluge # torrent client
+    #vlc # simple media player
+    #deluge # torrent client
     # gimp # Photo editing
     # rawtherapee # raw photo editing
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your

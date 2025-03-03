@@ -1,4 +1,4 @@
-FLAKE := "theseus"
+FLAKE := "hxegon"
 
 _default:
     @just --list
@@ -10,7 +10,8 @@ test:
 # Build and activate current config, then add it as the default boot option
 [confirm("Really switch to this build?")]
 switch:
-    sudo nixos-rebuild switch --flake .#{{FLAKE}}
+    home-manager switch --flake ~/dotfiles
+    #sudo nixos-rebuild switch --flake .#{{FLAKE}}
 
 # Delete unreachable paths in /nix/store
 gc:
