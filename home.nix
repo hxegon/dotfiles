@@ -7,7 +7,8 @@
     ./modules/tmux.nix
     ./modules/git.nix
     ./modules/ghostty.nix
-    ./modules/nvim.nix
+    ./modules/nvf.nix
+    # ./modules/nvim.nixw
     #./modules/scripts.nix # TODO: Import scripts as local package
     #./modules/vm.nix
  
@@ -53,7 +54,7 @@
 
   # Setup nixGL (necessary for lots of programs on non-nixOS systems)
   nixGL.packages = nixGL.packages;
-  nixGL.defaultWrapper = "mesa";
+  nixGL.defaultWrapper = "mesa"; # Might need to change this per system
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
