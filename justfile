@@ -11,7 +11,7 @@ build:
 [confirm("Really switch to this build?")]
 switch:
     home-manager switch --flake ~/dotfiles
-    #sudo nixos-rebuild switch --flake .#{{FLAKE}}
+    just gc
 
 # Delete unreachable paths in /nix/store
 gc:
@@ -36,13 +36,11 @@ clean:
 wipe-older-than DAYS:
     nix profile wipe-history --older-than {{DAYS}}d
     @just gc
-    @just optimise
+    # @just optimise
 
 # Update flakes
 update:
     nix flake update
-    @just gc
-    @just optimise
     @echo "Don't forget to add+commit your flake.lock!"
 
 # Search for a package in nixpkgs
