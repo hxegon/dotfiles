@@ -3,7 +3,7 @@
 # Using steam-run for nvim may or may not be necessary. Sometimes nvim only works with steam-run, sometimes it won't work in it.
 {
   home.packages = with pkgs; [
-    steam-run # required to give nvim/mason.nvim a more normal environment
+    # steam-run # required to give nvim/mason.nvim a more normal environment
     xsel
 
     # plugin build dependencies

@@ -1,11 +1,12 @@
-{ config, pkgs, ... }:
+{ config, pkgs, nixGL, ... }:
 
 {
   imports = [
     ./modules/zsh.nix
     ./modules/tmux.nix
     ./modules/git.nix
-    #./modules/kitty.nix
+    # ./modules/kitty.nix
+    ./modules/ghostty.nix
     ./modules/nvim.nix
     #./modules/scripts.nix
     #./modules/vm.nix
@@ -43,6 +44,10 @@
 
   # allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  # Setup nixGL (necessary for lots of programs on non-nixOS systems)
+  nixGL.packages = nixGL.packages;
+  nixGL.defaultWrapper = "mesa";
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
