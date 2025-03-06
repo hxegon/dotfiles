@@ -3,9 +3,9 @@ FLAKE := "hxegon"
 _default:
     @just --list
 
-# Build and activate current config without adding it as a boot option
-# test:
-#     sudo nixos-rebuild test --flake .#{{FLAKE}}
+# Build and current config without actiating it
+build:
+    home-manager build --flake ~/dotfiles
 
 # Build and activate current config, then add it as the default boot option
 [confirm("Really switch to this build?")]
