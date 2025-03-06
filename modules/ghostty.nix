@@ -9,7 +9,10 @@
     enableZshIntegration = (if setup.shell == "zsh" then true else false);
     installBatSyntax = true;
     settings = {
+      theme = "catppuccin-mocha";
       command = "/home/${setup.username}/.nix-profile/bin/${setup.shell}";
+      font-family = "Mononoki Nerd Font Mono";
+      font-size = 12;
     };
   };
 }
