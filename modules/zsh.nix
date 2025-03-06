@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, setup, ... }:
 
 {
   home.packages = with pkgs; [ zsh oh-my-zsh fzf ripgrep direnv ];
@@ -10,7 +10,7 @@
     syntaxHighlighting.enable = true;
 
     sessionVariables = {
-      SHELL = "/home/hxegon/.nix-profile/bin/zsh";
+      SHELL = "/home/${setup.username}/.nix-profile/bin/zsh";
       ZSH_AUTOSUGGEST_STRATEGY = "history completion";
     };
 
