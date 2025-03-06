@@ -3,11 +3,12 @@
 {
   imports = [
     # Base imports
+    ./modules/cli-base.nix
     ./modules/tmux.nix
     ./modules/git.nix
     ./modules/ghostty.nix
     ./modules/nvim.nix
-    #./modules/scripts.nix
+    #./modules/scripts.nix # TODO: Import scripts as local package
     #./modules/vm.nix
  
     # Languages
@@ -57,27 +58,6 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    # System monitors
-    btop
-    htop
-
-    git
-    curl
-    wget
-    #asdf-vm # universal version manager
-    just # command runner like make or rake
-    entr # exec commands on file change
-    bat # better pager
-
-    fd # `find` with a human friendly interface
-    ripgrep # BLAZINGLY FAST text search
-    lf # cli file manager
-    zstd # my preferred compression stuff
-    tldr # Quick command examples for a lot of stuff
-    xsel # clipboard cli (cat foo.txt | xsel -ib)
-    tree # List files/folders in a tree view
-    watch # run a command / display output repeatedly
-
     #yt-dlp # CLI rip video/audio from various sites
 
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "IosevkaTerm" "Mononoki" ]; })

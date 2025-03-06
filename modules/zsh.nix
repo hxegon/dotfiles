@@ -42,8 +42,4 @@
     enableZshIntegration = true;
     nix-direnv.enable = true;
   };
-
-  programs.fzf = {
-    fileWidgetCommand = "rg --files";
-  };
 }
