@@ -70,7 +70,10 @@
 
     #yt-dlp # CLI rip video/audio from various sites
 
-    # (pkgs.nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "IosevkaTerm" "Mononoki" ]; })
+    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "IosevkaTerm" "Mononoki" ]; })
+
+    # Second brain
+    obsidian
 
     #vhs
 
