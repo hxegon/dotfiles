@@ -18,12 +18,17 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      setup = rec {
+        username = "hxegon";
+        shell = "zsh";
+      };
     in {
-      homeConfigurations."hxegon" = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations.${setup.username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
         extraSpecialArgs = {
           inherit nixGL;
+          inherit setup;
         };
 
         modules = [ ./home.nix ];

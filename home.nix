@@ -1,11 +1,10 @@
-{ config, pkgs, nixGL, ... }:
+{ config, pkgs, nixGL, setup, ... }:
 
 {
   imports = [
-    ./modules/zsh.nix
+    # Base imports
     ./modules/tmux.nix
     ./modules/git.nix
-    # ./modules/kitty.nix
     ./modules/ghostty.nix
     ./modules/nvim.nix
     #./modules/scripts.nix
@@ -25,8 +24,14 @@
     # Tmp modules
     # ./modules/ctf.nix
 
+    # DEPRECATED
+    # ./modules/kitty.nix
     # ./modules/doom-emacs.nix
-  ];
+    #
+    # CONDITIONAL MODULES (See flake setup var)
+  ] ++ (if setup.shell == "zsh" then [
+      ./modules/zsh.nix
+  ] else []);
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
