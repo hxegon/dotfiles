@@ -18,32 +18,34 @@
     nvf.url = "github:notashelf/nvf";
   };
 
-  outputs = { nixpkgs, home-manager, nixGL, nvf, ... }:
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-      setup = rec {
-        username = "hxegon";
-        shell = "zsh";
-      };
-    in {
-      defaultPackage."${system}" = home-manager.defaultPackage."${system}";
-
-      homeConfigurations.${setup.username} = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-
-        extraSpecialArgs = {
-          inherit nixGL;
-          inherit setup;
-        };
-
-        modules = [
-          nvf.homeManagerModules.default
-          ./home.nix
-        ];
-
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
-      };
+  outputs = {
+    nixpkgs,
+    home-manager,
+    nixGL,
+    nvf,
+    ...
+  }: let
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+    setup = {
+      username = "hxegon";
+      shell = "zsh";
     };
+  in {
+    defaultPackage."${system}" = home-manager.defaultPackage."${system}";
+
+    homeConfigurations.${setup.username} = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+
+      extraSpecialArgs = {
+        inherit nixGL;
+        inherit setup;
+      };
+
+      modules = [
+        nvf.homeManagerModules.default
+        ./home.nix
+      ];
+    };
+  };
 }
