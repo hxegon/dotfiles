@@ -4,28 +4,28 @@
   setup,
   ...
 }: let
-  shellModules = {
+  shellModuleMap = {
     zsh = ./modules/zsh.nix;
   };
 
-  langModules = {
+  langModuleMap = {
     go = ./modules/go.nix;
     clojure = ./modules/clojure.nix;
     python = ./modules/python.nix;
   };
 
-  activatedModules =
-    [shellModules."${setup.shell}"]
-    # Get corresponding modules for specified langs in setup.Languages
-    ++ builtins.foldl' (mods: mkey:
-      if (builtins.elem mkey setup.languages)
-      then mods ++ langModules."${mkey}"
-      else mods) [] (builtins.attrNames langModules);
-
   tempModules = [
     # ./modules/testing.nix
     # ./modules/ctf.nix
   ];
+
+  activatedModules =
+    [shellModuleMap."${setup.shell}"]
+    # Get corresponding modules for specified langs in setup.Languages
+    ++ builtins.foldl' (mods: mkey:
+      if (builtins.elem mkey setup.languages)
+      then mods ++ [langModuleMap."${mkey}"]
+      else mods) [] (builtins.attrNames langModuleMap);
 in {
   # Better integration for DEs
   targets.genericLinux.enable = true;

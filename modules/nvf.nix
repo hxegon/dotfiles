@@ -49,11 +49,11 @@
       projects.project-nvim.enable = true;
       comments.comment-nvim.enable = true;
 
-      # https://github.com/echasnovski/mini.surround
-      # sd" -> delete surrounding "
-      # saiw" -> add " to inner word
-      # sr{[ -> replace surrounding {} with []
       mini = {
+        # https://github.com/echasnovski/mini.surround
+        # sd" -> delete surrounding "
+        # saiw" -> add " to inner word
+        # sr{[ -> replace surrounding {} with []
         surround.enable = true;
         # indentscope.enable = true;
       };
