@@ -56,65 +56,66 @@ in {
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "${setup.username}";
-  home.homeDirectory = "/home/${setup.username}";
+  home = {
+    username = "${setup.username}";
+    homeDirectory = "/home/${setup.username}";
 
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "24.11"; # Please read the comment before changing.
+    # This value determines the Home Manager release that your configuration is
+    # compatible with. This helps avoid breakage when a new Home Manager release
+    # introduces backwards incompatible changes.
+    #
+    # You should not change this value, even if you update Home Manager. If you do
+    # want to update the value, then make sure to first check the Home Manager
+    # release notes.
+    stateVersion = "24.11"; # Please read the comment before changing.
+
+    sessionVariables = {
+      BROWSER = "firefox";
+    };
+
+    packages = with pkgs; [
+      #yt-dlp # CLI rip video/audio from various sites
+
+      (pkgs.nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "IosevkaTerm" "Mononoki"];})
+
+      # Second brain
+      obsidian
+
+      #vhs
+
+      #vscode # in case $EDITOR is having issues
+
+      #zoom-us # video call/meeting app.
+      #chromium # browser dev tools + having a backup in case a site doesn't work with firefox
+
+      # Messages
+      #discord
+      #whatsapp-for-linux
+
+      #qemu # VMs
+
+      #libreoffice # Productivity tools
+
+      #vlc # simple media player
+      #deluge # torrent client
+      # gimp # Photo editing
+      # rawtherapee # raw photo editing
+
+      # # You can also create simple shell scripts directly inside your
+      # # configuration. For example, this adds a command 'my-hello' to your
+      # # environment:
+      # (pkgs.writeShellScriptBin "my-hello" ''
+      #   echo "Hello, ${config.home.username}!"
+      # '')
+    ];
+  };
 
   # allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # Setup nixGL (necessary for lots of programs on non-nixOS systems)
+  # Setup nixGL (necessary for lots of GUI programs on non-nixOS systems)
   nixGL.packages = nixGL.packages;
   nixGL.defaultWrapper = "mesa"; # Might need to change this per system
-
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
-  home.packages = with pkgs; [
-    #yt-dlp # CLI rip video/audio from various sites
-
-    (pkgs.nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "IosevkaTerm" "Mononoki"];})
-
-    # Second brain
-    obsidian
-
-    #vhs
-
-    #vscode # in case emacs is having issues
-
-    #zoom-us # video call/meeting app.
-    #chromium # browser dev tools + having a backup in case a site doesn't work with firefox
-
-    # Messages
-    #discord
-    #whatsapp-for-linux
-
-    #nixfmt-classic
-    #qemu # VMs
-
-    #libreoffice # Productivity tools
-
-    #vlc # simple media player
-    #deluge # torrent client
-    # gimp # Photo editing
-    # rawtherapee # raw photo editing
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-  ];
-
-  home.sessionVariables = {BROWSER = "firefox";};
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
