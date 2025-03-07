@@ -1,12 +1,28 @@
 {
-  config,
   pkgs,
   nixGL,
   setup,
   ...
-}: {
-  # Testing something out related to apps not showing up. https://github.com/nix-community/home-manager/issues/1439
-  # programs.bash.enable = true;
+}: let
+  shellModules = {
+    zsh = ./modules/zsh.nix;
+  };
+
+  langModules = {
+    go = ./modules/go.nix;
+    clojure = ./modules/clojure.nix;
+    python = ./modules/python.nix;
+  };
+
+  activatedModules =
+    [shellModules."${setup.shell}"]
+    # Get corresponding modules for specified langs in setup.Languages
+    ++ builtins.foldl' (mods: mkey:
+      if (builtins.elem mkey setup.languages)
+      then mods ++ langModules."${mkey}"
+      else mods) [] (builtins.attrNames langModules);
+in {
+  # Better integration for DEs
   targets.genericLinux.enable = true;
   xdg.mime.enable = true;
 
@@ -22,11 +38,6 @@
       #./modules/scripts.nix # TODO: Import scripts as local package
       #./modules/vm.nix
 
-      # Languages
-      #./modules/clojure.nix
-      # ./modules/python.nix
-      #./modules/go.nix
-
       # Misc
       #./modules/games.nix
 
@@ -40,15 +51,8 @@
       # ./modules/kitty.nix
       # ./modules/doom-emacs.nix
       #
-      # CONDITIONAL MODULES (See flake setup var)
     ]
-    ++ (
-      if setup.shell == "zsh"
-      then [
-        ./modules/zsh.nix
-      ]
-      else []
-    );
+    ++ activatedModules;
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
