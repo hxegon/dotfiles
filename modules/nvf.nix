@@ -45,7 +45,6 @@
 
       vimAlias = true;
       spellcheck.enable = true;
-
       autocomplete.nvim-cmp.enable = true;
       notify.nvim-notify.enable = true;
       projects.project-nvim.enable = true;
@@ -55,8 +54,14 @@
         surround.enable = true;
 
         motion = {
-          hop.enable = true;
-          leap.enable = true;
+          leap = {
+            enable = true;
+            mappings = {
+              leapForwardTo = "-";
+              leapBackwardTo = "_";
+            };
+          };
+          # hop.enable = true;
           # precognition.enable = true;
         };
       };
@@ -84,10 +89,49 @@
         enableTreesitter = true;
         enableExtraDiagnostics = true;
 
+        # Always should be enabled
         nix.enable = true;
+
+        lua.enable = true;
+        markdown.enable = true;
+        css.enable = true;
+        html.enable = true;
+        bash.enable = true;
+        python.enable = true;
+        go.enable = true;
       };
 
-      treesitter.context.enable = true;
+      keymaps = [
+        {
+          key = "H";
+          action = "_";
+          mode = "n";
+          silent = true;
+          lua = false;
+        }
+        {
+          key = "L";
+          action = "g_";
+          mode = "n";
+          silent = true;
+          lua = false;
+        }
+      ];
+
+      # keymaps = let
+      #   keymap = keybind: action: mode: desc: {
+      #     inherit action;
+      #     inherit desc;
+      #     key = keybind;
+      #     mode = mode ? "n";
+      #     silent = true;
+      #     lua = isLua ? false;
+      #   };
+      # in [
+      #   (keymap "<leader><leader>" )
+      # ];
+
+      # treesitter.context.enable = true;
     };
   };
 
