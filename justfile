@@ -11,7 +11,6 @@ build:
 [confirm("Really switch to this build?")]
 switch:
     home-manager switch --flake ~/dotfiles
-    just gc
 
 # Delete unreachable paths in /nix/store
 gc:
@@ -35,7 +34,6 @@ clean:
 [confirm("Leave at least a few days of profiles please ;-;. Continue? (y/n)")]
 wipe-older-than DAYS:
     nix profile wipe-history --older-than {{DAYS}}d
-    @just gc
     # @just optimise
 
 # Update flakes
