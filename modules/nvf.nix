@@ -50,9 +50,13 @@
       projects.project-nvim.enable = true;
       comments.comment-nvim.enable = true;
 
-      utility = {
-        surround.enable = true;
+      # https://github.com/echasnovski/mini.surround
+      # sd" -> delete surrounding "
+      # saiw" -> add " to inner word
+      # sr{[ -> replace surrounding {} with []
+      mini.surround.enable = true;
 
+      utility = {
         motion = {
           leap = {
             enable = true;
