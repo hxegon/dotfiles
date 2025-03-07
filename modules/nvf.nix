@@ -120,20 +120,15 @@
           silent = true;
           lua = false;
         }
+        {
+          key = "<leader>f<leader>";
+          action = "require('telescope.builtin').git_files";
+          mode = "n";
+          silent = true;
+          lua = true;
+        }
       ];
 
-      # keymaps = let
-      #   keymap = keybind: action: mode: desc: {
-      #     inherit action;
-      #     inherit desc;
-      #     key = keybind;
-      #     mode = mode ? "n";
-      #     silent = true;
-      #     lua = isLua ? false;
-      #   };
-      # in [
-      #   (keymap "<leader><leader>" )
-      # ];
 
       # treesitter.context.enable = true;
     };
