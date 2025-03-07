@@ -21,6 +21,11 @@
       if (builtins.elem mkey setup.languages)
       then mods ++ langModules."${mkey}"
       else mods) [] (builtins.attrNames langModules);
+
+  tempModules = [
+    # ./modules/testing.nix
+    # ./modules/ctf.nix
+  ];
 in {
   # Better integration for DEs
   targets.genericLinux.enable = true;
@@ -52,7 +57,8 @@ in {
       # ./modules/doom-emacs.nix
       #
     ]
-    ++ activatedModules;
+    ++ activatedModules
+    ++ tempModules;
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
