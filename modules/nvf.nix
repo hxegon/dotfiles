@@ -168,6 +168,11 @@
         }
       ];
 
+      lazy.plugins = {
+        "vim-lastplace" = {
+          package = pkgs.vimPlugins.vim-lastplace;
+        };
+      };
 
       # treesitter.context.enable = true;
     };
