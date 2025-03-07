@@ -27,6 +27,8 @@
         shell = "zsh";
       };
     in {
+      defaultPackage."${system}" = home-manager.defaultPackage."${system}";
+
       homeConfigurations.${setup.username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
