@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Based off of some info from https://www.chrisportela.com/posts/home-manager-flake/
 
 # Install nix
@@ -15,7 +16,10 @@ echo "experimental-features = nix-command flakes" >>~/.config/nix/nix.conf
 # Initial nix run
 echo "Bootstrapping nix. THIS IS UNTESTED"
 . "$HOME/.nix-profile/etc/profile.d/nix.sh"
-nix run . -- build --flake .
+
+# Need to remove .zshrc so nix doesn't have a collision when replacing
+rm ~/.zshrc
+nix run . -- switch --flake .
 home-manager switch --flake .
 
 # TODO: Optional cloning of scripts into ~/bin
