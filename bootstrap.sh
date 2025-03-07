@@ -14,6 +14,7 @@ echo "experimental-features = nix-command flakes" >>~/.config/nix/nix.conf
 
 # Initial nix run
 echo "Bootstrapping nix. THIS IS UNTESTED"
+. "$HOME/.nix-profile/etc/profile.d/nix.sh"
 nix run . -- build --flake .
 home-manager switch --flake .
 
