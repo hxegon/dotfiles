@@ -1,7 +1,6 @@
 {
-  # config,
-  # lib,
-  # pkgs,
+  lib,
+  setup,
   ...
 }: {
   programs.nvf = {
@@ -54,7 +53,30 @@
       # sd" -> delete surrounding "
       # saiw" -> add " to inner word
       # sr{[ -> replace surrounding {} with []
-      mini.surround.enable = true;
+      mini = {
+        surround.enable = true;
+        # indentscope.enable = true;
+      };
+
+      navigation = {
+        harpoon = {
+          enable = true;
+
+          mappings = {
+            listMarks = "<leader>h";
+            markFile = "<leader>H";
+            file1 = "<leader>1";
+            file2 = "<leader>2";
+            file3 = "<leader>3";
+            file4 = "<leader>4";
+          };
+
+          setupOpts.defaults = {
+            save_on_toggle = true;
+            sync_on_ui_close = true;
+          };
+        };
+      };
 
       utility = {
         motion = {
@@ -87,22 +109,27 @@
         nvim-docs-view.enable = true;
       };
 
+      # TODO: enable languages based on setup var
       languages = {
         enableLSP = true;
-        enableFormat = true;
+        enableFormat = false;
         enableTreesitter = true;
         enableExtraDiagnostics = true;
 
         # Always should be enabled
         nix.enable = true;
-
-        lua.enable = true;
-        markdown.enable = true;
-        css.enable = true;
-        html.enable = true;
         bash.enable = true;
-        python.enable = true;
-        go.enable = true;
+        markdown.enable = true;
+
+        css.enable = lib.mkIf (builtins.elem "web" setup.languages) true;
+        html.enable = lib.mkIf (builtins.elem "web" setup.languages) true;
+        ts.enable = lib.mkIf (builtins.elem "web" setup.languages) true;
+
+        lua.enable = lib.mkIf (builtins.elem "lua" setup.languages) true;
+        python.enable = lib.mkIf (builtins.elem "python" setup.languages) true;
+        go.enable = lib.mkIf (builtins.elem "go" setup.languages) true;
+        nu.enable = lib.mkIf (builtins.elem "nu" setup.languages) true;
+        ruby.enable = lib.mkIf (builtins.elem "ruby" setup.languages) true;
       };
 
       keymaps = [

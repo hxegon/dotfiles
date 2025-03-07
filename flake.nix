@@ -30,6 +30,10 @@
     setup = {
       username = "hxegon";
       shell = "zsh";
+      languages = [
+        "web"
+        "go"
+      ];
     };
   in {
     defaultPackage."${system}" = home-manager.defaultPackage."${system}";
