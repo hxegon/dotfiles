@@ -1,39 +1,54 @@
-{ config, pkgs, nixGL, setup, ... }:
-
 {
-  imports = [
-    # Base imports
-    ./modules/cli-base.nix
-    ./modules/tmux.nix
-    ./modules/git.nix
-    ./modules/ghostty.nix
-    ./modules/nvf.nix
-    # ./modules/nvim.nixw
-    #./modules/scripts.nix # TODO: Import scripts as local package
-    #./modules/vm.nix
- 
-    # Languages
-    #./modules/clojure.nix
-    # ./modules/python.nix
-    #./modules/go.nix
+  config,
+  pkgs,
+  nixGL,
+  setup,
+  ...
+}: {
+  # Testing something out related to apps not showing up. https://github.com/nix-community/home-manager/issues/1439
+  # programs.bash.enable = true;
+  targets.genericLinux.enable = true;
+  xdg.mime.enable = true;
 
-    # Misc
-    #./modules/games.nix
+  imports =
+    [
+      # Base imports
+      ./modules/cli-base.nix
+      ./modules/tmux.nix
+      ./modules/git.nix
+      ./modules/ghostty.nix
+      ./modules/nvf.nix
+      # ./modules/nvim.nixw
+      #./modules/scripts.nix # TODO: Import scripts as local package
+      #./modules/vm.nix
 
-    # Scratch/Test module
-    #./modules/testing.nix
+      # Languages
+      #./modules/clojure.nix
+      # ./modules/python.nix
+      #./modules/go.nix
 
-    # Tmp modules
-    # ./modules/ctf.nix
+      # Misc
+      #./modules/games.nix
 
-    # DEPRECATED
-    # ./modules/kitty.nix
-    # ./modules/doom-emacs.nix
-    #
-    # CONDITIONAL MODULES (See flake setup var)
-  ] ++ (if setup.shell == "zsh" then [
-      ./modules/zsh.nix
-  ] else []);
+      # Scratch/Test module
+      #./modules/testing.nix
+
+      # Tmp modules
+      # ./modules/ctf.nix
+
+      # DEPRECATED
+      # ./modules/kitty.nix
+      # ./modules/doom-emacs.nix
+      #
+      # CONDITIONAL MODULES (See flake setup var)
+    ]
+    ++ (
+      if setup.shell == "zsh"
+      then [
+        ./modules/zsh.nix
+      ]
+      else []
+    );
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -61,7 +76,7 @@
   home.packages = with pkgs; [
     #yt-dlp # CLI rip video/audio from various sites
 
-    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "IosevkaTerm" "Mononoki" ]; })
+    (pkgs.nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "IosevkaTerm" "Mononoki"];})
 
     # Second brain
     obsidian
@@ -95,7 +110,7 @@
     # '')
   ];
 
-  home.sessionVariables = { BROWSER = "firefox"; };
+  home.sessionVariables = {BROWSER = "firefox";};
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
