@@ -23,3 +23,5 @@ nix run . -- switch --flake .
 home-manager switch --flake .
 
 # TODO: Optional cloning of scripts into ~/bin
+
+echo "Make sure to optimise! (just optimise)"
