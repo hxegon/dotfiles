@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   setup,
   ...
@@ -130,6 +131,15 @@
         go.enable = lib.mkIf (builtins.elem "go" setup.languages) true;
         nu.enable = lib.mkIf (builtins.elem "nu" setup.languages) true;
         ruby.enable = lib.mkIf (builtins.elem "ruby" setup.languages) true;
+      };
+
+      treesitter = {
+        enable = true;
+        addDefaultGrammars = true;
+
+        grammars = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+          just
+        ];
       };
 
       keymaps = [
