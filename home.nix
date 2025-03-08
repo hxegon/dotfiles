@@ -5,16 +5,16 @@
   setup,
   ...
 }: let
-  getModulesFromMap = modMap: selectedMods: with builtins;
-    foldl' (mods: availMod:
-      if (elem availMod selectedMods)
-      then mods ++ [modMap.${availMod}]
-      else mods) [] (builtins.attrNames modMap);
+  getModulesFromMap = modMap: selectedMods:
+    with builtins;
+      foldl' (mods: availMod:
+        if (elem availMod selectedMods)
+        then mods ++ [modMap.${availMod}]
+        else mods) [] (builtins.attrNames modMap);
 
   # TODO: Enable selecting more than one shell
   shellModuleMap = {
     zsh = ./modules/zsh.nix;
-    # add new
   };
 
   featureModuleMap = {
@@ -91,21 +91,23 @@ in {
       BROWSER = "firefox";
     };
 
-    packages = with pkgs; [
-      #yt-dlp # CLI rip video/audio from various sites
+    packages = with pkgs;
+      [
+        #yt-dlp # CLI rip video/audio from various sites
 
-      (pkgs.nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "IosevkaTerm" "Mononoki"];})
+        (pkgs.nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "IosevkaTerm" "Mononoki"];})
 
-      #vhs
-      #qemu # VMs
+        #vhs
+        #qemu # VMs
 
-      # # You can also create simple shell scripts directly inside your
-      # # configuration. For example, this adds a command 'my-hello' to your
-      # # environment:
-      # (pkgs.writeShellScriptBin "my-hello" ''
-      #   echo "Hello, ${config.home.username}!"
-      # '')
-    ] ++ [lazytsm.packages.${system}.default];
+        # # You can also create simple shell scripts directly inside your
+        # # configuration. For example, this adds a command 'my-hello' to your
+        # # environment:
+        # (pkgs.writeShellScriptBin "my-hello" ''
+        #   echo "Hello, ${config.home.username}!"
+        # '')
+      ]
+      ++ [lazytsm.packages.${system}.default];
   };
 
   # allow unfree packages
