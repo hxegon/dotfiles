@@ -89,6 +89,8 @@ in {
 
     sessionVariables = {
       BROWSER = "firefox";
+      LC_ALL = "en_US.UTF8";
+      LANG = "en_US.UTF8";
     };
 
     packages = with pkgs;
