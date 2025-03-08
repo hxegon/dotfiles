@@ -22,7 +22,7 @@
       theme = "catppuccin-mocha";
       command = "/home/${setup.username}/.nix-profile/bin/${setup.shell}";
       # nerd font / unicode stuff not working with this?
-      # font-family = "Mononoki Nerd Font Mono";
+      font-family = "Mononoki Nerd Font Mono";
       font-size = 12;
       cursor-style = "block";
 
