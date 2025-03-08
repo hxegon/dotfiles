@@ -176,6 +176,12 @@ in {
           silent = true;
           lua = true;
         }
+        {
+          key = "<C-s>";
+          action = ":w<CR>";
+          lua = false;
+          mode = "n";
+        }
       ];
 
       lazy.plugins = {
