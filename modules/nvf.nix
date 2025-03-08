@@ -58,9 +58,10 @@ in {
         # sd" -> delete surrounding "
         # saiw" -> add " to inner word
         # sr{[ -> replace surrounding {} with []
+        surround.enable = true;
+
         animate.enable = true;
         pairs.enable = true;
-        surround.enable = true;
         align.enable = true;
       };
 
@@ -111,7 +112,7 @@ in {
         trouble.enable = true;
         lspSignature.enable = true;
         otter-nvim.enable = true;
-        lsplines.enable = true;
+        lsplines.enable = false;
         nvim-docs-view.enable = true;
       };
 
