@@ -20,7 +20,7 @@
       g = "git";
       tm = "tmux";
       lg = "lazygit";
-      lazytsm = "/home/hxegon/Code/hxegon/lazytsm/lazytsm"; # temporary
+      # lazytsm = "/home/hxegon/Code/hxegon/lazytsm/lazytsm"; # temporary
       lt = "/home/hxegon/Code/hxegon/lazytsm/lazytsm"; # temporary
       j = "just";
       jc = "just --choose";

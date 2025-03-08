@@ -1,6 +1,7 @@
 {
   pkgs,
   nixGL,
+  lazytsm,
   setup,
   ...
 }: let
@@ -15,6 +16,7 @@
   };
 
   tempModules = [
+    ./modules/nushell.nix
     # ./modules/testing.nix
     # ./modules/ctf.nix
   ];
@@ -113,7 +115,7 @@ in {
       # (pkgs.writeShellScriptBin "my-hello" ''
       #   echo "Hello, ${config.home.username}!"
       # '')
-    ];
+    ] ++ [lazytsm.packages.${system}.default];
   };
 
   # allow unfree packages

@@ -15,6 +15,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    lazytsm = {
+      url = "github:hxegon/lazytsm";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nvf.url = "github:notashelf/nvf";
   };
 
@@ -23,6 +28,7 @@
     home-manager,
     nixGL,
     nvf,
+    lazytsm,
     ...
   }: let
     system = "x86_64-linux";
@@ -42,8 +48,10 @@
       inherit pkgs;
 
       extraSpecialArgs = {
-        inherit nixGL;
+        inherit system;
         inherit setup;
+        inherit nixGL;
+        inherit lazytsm;
       };
 
       modules = [
