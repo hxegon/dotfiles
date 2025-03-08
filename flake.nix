@@ -34,11 +34,16 @@
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
     setup = {
-      username = "hxegon";
-      shell = "zsh";
+      username  = "hxegon";
+      shell     = "zsh";
+
       languages = [
         "web"
         "go"
+      ];
+
+      features = [
+        "desktop-apps"
       ];
     };
   in {

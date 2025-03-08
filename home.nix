@@ -5,8 +5,20 @@
   setup,
   ...
 }: let
+  getModulesFromMap = modMap: selectedMods: with builtins;
+    foldl' (mods: availMod:
+      if (elem availMod selectedMods)
+      then mods ++ [modMap.${availMod}]
+      else mods) [] (builtins.attrNames modMap);
+
+  # TODO: Enable selecting more than one shell
   shellModuleMap = {
     zsh = ./modules/zsh.nix;
+    # add new
+  };
+
+  featureModuleMap = {
+    desktop-apps = ./modules/desktop-apps.nix;
   };
 
   langModuleMap = {
@@ -23,11 +35,9 @@
 
   activatedModules =
     [shellModuleMap."${setup.shell}"]
-    # Get corresponding modules for specified langs in setup.Languages
-    ++ builtins.foldl' (mods: mkey:
-      if (builtins.elem mkey setup.languages)
-      then mods ++ [langModuleMap."${mkey}"]
-      else mods) [] (builtins.attrNames langModuleMap);
+    # get selected language modules
+    ++ getModulesFromMap langModuleMap setup.languages
+    ++ getModulesFromMap featureModuleMap setup.features;
 in {
   # Better integration for DEs
   targets.genericLinux.enable = true;
@@ -86,28 +96,8 @@ in {
 
       (pkgs.nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "IosevkaTerm" "Mononoki"];})
 
-      # Second brain
-      obsidian
-
       #vhs
-
-      #vscode # in case $EDITOR is having issues
-
-      #zoom-us # video call/meeting app.
-      #chromium # browser dev tools + having a backup in case a site doesn't work with firefox
-
-      # Messages
-      #discord
-      #whatsapp-for-linux
-
       #qemu # VMs
-
-      #libreoffice # Productivity tools
-
-      #vlc # simple media player
-      #deluge # torrent client
-      # gimp # Photo editing
-      # rawtherapee # raw photo editing
 
       # # You can also create simple shell scripts directly inside your
       # # configuration. For example, this adds a command 'my-hello' to your
