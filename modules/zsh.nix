@@ -1,7 +1,16 @@
-{ config, pkgs, setup, ... }:
-
 {
-  home.packages = with pkgs; [ zsh oh-my-zsh fzf ripgrep direnv ];
+  pkgs,
+  setup,
+  ...
+}: {
+  home.packages = with pkgs; [
+    zsh
+    oh-my-zsh
+    fzf
+    ripgrep
+    direnv
+    starship
+  ];
 
   programs.zsh = {
     enable = true;
@@ -32,7 +41,7 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "fzf" "docker" ];
+      plugins = ["git" "fzf" "docker"];
       theme = "lambda";
     };
   };
@@ -41,5 +50,10 @@
     enable = true;
     enableZshIntegration = true;
     nix-direnv.enable = true;
+  };
+
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
   };
 }
