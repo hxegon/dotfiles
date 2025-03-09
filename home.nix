@@ -51,23 +51,16 @@ in {
       ./modules/git.nix
       ./modules/ghostty.nix
       ./modules/nvf.nix
-      # ./modules/nvim.nixw
       #./modules/scripts.nix # TODO: Import scripts as local package
       #./modules/vm.nix
 
       # Misc
       #./modules/games.nix
 
-      # Scratch/Test module
-      #./modules/testing.nix
-
-      # Tmp modules
-      # ./modules/ctf.nix
-
       # DEPRECATED
       # ./modules/kitty.nix
       # ./modules/doom-emacs.nix
-      #
+      # ./modules/nvim.nixw
     ]
     ++ activatedModules
     ++ tempModules;
