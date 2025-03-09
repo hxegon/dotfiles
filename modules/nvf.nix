@@ -5,7 +5,7 @@
   ...
 }: let
   isLangEnabled = lang:
-    lib.mkIf (builtins.elem "lang" setup.languages) true;
+    lib.mkIf (builtins.elem lang setup.languages) true;
 in {
   programs.nvf = {
     # Lots of this copied from https://github.com/NotAShelf/nvf/blob/main/configuration.nix
