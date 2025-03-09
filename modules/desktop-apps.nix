@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     obsidian
     # vscode
@@ -12,6 +10,7 @@
     # gimp # Photo editing
     # rawtherapee # raw photo editing
     vlc
+    spotify
     # deluge # torrent client
   ];
 }
