@@ -1,5 +1,5 @@
-{ config, lib, pkgs, ... }:
-
-{
-  home.packages = with pkgs; [ gopls ];
+{pkgs, ...}: {
+  home.packages = with pkgs; [
+    go
+  ];
 }
