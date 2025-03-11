@@ -1,9 +1,14 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   home.packages = with pkgs; [
     obsidian
     # vscode
     # zoom-us
-    whatsapp-for-linux
+    # whatsapp-for-linux
+    (config.lib.nixGL.wrap whatsapp-for-linux)
     chromium
     discord
     libreoffice
