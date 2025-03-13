@@ -1,7 +1,7 @@
-{ config, pkgs, setup, ... }:
-
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
+    gnumake
+
     # System monitors
     btop
     htop
