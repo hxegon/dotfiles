@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs; [
     tmux
     tmuxPlugins.sensible
@@ -39,7 +41,7 @@
       bind h select-pane -L
 
       bind-key C-g popup -d "#{pane_current_path}" -h 90% -w 100% -E lazygit
-      bind-key C-p popup -d "#{pane_current_path}" -h 80% -w 60% -E /home/hxegon/Code/hxegon/lazytsm/lazytsm
+      bind-key C-p popup -d "#{pane_current_path}" -h 80% -w 60% -E lazytsm
       bind-key C-j popup -d "#{pane_current_path}" -h 50% -w 50% -E just --choose
     '';
 
