@@ -44,3 +44,8 @@ update:
 # Search for a package in nixpkgs
 search *QUERY:
     nix search nixpkgs {{QUERY}}
+
+# TODO: Move this into a system specific nix script command
+restart-power-manager:
+  xfce4-power-manager --restart
+  sudo systemctl restart upower
