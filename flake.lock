@@ -124,11 +124,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1741883246,
-        "narHash": "sha256-FC+0jeRQ4LKfP1T7puLq2QX/J9vrMd9eym3/OvhzZ58=",
+        "lastModified": 1742153737,
+        "narHash": "sha256-wL8XpG5azjrTKdYYocQKlFa2M4DcNlKe0ZetISvMUJQ=",
         "owner": "hxegon",
         "repo": "lazytsm",
-        "rev": "1fce02570a70d6a7af41a66cb7ff6676000a6fa5",
+        "rev": "79e36cc93dd29b2a7a16ae125c3ed05f7b5daefd",
         "type": "github"
       },
       "original": {
