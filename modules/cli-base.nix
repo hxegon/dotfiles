@@ -7,11 +7,13 @@
     htop
 
     git
+    gh
     curl
     wget
     #asdf-vm # universal version manager
     just # command runner like make or rake
     entr # exec commands on file change
+    watchexec # entr alternative, seems to be more standard and want to try it out
     bat # better pager
 
     fd # `find` with a human friendly interface
