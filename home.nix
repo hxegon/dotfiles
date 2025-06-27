@@ -39,7 +39,7 @@
     ++ getModulesFromMap langModuleMap setup.languages
     ++ getModulesFromMap featureModuleMap setup.features;
 in {
-  # Better integration for DEs
+  # Better integration for DEs, like having installed packages show up in menus and such
   targets.genericLinux.enable = true;
   xdg.mime.enable = true;
 
