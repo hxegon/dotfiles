@@ -55,7 +55,7 @@ in {
       #./modules/vm.nix
 
       # Misc
-      #./modules/games.nix
+      # ./modules/games.nix
 
       # DEPRECATED
       # ./modules/kitty.nix
