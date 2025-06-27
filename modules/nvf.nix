@@ -105,33 +105,27 @@ in {
         noice.enable = true;
       };
 
-      lsp = {
-        formatOnSave = true;
-        lspkind.enable = false;
-        lightbulb.enable = true;
-        lspsaga.enable = false;
-        trouble.enable = true;
-        lspSignature.enable = true;
-        otter-nvim.enable = true;
-        lsplines.enable = false;
-        nvim-docs-view.enable = true;
-      };
-
-      # TODO: enable languages based on setup var
       languages = {
-        enableLSP = true;
+        enableDAP = true;
         enableFormat = true;
         enableTreesitter = true;
         enableExtraDiagnostics = true;
 
-        # Always should be enabled
         nix.enable = true;
         bash.enable = true;
         markdown.enable = true;
 
-        css.enable = isLangEnabled "web";
+        css = {
+          enable = isLangEnabled "web";
+          format.package = pkgs.prettierd;
+        };
+
         html.enable = isLangEnabled "web";
-        ts.enable = isLangEnabled "web";
+
+        ts = {
+          enable = isLangEnabled "web";
+          format.package = pkgs.prettierd;
+        };
 
         lua.enable = isLangEnabled "lua";
         python.enable = isLangEnabled "python";
@@ -140,6 +134,22 @@ in {
         ruby.enable = isLangEnabled "ruby";
       };
 
+      lsp = {
+        enable = true;
+        formatOnSave = true;
+        lspkind.enable = false;
+        lightbulb.enable = true;
+        lspsaga.enable = false;
+        trouble.enable = true;
+        lspSignature.enable = true;
+        otter-nvim.enable = true;
+        # lsplines.enable = false;
+        nvim-docs-view.enable = true;
+      };
+
+      debugger.nvim-dap = {
+        enable = true;
+      };
       treesitter = {
         enable = true;
         addDefaultGrammars = true;
