@@ -88,7 +88,7 @@ in {
 
     packages = with pkgs;
       [
-        #yt-dlp # CLI rip video/audio from various sites
+        yt-dlp # CLI rip video/audio from various sites
 
         (pkgs.nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "IosevkaTerm" "Mononoki"];})
 
