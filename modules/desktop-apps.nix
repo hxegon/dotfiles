@@ -16,6 +16,6 @@
     # rawtherapee # raw photo editing
     vlc
     spotify
-    # deluge # torrent client
+    deluge # torrent client
   ];
 }
