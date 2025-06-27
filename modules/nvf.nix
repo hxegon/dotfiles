@@ -21,8 +21,8 @@ in {
 
       theme = {
         enable = true;
-        name = "catppuccin";
-        style = "mocha";
+        name = "rose-pine";
+        style = "main";
         transparent = false;
       };
 
@@ -42,7 +42,8 @@ in {
       statusline = {
         lualine = {
           enable = true;
-          theme = "catppuccin";
+          # theme = "catppuccin";
+          theme = "nord";
         };
       };
 
