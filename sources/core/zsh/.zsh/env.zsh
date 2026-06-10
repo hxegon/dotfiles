@@ -1,3 +1,7 @@
+# Mark path as having unique elements so that duplicates are auto removed.
+# This makes resourcing ~/.zshrc safer
+typeset -U PATH
+
 export XDG_CONFIG_HOME="$HOME/.config"
 export CLAUDE_CONFIG_DIR="$HOME/.claude-work-config"
 
