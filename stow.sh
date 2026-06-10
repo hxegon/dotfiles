@@ -3,7 +3,12 @@ set -euo pipefail
 
 ACTION="${1:-}"
 OS="$(uname)"
-[ "$OS" = "Darwin" ] && BUCKET="macos" || BUCKET="linux"
+[ "$OS" = "Darwin" ] && OS_BUCKET="macos" || OS_BUCKET="linux"
+
+desc() {
+    local file="$1/.description"
+    [ -f "$file" ] && cat "$file"
+}
 
 stow_pkg() {
     local bucket_dir="$1" flag="$2" pkg="$3"
@@ -26,8 +31,7 @@ stow_dir() {
     else
         for dir in "$bucket_dir"/*/; do
             [ -d "$dir" ] || continue
-            local pkg; pkg="$(basename "$dir")"
-            stow_pkg "$bucket_dir" "$flag" "$pkg"
+            stow_pkg "$bucket_dir" "$flag" "$(basename "$dir")"
         done
     fi
 }
@@ -42,7 +46,9 @@ cleanup_stale() {
             */dotfiles/sources/core/*|\
             */dotfiles/sources/macos/*|\
             */dotfiles/sources/linux/*|\
-            */dotfiles/sources/opt/*)
+            */dotfiles/sources/opt/*|\
+            */dotfiles/sources/opt-macos/*|\
+            */dotfiles/sources/opt-linux/*)
                 continue ;;
         esac
         case "$target" in
@@ -53,17 +59,16 @@ cleanup_stale() {
                 ;;
         esac
     done < <(find "$HOME" -maxdepth 5 -type l 2>/dev/null)
-    echo "  removed $count stale symlinks"
+    [ "$count" -gt 0 ] && echo "  removed $count stale symlinks"
 }
 
 is_stowed() {
     local bucket_dir="$1" pkg="$2"
-    # check if any file from the package exists as a symlink at its target
     local found=0
     while IFS= read -r -d '' src; do
         local rel="${src#$bucket_dir/$pkg/}"
         [ -L "$HOME/$rel" ] && found=1 && break
-    done < <(find "$bucket_dir/$pkg" -type f -not -name '.DS_Store' -print0 2>/dev/null)
+    done < <(find "$bucket_dir/$pkg" -type f -not -name '.DS_Store' -not -name '.description' -print0 2>/dev/null)
     [ "$found" -eq 1 ]
 }
 
@@ -73,11 +78,10 @@ list_bucket() {
     for d in "$dir"/*/; do
         [ -d "$d" ] || continue
         local pkg; pkg="$(basename "$d")"
-        if is_stowed "$dir" "$pkg"; then
-            echo "  $pkg ✓"
-        else
-            echo "  $pkg"
-        fi
+        local info; info="$(desc "$d")"
+        local mark=" "
+        is_stowed "$dir" "$pkg" && mark="✓"
+        printf "  %s %-15s %s\n" "$mark" "$pkg" "$info"
     done
 }
 
@@ -85,30 +89,40 @@ case "$ACTION" in
     stow)
         shift
         stow_dir "sources/core" "" "$@"
-        stow_dir "sources/$BUCKET" ""
+        stow_dir "sources/$OS_BUCKET" ""
         ;;
     stow-adopt)
         shift
         cleanup_stale
         stow_dir "sources/core" "--adopt" "$@"
-        stow_dir "sources/$BUCKET" "--adopt"
+        stow_dir "sources/$OS_BUCKET" "--adopt"
         ;;
     unstow)
-        for bucket in core macos linux opt; do
+        for bucket in core macos linux opt opt-macos opt-linux; do
             [ -d "sources/$bucket" ] && stow_dir "sources/$bucket" "-D" 2>/dev/null || true
         done
         cleanup_stale
         ;;
-    stow-opt)
-        shift; stow_dir "sources/opt" "" "$@"
-        ;;
-    stow-opt-adopt)
-        shift; stow_dir "sources/opt" "--adopt" "$@"
+    stow-opt|stow-opt-adopt)
+        local flag=""
+        [ "$ACTION" = "stow-opt-adopt" ] && flag="--adopt"
+        shift
+        for pkg in "$@"; do
+            local found=0
+            for bucket in "opt" "opt-$OS_BUCKET"; do
+                [ -d "sources/$bucket/$pkg" ] || continue
+                stow_pkg "sources/$bucket" "$flag" "$pkg"
+                found=1
+                break
+            done
+            [ "$found" -eq 0 ] && echo "  $pkg: not found in opt/ or opt-$OS_BUCKET/"
+        done
         ;;
     list)
         list_bucket "core" "sources/core"
-        list_bucket "$BUCKET" "sources/$BUCKET"
+        list_bucket "$OS_BUCKET" "sources/$OS_BUCKET"
         list_bucket "opt" "sources/opt"
+        [ -d "sources/opt-$OS_BUCKET" ] && list_bucket "opt ($OS_BUCKET)" "sources/opt-$OS_BUCKET"
         ;;
     *)
         echo "stow.sh — manage dotfiles with GNU Stow"
@@ -119,10 +133,10 @@ case "$ACTION" in
         echo "  stow [pkgs...]     Stow core + OS packages (all, or pick specific)"
         echo "  stow-adopt [pkgs]  Same, but adopt existing files into the repo"
         echo "  unstow             Remove all stow symlinks"
-        echo "  stow-opt <pkgs>    Stow optional packages (e.g. kitty fish)"
+        echo "  stow-opt <pkgs>    Stow optional packages (from opt/ or opt-$OS_BUCKET/)"
         echo "  list               List all available packages by bucket"
         echo ""
-        echo "OS: $(uname) → using $BUCKET bucket"
+        echo "OS: $(uname) → $OS_BUCKET bucket"
         exit 1
         ;;
 esac
