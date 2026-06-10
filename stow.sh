@@ -97,6 +97,7 @@ case "$ACTION" in
         for bucket in core macos linux opt; do
             [ -d "sources/$bucket" ] && stow_dir "sources/$bucket" "-D" 2>/dev/null || true
         done
+        cleanup_stale
         ;;
     stow-opt)
         shift; stow_dir "sources/opt" "" "$@"
