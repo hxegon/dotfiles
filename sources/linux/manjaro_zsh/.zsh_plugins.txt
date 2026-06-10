@@ -1,2 +1,0 @@
-agkozak/zsh-z
-aperezdc/zsh-fzy
