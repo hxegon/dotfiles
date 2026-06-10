@@ -14,10 +14,10 @@ stow_pkg() {
     local bucket_dir="$1" flag="$2" pkg="$3"
     echo "  $pkg"
     if [ "$flag" = "--adopt" ]; then
-        stow --no-folding --adopt -d "$bucket_dir" -t "$HOME" "$pkg" 2>/dev/null || \
-            stow --no-folding --override='.*' -d "$bucket_dir" -t "$HOME" "$pkg"
+        stow --no-folding --ignore='\.description' --adopt -d "$bucket_dir" -t "$HOME" "$pkg" 2>/dev/null || \
+            stow --no-folding --ignore='\.description' --override='.*' -d "$bucket_dir" -t "$HOME" "$pkg"
     else
-        stow --no-folding $flag -d "$bucket_dir" -t "$HOME" "$pkg"
+        stow --no-folding --ignore='\.description' $flag -d "$bucket_dir" -t "$HOME" "$pkg"
     fi
 }
 
@@ -149,7 +149,7 @@ case "$ACTION" in
         echo "Commands:"
         echo "  stow [pkgs...]     Stow core + OS packages (all, or pick specific)"
         echo "  stow-adopt [pkgs]  Same, but adopt existing files into the repo"
-        echo "  unstow             Remove all stow symlinks"
+        echo "  unstow [pkgs...]   Remove symlinks (all, or pick specific)"
         echo "  stow-opt <pkgs>    Stow optional packages (from opt/ or opt-$OS_BUCKET/)"
         echo "  list               List all available packages by bucket"
         echo ""
