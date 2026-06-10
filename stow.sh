@@ -37,22 +37,20 @@ stow_dir() {
 }
 
 cleanup_stale() {
-    echo "Cleaning up stale symlinks from old layout..."
+    echo "Cleaning up stale symlinks..."
     local count=0
     while IFS= read -r link; do
         [ -z "$link" ] && continue
         local target; target="$(readlink "$link")"
         case "$target" in
-            */dotfiles/sources/core/*|\
-            */dotfiles/sources/macos/*|\
-            */dotfiles/sources/linux/*|\
-            */dotfiles/sources/opt/*|\
-            */dotfiles/sources/opt-macos/*|\
-            */dotfiles/sources/opt-linux/*)
-                continue ;;
-        esac
-        case "$target" in
             *dotfiles/sources/*|*dotfiles/bin/*)
+                # resolve relative links against the symlink's directory
+                local resolved="$target"
+                case "$resolved" in
+                    /*) ;;
+                    *)  resolved="$(cd "$(dirname "$link")" 2>/dev/null && echo "$PWD/${target}" | sed 's|/\./|/|g')" ;;
+                esac
+                [ -e "$resolved" ] && continue
                 echo "  removing: $link"
                 rm -f "$link"
                 count=$((count + 1))
@@ -64,12 +62,16 @@ cleanup_stale() {
 
 is_stowed() {
     local bucket_dir="$1" pkg="$2"
-    local found=0
     while IFS= read -r -d '' src; do
         local rel="${src#$bucket_dir/$pkg/}"
-        [ -L "$HOME/$rel" ] && found=1 && break
+        local dest="$HOME/$rel"
+        [ -L "$dest" ] || continue
+        local link; link="$(readlink "$dest")"
+        # verify symlink resolves to the current source location
+        [ -e "$dest" ] || continue
+        return 0
     done < <(find "$bucket_dir/$pkg" -type f -not -name '.DS_Store' -not -name '.description' -print0 2>/dev/null)
-    [ "$found" -eq 1 ]
+    return 1
 }
 
 list_bucket() {
@@ -110,6 +112,7 @@ case "$ACTION" in
                 done
                                 if [ "$found" -eq 0 ]; then echo "  $pkg: not found"; fi
             done
+            cleanup_stale
         else
             for bucket in core macos linux opt opt-macos opt-linux; do
                 [ -d "sources/$bucket" ] && stow_dir "sources/$bucket" "-D" 2>/dev/null || true
