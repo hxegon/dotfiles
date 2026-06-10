@@ -1,27 +1,44 @@
 #!/usr/bin/env bash
-# Based off of some info from https://www.chrisportela.com/posts/home-manager-flake/
+set -euo pipefail
 
-# Install nix
-echo "Installing nix as single user"
-# https://nixos.org/download/
-sh <(curl -L https://nixos.org/nix/install) --no-daemon
+echo "Bootstrapping dotfiles with GNU Stow..."
 
-# Enable nix flakes feature
-echo "Enabling flakes"
-mkdir -p ~/.config/nix
-echo "experimental-features = nix-command flakes" >>~/.config/nix/nix.conf
+OS="$(uname)"
+if [ "$OS" = "Darwin" ]; then
+    echo "Detected macOS"
+    BUCKET="macos"
+elif [ "$OS" = "Linux" ]; then
+    echo "Detected Linux"
+    BUCKET="linux"
+else
+    echo "Unknown OS: $OS"
+    exit 1
+fi
 
-# TODO: Ask for conf that initially loaded modules have been reviewed, abort if not
+if ! command -v stow &>/dev/null; then
+    echo "GNU Stow is not installed. Install it first:"
+    echo "  macOS: brew install stow"
+    echo "  Linux: sudo apt install stow / sudo pacman -S stow"
+    exit 1
+fi
 
-# Initial nix run
-echo "Bootstrapping nix. THIS IS UNTESTED"
-. "$HOME/.nix-profile/etc/profile.d/nix.sh"
+echo "Stowing universal packages..."
+for dir in sources/universal/*/; do
+    pkg="$(basename "$dir")"
+    echo "  $pkg"
+    stow --adopt -d sources/universal -t "$HOME" "$pkg"
+done
 
-# Need to remove .zshrc so nix doesn't have a collision when replacing
-rm ~/.zshrc
-nix run . -- switch --flake .
-home-manager switch --flake .
+echo "Stowing $BUCKET packages..."
+for dir in "sources/$BUCKET"/*/; do
+    pkg="$(basename "$dir")"
+    echo "  $pkg"
+    stow --adopt -d "sources/$BUCKET" -t "$HOME" "$pkg"
+done
 
-# TODO: Optional cloning of scripts into ~/bin
-
-echo "Make sure to optimise! (just optimise)"
+echo ""
+echo "Done! Optional packages can be stowed with:"
+echo "  just stow-opt <package>"
+echo "  just list-opt"
+echo ""
+echo "Review adopted files with: git diff"

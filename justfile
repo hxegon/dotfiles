@@ -1,51 +1,90 @@
-FLAKE := "hxegon"
+set positional-arguments := true
 
 _default:
     @just --list
 
-# Build and current config without actiating it
-build:
-    home-manager build --flake ~/dotfiles
+# Auto-detect OS and stow
+stow:
+    @if [ "$$(uname)" = "Darwin" ]; then \
+        just stow-macos; \
+    else \
+        just stow-linux; \
+    fi
 
-# Build and activate current config, then add it as the default boot option
-[confirm("Really switch to this build?")]
-switch:
-    home-manager switch --flake ~/dotfiles
+# Adopt existing files during stow (use for initial setup)
+stow-adopt:
+    @if [ "$$(uname)" = "Darwin" ]; then \
+        just stow-macos-adopt; \
+    else \
+        just stow-linux-adopt; \
+    fi
 
-# Delete unreachable paths in /nix/store
-gc:
-    nix store gc
+# Stow universal + macOS
+stow-macos:
+    @for dir in sources/universal/*/; do \
+        stow -d sources/universal -t ~ "$$(basename "$$dir")"; \
+    done
+    @for dir in sources/macos/*/; do \
+        stow -d sources/macos -t ~ "$$(basename "$$dir")"; \
+    done
 
-# deduplicate nix store
-optimise:
-    nix store optimise
+# Stow universal + macOS (adopt mode)
+stow-macos-adopt:
+    @for dir in sources/universal/*/; do \
+        stow --adopt -d sources/universal -t ~ "$$(basename "$$dir")"; \
+    done
+    @for dir in sources/macos/*/; do \
+        stow --adopt -d sources/macos -t ~ "$$(basename "$$dir")"; \
+    done
 
-# Maintenance task for cleaning out /nix/store (doesn't include deleting old profiles)
-[confirm("This is gonna take a while. Start? (y/n)")]
-clean:
-    @echo "Starting size:"
-    @du -sh /nix/store
-    @just gc
-    @just optimise
-    @echo "After GC + Optimization:"
-    @du -sh /nix/store
+# Stow universal + Linux
+stow-linux:
+    @for dir in sources/universal/*/; do \
+        stow -d sources/universal -t ~ "$$(basename "$$dir")"; \
+    done
+    @for dir in sources/linux/*/; do \
+        stow -d sources/linux -t ~ "$$(basename "$$dir")"; \
+    done
 
-# Delete profiles older than n days
-[confirm("Leave at least a few days of profiles please ;-;. Continue? (y/n)")]
-wipe-older-than DAYS:
-    nix profile wipe-history --older-than {{DAYS}}d
-    # @just optimise
+# Stow universal + Linux (adopt mode)
+stow-linux-adopt:
+    @for dir in sources/universal/*/; do \
+        stow --adopt -d sources/universal -t ~ "$$(basename "$$dir")"; \
+    done
+    @for dir in sources/linux/*/; do \
+        stow --adopt -d sources/linux -t ~ "$$(basename "$$dir")"; \
+    done
 
-# Update flakes
-update:
-    nix flake update
-    @echo "Don't forget to add+commit your flake.lock!"
+# Stow optional packages (e.g. just stow-opt kitty fish)
+stow-opt *pkgs:
+    @for pkg in {{pkgs}}; do \
+        stow -d sources/opt -t ~ "$$pkg"; \
+    done
 
-# Search for a package in nixpkgs
-search *QUERY:
-    nix search nixpkgs {{QUERY}}
+# Stow optional packages (adopt mode)
+stow-opt-adopt *pkgs:
+    @for pkg in {{pkgs}}; do \
+        stow --adopt -d sources/opt -t ~ "$$pkg"; \
+    done
 
-# TODO: Move this into a system specific nix script command
-restart-power-manager:
-  xfce4-power-manager --restart
-  sudo systemctl restart upower
+# Unstow optional packages (e.g. just unstow-opt kitty fish)
+unstow-opt *pkgs:
+    @for pkg in {{pkgs}}; do \
+        stow -D -d sources/opt -t ~ "$$pkg"; \
+    done
+
+# List available optional packages
+list-opt:
+    @ls sources/opt/
+
+# Unstow everything
+unstow:
+    @for bucket in universal macos linux opt; do \
+        for dir in sources/$$bucket/*/; do \
+            stow -D -d "sources/$$bucket" -t ~ "$$(basename "$$dir")" 2>/dev/null || true; \
+        done; \
+    done
+
+# Restow (unstow then re-stow, use after git pull)
+restow:
+    @just unstow && just stow

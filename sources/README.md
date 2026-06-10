@@ -1,26 +1,36 @@
 # hxegon/dotfiles
-A group of config files for tools, languages, editors, etc., meant to be linked with
-the excellent gnu stow utility.
 
-Ideally these would be written to be OS independent, or at least have detection
-for the major OSs. As it is, don't expect any of these to work on anything other
-then OS X, and maybe not even then ;)
+Managed with [GNU Stow](https://www.gnu.org/software/stow/).
+
+## Structure
+
+```
+sources/
+├── universal/     Always stowed (zsh, git, tmux, nvim, etc.)
+├── macos/         macOS-only (yabai, hammerspoon, homebrew)
+├── linux/         Linux-only (hyprland, xmonad, keyd, xremap, etc.)
+└── opt/           Opt-in (kitty, fish, emacs, kakoune, helix)
+```
+
+Each subdirectory under a bucket is a stow package — its contents mirror `$HOME`.
 
 ## Usage
-```bash
-stow nvim
-```
-The structure of the nvim/ dir is as follows:
-nvim
-└── .config
-    └── nvim
-        ├── .gitignore
-        ├── .gitmodules
-        ├── .netrwhist
-        ├── coc-settings.json
-        ├── colors
-        ├── init.vim
-        └── plugged
 
-when you use the stow command, it drops a symlinked version of that into $HOME,
-without destroying the other contents of $HOME/.config.
+```bash
+# Auto-detect OS and stow
+just stow
+
+# Or explicitly
+just stow-macos
+just stow-linux
+
+# Initial setup (adopts existing files into the repo)
+just stow-adopt
+
+# Optional packages
+just stow-opt kitty fish
+just list-opt
+
+# Remove all symlinks
+just unstow
+```
