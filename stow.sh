@@ -98,10 +98,24 @@ case "$ACTION" in
         stow_dir "sources/$OS_BUCKET" "--adopt"
         ;;
     unstow)
-        for bucket in core macos linux opt opt-macos opt-linux; do
-            [ -d "sources/$bucket" ] && stow_dir "sources/$bucket" "-D" 2>/dev/null || true
-        done
-        cleanup_stale
+        shift
+        if [ $# -gt 0 ]; then
+            for pkg in "$@"; do
+                found=0
+                for bucket in core macos linux opt opt-macos opt-linux; do
+                    [ -d "sources/$bucket/$pkg" ] || continue
+                    stow_pkg "sources/$bucket" "-D" "$pkg" || true
+                    found=1
+                    break
+                done
+                                if [ "$found" -eq 0 ]; then echo "  $pkg: not found"; fi
+            done
+        else
+            for bucket in core macos linux opt opt-macos opt-linux; do
+                [ -d "sources/$bucket" ] && stow_dir "sources/$bucket" "-D" 2>/dev/null || true
+            done
+            cleanup_stale
+        fi
         ;;
     stow-opt|stow-opt-adopt)
         local flag=""
