@@ -74,7 +74,20 @@ case "$ACTION" in
         shift; stow_opt "--adopt" "$@"
         ;;
     *)
-        echo "Usage: $0 {stow|stow-adopt|unstow|stow-opt <pkg>|stow-opt-adopt <pkg>}"
+        echo "stow.sh — manage dotfiles with GNU Stow"
+        echo ""
+        echo "Usage: $0 <command> [args]"
+        echo ""
+        echo "Commands:"
+        echo "  stow               Stow universal + OS-specific packages"
+        echo "  stow-adopt         Stow and adopt existing files into the repo"
+        echo "  unstow             Remove all stow symlinks"
+        echo "  stow-opt <pkgs>    Stow optional packages (e.g. kitty fish)"
+        echo "  stow-opt-adopt <p> Stow optional packages in adopt mode"
+        echo ""
+        echo "OS detection: $(uname) → $BUCKET bucket"
+        echo "Packages: universal/ + $BUCKET/"
+        echo "Optional:  $(ls sources/opt/ 2>/dev/null | tr '\n' ' ')"
         exit 1
         ;;
 esac

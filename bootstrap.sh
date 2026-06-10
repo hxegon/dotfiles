@@ -6,10 +6,8 @@ echo "Bootstrapping dotfiles with GNU Stow..."
 OS="$(uname)"
 if [ "$OS" = "Darwin" ]; then
     echo "Detected macOS"
-    BUCKET="macos"
 elif [ "$OS" = "Linux" ]; then
     echo "Detected Linux"
-    BUCKET="linux"
 else
     echo "Unknown OS: $OS"
     exit 1
@@ -22,23 +20,10 @@ if ! command -v stow &>/dev/null; then
     exit 1
 fi
 
-echo "Stowing universal packages..."
-for dir in sources/universal/*/; do
-    pkg="$(basename "$dir")"
-    echo "  $pkg"
-    stow --adopt -d sources/universal -t "$HOME" "$pkg"
-done
-
-echo "Stowing $BUCKET packages..."
-for dir in "sources/$BUCKET"/*/; do
-    pkg="$(basename "$dir")"
-    echo "  $pkg"
-    stow --adopt -d "sources/$BUCKET" -t "$HOME" "$pkg"
-done
+./stow.sh stow-adopt
 
 echo ""
 echo "Done! Optional packages can be stowed with:"
-echo "  just stow-opt <package>"
-echo "  just list-opt"
+echo "  ./stow.sh stow-opt <package>"
 echo ""
 echo "Review adopted files with: git diff"
