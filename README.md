@@ -63,8 +63,10 @@ just install-module net       # install one module (deduped against core)
 just install-all              # install all modules (excluding trash)
 just uninstall nmap           # remove from Brewfiles, archive to trash
 just sync                     # list installed-but-not-declared packages
-just adopt nmap net           # add an installed package to a module Brewfile
+just adopt nmap net           # add installed package to a module (auto-creates if new)
 just diff                     # show drift between declared and installed
+just dump                     # print current brew leaves/casks/taps in Brewfile format
+just modules                  # list all modules and their contents
 ```
 
 From the repo root, `just brew <cmd>` proxies to the homebrew justfile.

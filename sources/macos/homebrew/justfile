@@ -36,7 +36,7 @@ uninstall pkg:
 
 # list installed-but-not-declared packages
 sync:
-    {{HELPER}} sync
+    @{{HELPER}} sync
 
 # add an installed package to a module Brewfile
 adopt pkg module:
@@ -49,3 +49,7 @@ diff:
 # print current brew leaves/casks/taps in Brewfile format
 dump:
     {{HELPER}} dump
+
+# list all modules and their contents
+modules:
+    {{HELPER}} modules

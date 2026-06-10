@@ -19,14 +19,15 @@ Commands:
   uninstall <pkg>        Uninstall, remove from Brewfiles, archive to trash
   diff                   Show installed vs declared differences
   dump                   Print brew leaves/casks/taps in Brewfile format
+  modules                List all modules and their contents
 EOF
 }
 
 parse_line() {
     local line="$1"
     local type id
-    type=$(echo "$line" | sed -n 's/^[[:space:]]*\(brew\|cask\|tap\).*/\1/p')
-    id=$(echo "$line" | sed -n 's/^[[:space:]]*[^"]*"\([^"]*\)".*/\1/p')
+    type=$(echo "$line" | grep -oE '^(brew|cask|tap)' | head -1)
+    id=$(echo "$line" | sed -E -n 's/^[[:space:]]*[^"]*"([^"]*)".*/\1/p')
     if [ -n "$type" ] && [ -n "$id" ]; then
         echo "$type:$id"
     fi
@@ -108,12 +109,31 @@ do_sync() {
         echo "  cask \"$pkg\""
         had=1
     done < <(brew list --cask 2>/dev/null)
-    while IFS= read -r pkg; do
-        [ -z "${declared_tap[$pkg]:-}" ] || continue
-        echo "  tap \"$pkg\""
+    while IFS= read -r tap; do
+        [ -z "${declared_tap[$tap]:-}" ] || continue
+        local items
+        items=$(brew list --formula -1 2>/dev/null | grep "^$tap/" | sed "s|^$tap/||" | paste -sd ',' - 2>/dev/null || true)
+        # also check casks from the tap
+        local tap_dir
+        tap_dir="$(brew --prefix)/Library/Taps/$(echo "$tap" | sed 's|/|/homebrew-|')"
+        if [ -d "$tap_dir/Casks" ]; then
+            for caskfile in "$tap_dir/Casks"/*.rb; do
+                [ -f "$caskfile" ] || continue
+                local caskname; caskname=$(basename "$caskfile" .rb)
+                if brew list --cask "$caskname" &>/dev/null; then
+                    items="${items:+$items, }$caskname"
+                fi
+            done
+        fi
+        if [ -n "$items" ]; then
+            echo "  tap \"$tap\" ($items)"
+        else
+            echo "  tap \"$tap\" (no formulas installed)"
+        fi
         had=1
     done < <(brew tap 2>/dev/null)
     [ "$had" -eq 0 ] && echo "  (none)"
+    return 0
 }
 
 do_adopt() {
@@ -126,7 +146,8 @@ do_adopt() {
     else
         target="$MODULES/$module.Brewfile"
     fi
-    [ -f "$target" ] || { echo "Module '$module' not found: $target"; exit 1; }
+    local newfile=0
+    [ -f "$target" ] || newfile=1
 
     if [ -n "$(find_in_brewfiles "$pkg")" ]; then
         echo "Package '$pkg' is already declared in another Brewfile"
@@ -137,14 +158,17 @@ do_adopt() {
 
     if brew list --cask "$pkg" &>/dev/null; then
         type="cask"
-    elif resolved=$(brew list --formula -1 2>/dev/null | grep -m1 -E "(^|/)$pkg\$"); [ -n "$resolved" ]; then
+    elif local maybe; maybe=$(brew list --formula -1 2>/dev/null | grep -m1 -E "(^|/)$pkg\$"); [ -n "$maybe" ]; then
         type="brew"
+        resolved="$maybe"
     elif brew tap 2>/dev/null | grep -q "^$pkg\$"; then
         type="tap"
     else
         echo "Package '$pkg' is not installed via brew"
         exit 1
     fi
+
+    [ "$newfile" -eq 1 ] && { mkdir -p "$(dirname "$target")"; touch "$target"; echo "Created module '$module'"; }
 
     echo "$type \"$resolved\"" >> "$target"
     echo "Added $type \"$resolved\" to $module"
@@ -165,6 +189,16 @@ do_uninstall() {
 
     local files
     files=$(find_in_brewfiles "$pkg")
+
+    local installed=0
+    if brew list --cask "$pkg" &>/dev/null || brew list --formula "$pkg" &>/dev/null || brew tap 2>/dev/null | grep -q "^$pkg\$"; then
+        installed=1
+    fi
+
+    if [ -z "$files" ] && [ "$installed" -eq 0 ]; then
+        echo "Package '$pkg' not found in any Brewfile or installed via brew"
+        exit 1
+    fi
 
     # Collect full package IDs from Brewfiles for tap orphan checking
     local full_ids=()
@@ -249,9 +283,26 @@ do_diff() {
         echo "  cask \"$pkg\""
         had=1
     done < <(brew list --cask 2>/dev/null)
-    while IFS= read -r pkg; do
-        [ -z "${declared_tap[$pkg]:-}" ] || continue
-        echo "  tap \"$pkg\""
+    while IFS= read -r tap; do
+        [ -z "${declared_tap[$tap]:-}" ] || continue
+        local items
+        items=$(brew list --formula -1 2>/dev/null | grep "^$tap/" | sed "s|^$tap/||" | paste -sd ',' - 2>/dev/null || true)
+        local tap_dir
+        tap_dir="$(brew --prefix)/Library/Taps/$(echo "$tap" | sed 's|/|/homebrew-|')"
+        if [ -d "$tap_dir/Casks" ]; then
+            for caskfile in "$tap_dir/Casks"/*.rb; do
+                [ -f "$caskfile" ] || continue
+                local caskname; caskname=$(basename "$caskfile" .rb)
+                if brew list --cask "$caskname" &>/dev/null; then
+                    items="${items:+$items, }$caskname"
+                fi
+            done
+        fi
+        if [ -n "$items" ]; then
+            echo "  tap \"$tap\" ($items)"
+        else
+            echo "  tap \"$tap\" (no formulas installed)"
+        fi
         had=1
     done < <(brew tap 2>/dev/null)
     [ "$had" -eq 0 ] && echo "  (none)"
@@ -259,22 +310,63 @@ do_diff() {
     echo ""
     echo "Declared but not installed:"
     had=0
+
+    local -A installed_formula installed_cask
+    while IFS= read -r f; do
+        installed_formula["$f"]=1
+        installed_formula["${f##*/}"]=1
+    done < <(brew list --formula -1 2>/dev/null)
+    while IFS= read -r c; do
+        installed_cask["$c"]=1
+    done < <(brew list --cask -1 2>/dev/null)
+    local taps
+    taps=$(brew tap 2>/dev/null)
+
     for id in "${!declared_formula[@]}"; do
-        brew list --formula "$id" &>/dev/null && continue
+        [ -n "${installed_formula[$id]:-}" ] && continue
         echo "  brew \"$id\""
         had=1
     done
     for id in "${!declared_cask[@]}"; do
-        brew list --cask "$id" &>/dev/null && continue
+        [ -n "${installed_cask[$id]:-}" ] && continue
         echo "  cask \"$id\""
         had=1
     done
     for id in "${!declared_tap[@]}"; do
-        brew tap 2>/dev/null | grep -q "^$id\$" && continue
+        echo "$taps" | grep -q "^$id\$" && continue
         echo "  tap \"$id\""
         had=1
     done
     [ "$had" -eq 0 ] && echo "  (none)"
+    return 0
+}
+
+do_modules() {
+    local -a files
+    [ -f "$CORE" ] && files+=("$CORE")
+    while IFS= read -r f; do
+        files+=("$f")
+    done < <(find "$MODULES" -name "*.Brewfile" -type f ! -name "trash.Brewfile" | sort)
+
+    for f in "${files[@]}"; do
+        [ -f "$f" ] || continue
+        local name
+        if [ "$f" = "$CORE" ]; then
+            name="core"
+        elif [[ "$f" == "$MODULES/apps/"* ]]; then
+            name="apps/$(basename "$f" .Brewfile)"
+        else
+            name="$(basename "$f" .Brewfile)"
+        fi
+
+        local contents
+        contents=$(grep -vE '^\s*(#|$)' "$f" | sed 's/^/    /')
+        if [ -n "$contents" ]; then
+            echo "=== $name ==="
+            echo "$contents"
+            echo ""
+        fi
+    done
 }
 
 do_dump() {
@@ -306,5 +398,6 @@ case "${1:-}" in
     uninstall) do_uninstall "${2:-}" ;;
     diff)      do_diff ;;
     dump)      do_dump ;;
+    modules)   do_modules ;;
     *)         usage; exit 1 ;;
 esac
