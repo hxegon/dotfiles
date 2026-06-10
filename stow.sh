@@ -39,7 +39,7 @@ cleanup_stale() {
         [ -z "$link" ] && continue
         local target; target="$(readlink "$link")"
         case "$target" in
-            */dotfiles/sources/universal/*|\
+            */dotfiles/sources/core/*|\
             */dotfiles/sources/macos/*|\
             */dotfiles/sources/linux/*|\
             */dotfiles/sources/opt/*)
@@ -84,17 +84,17 @@ list_bucket() {
 case "$ACTION" in
     stow)
         shift
-        stow_dir "sources/universal" "" "$@"
+        stow_dir "sources/core" "" "$@"
         stow_dir "sources/$BUCKET" ""
         ;;
     stow-adopt)
         shift
         cleanup_stale
-        stow_dir "sources/universal" "--adopt" "$@"
+        stow_dir "sources/core" "--adopt" "$@"
         stow_dir "sources/$BUCKET" "--adopt"
         ;;
     unstow)
-        for bucket in universal macos linux opt; do
+        for bucket in core macos linux opt; do
             [ -d "sources/$bucket" ] && stow_dir "sources/$bucket" "-D" 2>/dev/null || true
         done
         ;;
@@ -105,7 +105,7 @@ case "$ACTION" in
         shift; stow_dir "sources/opt" "--adopt" "$@"
         ;;
     list)
-        list_bucket "universal" "sources/universal"
+        list_bucket "core" "sources/core"
         list_bucket "$BUCKET" "sources/$BUCKET"
         list_bucket "opt" "sources/opt"
         ;;
@@ -115,7 +115,7 @@ case "$ACTION" in
         echo "Usage: $0 <command> [pkgs...]"
         echo ""
         echo "Commands:"
-        echo "  stow [pkgs...]     Stow universal + OS packages (all, or pick specific)"
+        echo "  stow [pkgs...]     Stow core + OS packages (all, or pick specific)"
         echo "  stow-adopt [pkgs]  Same, but adopt existing files into the repo"
         echo "  unstow             Remove all stow symlinks"
         echo "  stow-opt <pkgs>    Stow optional packages (e.g. kitty fish)"

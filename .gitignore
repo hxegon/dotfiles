@@ -23,4 +23,4 @@ sources/linux/xmonad/.xmonad/*
 !sources/linux/xmonad/.xmonad/xmobarrc
 
 # Clojure cache
-sources/universal/clojure/.clojure/.cpcache/
+sources/core/clojure/.clojure/.cpcache/

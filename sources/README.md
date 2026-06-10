@@ -6,7 +6,7 @@ Managed with [GNU Stow](https://www.gnu.org/software/stow/).
 
 ```
 sources/
-├── universal/     Always stowed (zsh, git, tmux, nvim, etc.)
+├── core/     Always stowed (zsh, git, tmux, nvim, etc.)
 ├── macos/         macOS-only (yabai, hammerspoon, homebrew)
 ├── linux/         Linux-only (hyprland, xmonad, keyd, xremap, etc.)
 └── opt/           Opt-in (kitty, fish, emacs, kakoune, helix)
