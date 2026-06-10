@@ -121,11 +121,11 @@ case "$ACTION" in
         fi
         ;;
     stow-opt|stow-opt-adopt)
-        local flag=""
+        flag=""
         [ "$ACTION" = "stow-opt-adopt" ] && flag="--adopt"
         shift
         for pkg in "$@"; do
-            local found=0
+            found=0
             for bucket in "opt" "opt-$OS_BUCKET"; do
                 [ -d "sources/$bucket/$pkg" ] || continue
                 stow_pkg "sources/$bucket" "$flag" "$pkg"
