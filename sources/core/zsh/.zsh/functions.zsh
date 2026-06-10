@@ -1,5 +1,7 @@
-function cdgg() {
-    cd "$(git gtr go $1)"
+function gtr-help() {
+  echo "gtrb - Create a new worktree from a branch"
+  echo "ggcd - interactively select a worktree"
+  echo "ggrm - interactively remove a worktree"
 }
 
 function gtrb() {
