@@ -59,13 +59,14 @@ function _aishell_usage() {
   echo ""
   echo "  -c          Command generation mode — outputs one shell command"
   echo "  -q          Question mode — answers a question using AI"
-  echo "  -p, --pro   Use DeepSeek V4 Pro (default: DeepSeek v4 Flash)"
+  echo "  -p, --pro   Use DeepSeek V4 Pro (default: AISHELL_DEFAULT_MODEL | DeepSeek v4 Flash)"
   echo "  -t          Enable thinking (default: off)"
-  echo "  --provider  Provider to use (default: openrouter)"
+  echo "  --provider  Provider to use (default: AISHELL_PROVIDER | openrouter)"
 }
 
-local provider="openrouter"
-local model="deepseek/deepseek-v4-flash"
+local provider="${AISHELL_PROVIDER:-deepseek}"
+local model="${AISHELL_DEFAULT_MODEL:-deepseek-v4-flash}"
+local extra_model="${AISHELL_EXTRA_MODEL:-deepseek-v4-pro}"
 local mode=""
 local thinking="off"
 
@@ -80,7 +81,7 @@ esac
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --provider) provider="$2"; shift 2 ;;
-    -p|--pro)   model="deepseek/deepseek-v4-pro"; shift ;;
+    -p|--pro)   model="$extra_model"; shift ;;
     -t)         thinking="on"; shift ;;
     -c)         mode="command"; shift ;;
     -q)         mode="question"; shift ;;
