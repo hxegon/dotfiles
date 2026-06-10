@@ -17,20 +17,18 @@ Each subdirectory under a bucket is a stow package — its contents mirror `$HOM
 ## Usage
 
 ```bash
-# Auto-detect OS and stow
-just stow
+# First time on a machine (adopts existing files into the repo)
+./stow.sh stow-adopt
 
-# Or explicitly
-just stow-macos
-just stow-linux
-
-# Initial setup (adopts existing files into the repo)
-just stow-adopt
-
-# Optional packages
-just stow-opt kitty fish
-just list-opt
+# Normal use (after initial setup)
+./stow.sh stow
 
 # Remove all symlinks
-just unstow
+./stow.sh unstow
+
+# Opt into optional packages
+./stow.sh stow-opt kitty fish
+
+# Show available commands
+./stow.sh
 ```
