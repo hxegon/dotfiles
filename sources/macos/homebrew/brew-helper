@@ -1,0 +1,310 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+BREWFILE_HOME="${BREWFILE_HOME:-$HOME/dotfiles/sources/macos/homebrew}"
+CORE="${CORE:-$BREWFILE_HOME/.Brewfile}"
+MODULES="${MODULES:-$BREWFILE_HOME/modules}"
+TRASH="$MODULES/trash.Brewfile"
+
+usage() {
+    cat <<EOF
+brew-helper — manage declarative brew packages
+
+Usage: brew-helper <command> [args]
+
+Commands:
+  dedup <module-file>    Filter module against core, print to stdout
+  sync                   Show installed-but-not-declared packages
+  adopt <pkg> <module>   Add a package to a module Brewfile
+  uninstall <pkg>        Uninstall, remove from Brewfiles, archive to trash
+  diff                   Show installed vs declared differences
+  dump                   Print brew leaves/casks/taps in Brewfile format
+EOF
+}
+
+parse_line() {
+    local line="$1"
+    local type id
+    type=$(echo "$line" | sed -n 's/^[[:space:]]*\(brew\|cask\|tap\).*/\1/p')
+    id=$(echo "$line" | sed -n 's/^[[:space:]]*[^"]*"\([^"]*\)".*/\1/p')
+    if [ -n "$type" ] && [ -n "$id" ]; then
+        echo "$type:$id"
+    fi
+}
+
+extract_entries() {
+    local file="$1"
+    [ -f "$file" ] || return
+    while IFS= read -r line; do
+        [[ "$line" =~ ^[[:space:]]*# ]] && continue
+        [[ -z "$line" ]] && continue
+        parse_line "$line"
+    done < "$file"
+}
+
+all_brewfiles() {
+    [ -f "$CORE" ] && echo "$CORE"
+    find "$MODULES" -name "*.Brewfile" -type f 2>/dev/null
+}
+
+find_in_brewfiles() {
+    local pkg="$1"
+    for f in $(all_brewfiles); do
+        [ -f "$f" ] || continue
+        if grep -qE "^\s*(brew|cask|tap)\s+\"([^/]+/)?$pkg\"$" "$f"; then
+            echo "$f"
+        fi
+    done
+}
+
+do_dedup() {
+    local module="$1"
+    [ -f "$module" ] || { echo "Module not found: $module"; exit 1; }
+
+    local -A core_entries
+    while IFS= read -r entry; do
+        core_entries["$entry"]=1
+    done < <(extract_entries "$CORE")
+
+    while IFS= read -r line; do
+        [[ -z "$line" ]] && { echo "$line"; continue; }
+        [[ "$line" =~ ^[[:space:]]*# ]] && { echo "$line"; continue; }
+
+        local id
+        id=$(echo "$line" | sed -n 's/^[[:space:]]*[^"]*"\([^"]*\)".*/\1/p')
+        if [ -n "$id" ]; then
+            local entry
+            entry=$(parse_line "$line")
+            if [ -n "$entry" ] && [ -n "${core_entries[$entry]:-}" ]; then
+                continue
+            fi
+        fi
+        echo "$line"
+    done < "$module"
+}
+
+do_sync() {
+    local -A declared_formula declared_cask declared_tap
+
+    for f in $(all_brewfiles); do
+        [ -f "$f" ] || continue
+        while IFS=: read -r type id; do
+            case "$type" in
+                brew)  declared_formula["$id"]=1; declared_formula["${id##*/}"]=1 ;;
+                cask)  declared_cask["$id"]=1 ;;
+                tap)   declared_tap["$id"]=1 ;;
+            esac
+        done < <(extract_entries "$f")
+    done
+
+    local had=0
+    while IFS= read -r pkg; do
+        [ -z "${declared_formula[$pkg]:-}" ] || continue
+        echo "  brew \"$pkg\""
+        had=1
+    done < <(brew leaves 2>/dev/null)
+    while IFS= read -r pkg; do
+        [ -z "${declared_cask[$pkg]:-}" ] || continue
+        echo "  cask \"$pkg\""
+        had=1
+    done < <(brew list --cask 2>/dev/null)
+    while IFS= read -r pkg; do
+        [ -z "${declared_tap[$pkg]:-}" ] || continue
+        echo "  tap \"$pkg\""
+        had=1
+    done < <(brew tap 2>/dev/null)
+    [ "$had" -eq 0 ] && echo "  (none)"
+}
+
+do_adopt() {
+    local pkg="$1"
+    local module="$2"
+
+    local target
+    if [ "$module" = "core" ]; then
+        target="$CORE"
+    else
+        target="$MODULES/$module.Brewfile"
+    fi
+    [ -f "$target" ] || { echo "Module '$module' not found: $target"; exit 1; }
+
+    if [ -n "$(find_in_brewfiles "$pkg")" ]; then
+        echo "Package '$pkg' is already declared in another Brewfile"
+        exit 1
+    fi
+
+    local type="" resolved="$pkg"
+
+    if brew list --cask "$pkg" &>/dev/null; then
+        type="cask"
+    elif resolved=$(brew list --formula -1 2>/dev/null | grep -m1 -E "(^|/)$pkg\$"); [ -n "$resolved" ]; then
+        type="brew"
+    elif brew tap 2>/dev/null | grep -q "^$pkg\$"; then
+        type="tap"
+    else
+        echo "Package '$pkg' is not installed via brew"
+        exit 1
+    fi
+
+    echo "$type \"$resolved\"" >> "$target"
+    echo "Added $type \"$resolved\" to $module"
+
+    if [ "$type" = "brew" ] && [[ "$resolved" == */*/* ]]; then
+        local tap="${resolved%/*}"
+        if ! grep -qE "^\s*tap\s+\"$tap\"" "$target" 2>/dev/null; then
+            echo "tap \"$tap\"" >> "$target"
+            echo "Also added tap \"$tap\" to $module"
+        fi
+    fi
+}
+
+do_uninstall() {
+    local pkg="$1"
+    local date
+    date="$(date +%Y-%m-%d)"
+
+    local files
+    files=$(find_in_brewfiles "$pkg")
+
+    # Collect full package IDs from Brewfiles for tap orphan checking
+    local full_ids=()
+    for f in $files; do
+        while IFS= read -r id; do
+            full_ids+=("$id")
+        done < <(grep -oE "\"([^/]+/)?$pkg\"" "$f" | sed 's/"//g')
+    done
+
+    local was_tap=0
+    if brew tap 2>/dev/null | grep -q "^$pkg\$"; then
+        was_tap=1
+    fi
+
+    for f in $files; do
+        local line
+        line=$(grep -E "^\s*(brew|cask|tap)\s+\"([^/]+/)?$pkg\"$" "$f" | head -1)
+        if [ -n "$line" ]; then
+            echo "#${line#"${line%%[![:space:]]*}"}  # $date" >> "$TRASH"
+        fi
+        grep -vE "^\s*(brew|cask|tap)\s+\"([^/]+/)?$pkg\"$" "$f" > "$f.tmp" && mv "$f.tmp" "$f"
+    done
+
+    if [ "$was_tap" -eq 1 ]; then
+        brew untap "$pkg" 2>/dev/null || true
+    else
+        brew uninstall "$pkg" 2>/dev/null || brew uninstall --cask "$pkg" 2>/dev/null || true
+    fi
+
+    # Check orphaned taps from full IDs
+    local -A checked_taps
+    for id in "${full_ids[@]}"; do
+        if [[ "$id" =~ ^([^/]+/[^/]+)/ ]]; then
+            local tap="${BASH_REMATCH[1]}"
+            [ -n "${checked_taps[$tap]:-}" ] && continue
+            checked_taps[$tap]=1
+
+            if brew tap 2>/dev/null | grep -q "^$tap\$"; then
+                local orphaned=1
+                for bf in $(all_brewfiles); do
+                    [ -f "$bf" ] || continue
+                    if grep -qE "^\s*brew\s+\"$tap/" "$bf"; then
+                        orphaned=0
+                        break
+                    fi
+                done
+                if [ "$orphaned" -eq 1 ]; then
+                    brew untap "$tap" 2>/dev/null || true
+                    echo "#tap \"$tap\"  # $date" >> "$TRASH"
+                    echo "untapped $tap (no remaining formulas from it)"
+                fi
+            fi
+        fi
+    done
+
+    echo "Uninstalled $pkg"
+}
+
+do_diff() {
+    local -A declared_formula declared_cask declared_tap
+
+    for f in $(all_brewfiles); do
+        [ -f "$f" ] || continue
+        while IFS=: read -r type id; do
+            case "$type" in
+                brew)  declared_formula["$id"]=1; declared_formula["${id##*/}"]=1 ;;
+                cask)  declared_cask["$id"]=1 ;;
+                tap)   declared_tap["$id"]=1 ;;
+            esac
+        done < <(extract_entries "$f")
+    done
+
+    local had=0
+    echo "Installed but not declared:"
+    while IFS= read -r pkg; do
+        [ -z "${declared_formula[$pkg]:-}" ] || continue
+        echo "  brew \"$pkg\""
+        had=1
+    done < <(brew leaves 2>/dev/null)
+    while IFS= read -r pkg; do
+        [ -z "${declared_cask[$pkg]:-}" ] || continue
+        echo "  cask \"$pkg\""
+        had=1
+    done < <(brew list --cask 2>/dev/null)
+    while IFS= read -r pkg; do
+        [ -z "${declared_tap[$pkg]:-}" ] || continue
+        echo "  tap \"$pkg\""
+        had=1
+    done < <(brew tap 2>/dev/null)
+    [ "$had" -eq 0 ] && echo "  (none)"
+
+    echo ""
+    echo "Declared but not installed:"
+    had=0
+    for id in "${!declared_formula[@]}"; do
+        brew list --formula "$id" &>/dev/null && continue
+        echo "  brew \"$id\""
+        had=1
+    done
+    for id in "${!declared_cask[@]}"; do
+        brew list --cask "$id" &>/dev/null && continue
+        echo "  cask \"$id\""
+        had=1
+    done
+    for id in "${!declared_tap[@]}"; do
+        brew tap 2>/dev/null | grep -q "^$id\$" && continue
+        echo "  tap \"$id\""
+        had=1
+    done
+    [ "$had" -eq 0 ] && echo "  (none)"
+}
+
+do_dump() {
+    echo "# Brewfile generated: $(date)"
+    echo ""
+
+    echo "# Taps"
+    brew tap 2>/dev/null | while read -r t; do
+        echo "tap \"$t\""
+    done
+    echo ""
+
+    echo "# Formulas"
+    brew leaves 2>/dev/null | while read -r f; do
+        echo "brew \"$f\""
+    done
+    echo ""
+
+    echo "# Casks"
+    brew list --cask 2>/dev/null | while read -r c; do
+        echo "cask \"$c\""
+    done
+}
+
+case "${1:-}" in
+    dedup)     do_dedup "${2:-}" ;;
+    sync)      do_sync ;;
+    adopt)     do_adopt "${2:-}" "${3:-}" ;;
+    uninstall) do_uninstall "${2:-}" ;;
+    diff)      do_diff ;;
+    dump)      do_dump ;;
+    *)         usage; exit 1 ;;
+esac

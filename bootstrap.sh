@@ -13,17 +13,34 @@ else
     exit 1
 fi
 
-if ! command -v stow &>/dev/null; then
+if [ "$OS" = "Darwin" ]; then
+    if ! command -v brew &>/dev/null; then
+        echo "Homebrew is not installed. Install it first:"
+        echo "  /bin/bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
+        exit 1
+    fi
+
+    if ! command -v stow &>/dev/null; then
+        echo "Installing GNU Stow..."
+        brew install stow
+    fi
+
+    if ! command -v just &>/dev/null; then
+        echo "Installing just..."
+        brew install just
+    fi
+elif ! command -v stow &>/dev/null; then
     echo "GNU Stow is not installed. Install it first:"
-    echo "  macOS: brew install stow"
-    echo "  Linux: sudo apt install stow / sudo pacman -S stow"
+    echo "  sudo apt install stow / sudo pacman -S stow"
     exit 1
 fi
 
-./stow.sh stow-adopt
+./stow.sh stow
 
 echo ""
 echo "Done! Optional packages can be stowed with:"
 echo "  ./stow.sh stow-opt <package>"
 echo ""
-echo "Review adopted files with: git diff"
+echo "If you have existing configs you want to bring into the repo, use:"
+echo "  ./stow.sh stow-adopt [packages...]"
+echo "Then review with: git diff"

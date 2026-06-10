@@ -15,11 +15,20 @@ desc() {
 stow_pkg() {
     local bucket_dir="$1" flag="$2" pkg="$3"
     echo "  $pkg"
+    local extra_ignores=()
+    local ignore_file="$bucket_dir/$pkg/.stowignore"
+    if [ -f "$ignore_file" ]; then
+        while IFS= read -r line; do
+            [[ "$line" =~ ^[[:space:]]*# ]] && continue
+            [[ -z "$line" ]] && continue
+            extra_ignores+=("--ignore=$line")
+        done < "$ignore_file"
+    fi
     if [ "$flag" = "--adopt" ]; then
-        stow --no-folding --ignore='\.description' --adopt -d "$bucket_dir" -t "$HOME" "$pkg" 2>/dev/null || \
-            stow --no-folding --ignore='\.description' --override='.*' -d "$bucket_dir" -t "$HOME" "$pkg"
+        stow --no-folding --ignore='\.description' --ignore='\.stowignore' "${extra_ignores[@]}" --adopt -d "$bucket_dir" -t "$HOME" "$pkg" 2>/dev/null || \
+            stow --no-folding --ignore='\.description' --ignore='\.stowignore' "${extra_ignores[@]}" --override='.*' -d "$bucket_dir" -t "$HOME" "$pkg"
     else
-        stow --no-folding --ignore='\.description' $flag -d "$bucket_dir" -t "$HOME" "$pkg"
+        stow --no-folding --ignore='\.description' --ignore='\.stowignore' "${extra_ignores[@]}" $flag -d "$bucket_dir" -t "$HOME" "$pkg"
     fi
 }
 

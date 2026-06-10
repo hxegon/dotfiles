@@ -1,0 +1,7 @@
+brew "ffmpeg"
+brew "openai-whisper"
+brew "pandoc"
+brew "poppler"
+cask "blackhole-2ch"
+cask "transmission"
+cask "vlc"

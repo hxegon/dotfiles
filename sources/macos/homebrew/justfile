@@ -1,0 +1,51 @@
+_home := `echo $HOME`
+BREWFILE_HOME := _home + "/dotfiles/sources/macos/homebrew"
+CORE := BREWFILE_HOME + "/.Brewfile"
+MODULES := BREWFILE_HOME + "/modules"
+HELPER := BREWFILE_HOME + "/brew-helper"
+
+# default: list available recipes
+_default:
+    @just -f {{justfile()}} -l
+
+# install core packages from .Brewfile
+install:
+    brew bundle --file={{CORE}}
+
+# install one module, deduped against core
+install-module name:
+    {{HELPER}} dedup "{{MODULES}}/{{name}}.Brewfile" | brew bundle --file=-
+
+# install all modules (excluding trash)
+install-all:
+    @for f in {{MODULES}}/*.Brewfile; do \
+        name=$$(basename "$$f" .Brewfile); \
+        [ "$$name" = "trash" ] && continue; \
+        echo "=== $$name ==="; \
+        {{HELPER}} dedup "$$f" | brew bundle --file=-; \
+    done
+    @for f in {{MODULES}}/apps/*.Brewfile; do \
+        name=$$(basename "$$f" .Brewfile); \
+        echo "=== apps/$$name ==="; \
+        {{HELPER}} dedup "$$f" | brew bundle --file=-; \
+    done
+
+# uninstall a package, remove from Brewfiles, archive to trash
+uninstall pkg:
+    {{HELPER}} uninstall {{pkg}}
+
+# list installed-but-not-declared packages
+sync:
+    {{HELPER}} sync
+
+# add an installed package to a module Brewfile
+adopt pkg module:
+    {{HELPER}} adopt {{pkg}} {{module}}
+
+# show drift between declared and installed
+diff:
+    {{HELPER}} diff
+
+# print current brew leaves/casks/taps in Brewfile format
+dump:
+    {{HELPER}} dump
