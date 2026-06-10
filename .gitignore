@@ -1,14 +1,26 @@
 *.DS_Store
-sources/!xmonad/.xmonad/xmonad.hs
-sources/!xmonad/.xmonad/xmobarrc
-sources/xmonad/.xmonad/*
-sources/kakoune/.config/kak/plugins/*
-sources/emacs/.emacs.d/saves/*
-sources/emacs/.emacs.d/custom.el
-sources/emacs/.emacs.d/elpa/
-sources/fish/.config/fish/*
-sources/!fish/.config/fish/config.fish
-sources/!fish/.config/fish/functions
-sources/kitty/.config/kitty/theme.conf
-sources/kitty/.config/kitty/kitty-themes
-sources/clojure/.clojure/.cpcache
+
+# Emacs generated
+sources/opt/emacs/.emacs.d/saves/
+sources/opt/emacs/.emacs.d/custom.el
+sources/opt/emacs/.emacs.d/elpa/
+
+# Fish generated (keep config.fish and functions)
+sources/opt/fish/.config/fish/*
+!sources/opt/fish/.config/fish/config.fish
+!sources/opt/fish/.config/fish/functions/
+
+# Kitty generated themes
+sources/opt/kitty/.config/kitty/theme.conf
+sources/opt/kitty/.config/kitty/kitty-themes/
+
+# Kakoune plugins
+sources/opt/kakoune/.config/kak/plugins/
+
+# Xmonad compiled binary (keep source)
+sources/linux/xmonad/.xmonad/*
+!sources/linux/xmonad/.xmonad/xmonad.hs
+!sources/linux/xmonad/.xmonad/xmobarrc
+
+# Clojure cache
+sources/universal/clojure/.clojure/.cpcache/

@@ -1,0 +1,6 @@
+git:
+  pagers:
+    - pager: delta --dark --paging=never
+  log:
+    showGraph: 'always'
+    showWholeGraph: true
