@@ -90,5 +90,3 @@ function wttr() {
 function fzydir() {
     rg --files-with-matches scoop | xargs -n 1 dirname | fzf
 }
-
-bindkey -s ^f "tms\n"
